@@ -1,0 +1,35 @@
+// Rhythm Visualizator Offers high-quality visual sound detection to your application/game.
+
+
+// Features:
+/*
+Appearance:
++ 3 amazing forms of visualization (more coming...)
++ Rhythm detection
++ Bars and particles with sound sensibility
++ Independent Time Scale
++ Realtime customizable values
++ Can scale with Audio Source values included the audio pitch
++ 4 customizable color gradients
++ Personalizable amount of particles to emit
++ Can deactivate the particles
++ Full customizable values
+
+Sound:
++ Works with ANY audio
++ BPM Tap detection
++ Bass detection
++ Treble detection
++ Spectrum sensibility control
++ Use both channels of audio
+
+Camera:
++ Customizable camera
++ Camera movement: Rotating around
++ Automatic and customizable camera position
+
+Code:
++ Full source code
++ Customizable code
++ Endless ways to use
+*/

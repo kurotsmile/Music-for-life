@@ -1,0 +1,39 @@
+// Thanks for purchasing!
+
+// Contact: ryolxgame@gmail.com | carlosarturors@gmail.com | https://twitter.com/xLegendx97 | https://www.facebook.com/legendxh
+
+// First steps: 
+// 1. Please add the tag “SoundBar” in the editor. Edit > Project Settings > Tags and Layers > Tags > and create it.
+// 2. Assign that tag to the SoundBarPrefab.
+
+// Then…
+
+// Open the ExampleScene
+
+ // or...
+
+// 1. Drag SoundBarsPosition to the scene.
+// 2. Drag ExampleCamera to the scene.
+// 3. Import a song and assign it to AudioSource script in SoundBarsPosition Game Object.
+// 4. Play the game and tap the BPM (Please tap at least 16 times for more accuracy) or search your song BPM in https://songbpm.com/ and press “Update BPM / Off-set”.
+// 5. Modify the “Off-set MS” value to adjust the visual rhythm to the song.
+
+// -- If you want Customize the Rhythm Visualizator values in the editor --
+// --- Put the mouse above of certain values to see the description ---
+
+
+/* ---------------------------------------------------------------------------------------
+ If you want to use the included song for commercially purposes you will need credit the artist.
+
+Included Song:
+Song: On & On (feat. Daniel Levi) [NCS Release]
+Artist: Cartoon
+
+- NoCopyrightSounds:
+https:www.youtube.com/channel/UC_aEa8K-EOJ3D6gOs7HcyNg
+
+- Follow Cartoon:
+SoundCloud: https:soundcloud.com/cartoonbaboon
+Facebook: https:www.facebook.com/cartoondband 
+--------------------------------------------------------------------------------------- */
+

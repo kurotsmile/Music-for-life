@@ -1,0 +1,24 @@
+// Thanks for purchasing
+
+// Created by Carlos Arturo Rodriguez Silva (Legend) 
+// Contact: ryolxgame@gmail.com
+
+// https://twitter.com/xLegendx97 or https://www.facebook.com/legendxh
+
+// Thread: http://forum.unity3d.com/threads/rhythm-visualizator.423168/ 
+// Video: https://www.youtube.com/watch?v=i5uRU45fi8U
+
+// If you want to use the included song for commercially purposes you will need credit the artist.
+
+/* ---------------------------------------------------------------------------------------
+Included Song:
+Song: On & On (feat. Daniel Levi) [NCS Release]
+Artist: Cartoon
+
+▽ NoCopyrightSounds:
+https://www.youtube.com/channel/UC_aEa8K-EOJ3D6gOs7HcyNg
+
+▽ Follow Cartoon
+SoundCloud https://soundcloud.com/cartoonbaboon
+Facebook https://www.facebook.com/cartoondband 
+--------------------------------------------------------------------------------------- */
