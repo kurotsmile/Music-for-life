@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Carrot;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
@@ -6,6 +7,10 @@ using UnityEngine.UI;
 
 public class Playlist : MonoBehaviour
 {
+    [Header("Obj Main")]
+    public App app;
+
+    [Header("UI")]
     public Sprite icon;
     public GameObject prefab_item_playlist;
     private bool is_show_in_account = false;

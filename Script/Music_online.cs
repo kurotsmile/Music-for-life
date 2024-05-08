@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Carrot;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
@@ -6,6 +7,11 @@ using UnityEngine.UI;
 
 public class Music_online : MonoBehaviour
 {
+    [Header("Obj Main")]
+    public App app;
+    public GameObject prefab_item_music;
+
+    [Header("Obj Online")]
     public Sprite icon_artist;
     public Sprite icon_genre;
     public Sprite icon_year;
@@ -153,6 +159,7 @@ public class Music_online : MonoBehaviour
         frm.AddField("s_lang", s_lang);
         this.GetComponent<App>().carrot.send(frm, this.act_play_song);
         */
+        Debug.Log("sddddddd");
     }
 
     public void act_play_song(string s_data)
@@ -163,5 +170,42 @@ public class Music_online : MonoBehaviour
             GameObject new_song = this.create_song_to_playlist(data_song);
             this.GetComponent<App>().play_music(new_song.GetComponent<Panel_item_music>());
         }
+    }
+
+    public void Show(string s_lang)
+    {
+        StructuredQuery q = new("song");
+        q.Add_select("name");
+        q.Add_select("genre");
+        q.Add_select("artist");
+        q.Add_select("year");
+        q.Set_limit(30);
+        this.app.carrot.server.Get_doc(q.ToJson(), (s_data) =>
+        {
+            Fire_Collection fc = new(s_data);
+            if (!fc.is_null)
+            {
+                for(int i = 0; i < fc.fire_document.Length; i++)
+                {
+                    IDictionary data_m = fc.fire_document[i].Get_IDictionary();
+                    GameObject obj_item_m = Instantiate(this.prefab_item_music);
+                    obj_item_m.transform.SetParent(app.canvas_render.transform);
+                    obj_item_m.transform.localScale = new Vector3(1f, 1f, 1f);
+                    obj_item_m.transform.localPosition = Vector3.zero;
+                    obj_item_m.GetComponent<Carrot_Box_Item>().check_type();
+
+                    if(i%2==0)
+                        obj_item_m.GetComponent<Image>().color = app.color_a;
+                    else
+                        obj_item_m.GetComponent<Image>().color = app.color_b;
+
+                    Carrot_Box_Item box_item = obj_item_m.GetComponent<Carrot_Box_Item>();
+                    box_item.set_icon(app.carrot.game.icon_play_music_game);
+                    box_item.set_title(data_m["name"].ToString());
+                    if(data_m["artist"]!=null)box_item.set_tip(data_m["artist"].ToString());
+                }
+            }
+            Debug.Log(s_data);
+        });
     }
 }

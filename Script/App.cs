@@ -6,9 +6,16 @@ using UnityEngine.Purchasing;
 using UnityEngine.UI;
 public class App : MonoBehaviour
 {
+    [Header("Obj Main")]
     public Carrot.Carrot carrot;
     public Carrot.Carrot_DeviceOrientationChange deviceRotate;
     private string link_deep_app;
+    public Playlist playlist;
+    public Music_online playlist_online;
+
+    [Header("UI")]
+    public Color color_a;
+    public Color color_b;
 
     [Header("Main Item Panel")]
     public GameObject panel_main_title;
@@ -90,7 +97,6 @@ public class App : MonoBehaviour
 
     public void start_app_online()
     {
-        Debug.Log("start_app_online");
         if (PlayerPrefs.GetString("lang") == "") this.carrot.delay_function(2f, this.check_set_lang);
         this.menu_sel = PlayerPrefs.GetInt("menu_sel",0);
         this.check_show_menu_main();
@@ -241,6 +247,7 @@ public class App : MonoBehaviour
         this.list_music = new List<Panel_item_music>();
         this.carrot.send(frm, this.act_get_list_music, act_fail_show_list_music);
         */
+        playlist_online.Show(lang_music);
     }
 
     private void act_fail_show_list_music(string s_data)

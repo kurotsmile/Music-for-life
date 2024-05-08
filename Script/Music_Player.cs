@@ -268,7 +268,6 @@ public class Music_Player : MonoBehaviour
             this.panel_loading_download_full.SetActive(true);
             this.GetComponent<RadioPlayer>().Stop();
             this.GetComponent<RadioPlayer>().Restart(0.5f);
-            this.GetComponent<RadioPlayer>().Station.AllowOnlyHTTPS = true;
             this.GetComponent<RadioPlayer>().Station.Url = m.url;
             this.GetComponent<RadioPlayer>().Station.Name = m.txt_name.text;
             this.GetComponent<RadioPlayer>().Play();
@@ -741,7 +740,7 @@ public class Music_Player : MonoBehaviour
 
     private void onAudioPlayTimeUpdate(Crosstales.Radio.Model.RadioStation station, float _playtime)
     {
-         this.txt_time_full.text = Crosstales.Radio.Util.Helper.FormatSecondsToHourMinSec(_playtime);
+         this.txt_time_full.text = Crosstales.Radio.Util.Helper.FormatSecondsToHRF(_playtime);
     }
 
     private void OnDestroy()

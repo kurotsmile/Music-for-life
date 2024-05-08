@@ -13144,6 +13144,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   carrot: {fileID: 0}
   deviceRotate: {fileID: 1274554567023907666}
+  playlist: {fileID: 5552817251292395965}
+  playlist_online: {fileID: 381742734416617333}
+  color_a: {r: 1, g: 0.4292453, b: 0.4292453, a: 0.050980393}
+  color_b: {r: 1, g: 1, b: 1, a: 0.105882354}
   panel_main_title: {fileID: 237383347914139130}
   panel_main_select_country: {fileID: 980205374196683067}
   panel_main_search: {fileID: 6841201755186823933}
@@ -13221,6 +13225,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c42b362d5dace8a42bb08b42a79f6558, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  app: {fileID: 3205462977892944801}
+  prefab_item_music: {fileID: 346399769378897854, guid: 5c76e0e7f1ec6f749989da9d070de244, type: 3}
   icon_artist: {fileID: 21300000, guid: 72264fa4a0c0ce34badbde6451ed47fc, type: 3}
   icon_genre: {fileID: 21300000, guid: 74094c8b5950c9347a203eb3b70594db, type: 3}
   icon_year: {fileID: 21300000, guid: 4bf10e56bd95071459975b2560ae79e2, type: 3}
@@ -13282,6 +13288,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1ddd030f9688ab46b330f4f7edcd50d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  app: {fileID: 3205462977892944801}
   icon: {fileID: 21300000, guid: e3d3e18ffde461b4a931ac5b0c89b5d8, type: 3}
   prefab_item_playlist: {fileID: 7346488996146258473, guid: e5fb54586176bbb459b9a37f34e0f087, type: 3}
   prefab_new_playlist: {fileID: 970483031383246302, guid: 11aec62e7d4ca26428a2891998ec19bf, type: 3}
@@ -21978,7 +21985,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0.000030517578}
+  m_AnchoredPosition: {x: 0.000015258789, y: 0.000030517578}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!222 &1956867512890842867
@@ -23635,6 +23642,7 @@ MonoBehaviour:
   station:
     Name: Unknown radio station
     Url: 
+    RequestHeaders: []
     Station: 
     Genres: 
     Rating: 0
@@ -23648,7 +23656,6 @@ MonoBehaviour:
     Bitrate: 128
     ChunkSize: 32
     BufferSize: 48
-    AllowOnlyHTTPS: 0
     ExcludedCodec: 0
     UpdateDataAtPlay: 1
     Channels: 2
@@ -23656,6 +23663,7 @@ MonoBehaviour:
     TotalDataSize: 0
     TotalDataRequests: 0
     TotalPlayTime: 0
+    PlayedRecords: []
     ServerInfo: 
   playOnStart: 0
   delay: 0
@@ -23663,6 +23671,7 @@ MonoBehaviour:
   cacheStreamSize: 2048
   legacyMode: 0
   captureDataStream: 0
+  skipPreBuffering: 0
   OnPlaybackStarted:
     m_PersistentCalls:
       m_Calls: []
@@ -27513,7 +27522,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 9151221178016330403}
   m_HandleRect: {fileID: 779965612902909487}
   m_Direction: 0
-  m_Value: 0.000000020299801
+  m_Value: -0.000000020299801
   m_Size: 0.24832815
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -27639,7 +27648,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76c392e42b5098c458856cdf6ecaaaa1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_FirstSelected: {fileID: 0}
+  m_FirstSelected: {fileID: 3877043747062176904}
   m_sendNavigationEvents: 1
   m_DragThreshold: 10
 --- !u!114 &6988895171764794311
@@ -32588,6 +32597,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 8272902145270773237}
     m_Modifications:
+    - target: {fileID: 6898965900058364634, guid: acc0d96a61121544eac0d132cdadf2fb, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 10.900002
+      objectReference: {fileID: 0}
     - target: {fileID: 6898965901552933540, guid: acc0d96a61121544eac0d132cdadf2fb, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -32675,6 +32688,10 @@ PrefabInstance:
     - target: {fileID: 6898965901552933541, guid: acc0d96a61121544eac0d132cdadf2fb, type: 3}
       propertyPath: m_Name
       value: Item_key_search
+      objectReference: {fileID: 0}
+    - target: {fileID: 6898965901877233551, guid: acc0d96a61121544eac0d132cdadf2fb, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 7.119999
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
