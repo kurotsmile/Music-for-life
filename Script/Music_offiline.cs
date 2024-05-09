@@ -21,7 +21,6 @@ public class Music_offiline : MonoBehaviour
         PlayerPrefs.SetString("mo_"+this.leng,Json.Serialize(data));
         this.leng++;
         PlayerPrefs.SetInt("mo_length", this.leng);
-
     }
 
     public void show_list_music_data()
@@ -36,11 +35,19 @@ public class Music_offiline : MonoBehaviour
                 string s_data = PlayerPrefs.GetString("mo_" + i);
                 if (s_data!= "")
                 {
+                    var index = i;
                     IDictionary data_m = (IDictionary) Json.Deserialize(s_data);
                     Carrot_Box_Item box_item=app.Create_item("mo_item_" + i);
                     data_m["index"] = index_m;
+                    box_item.set_icon(this.app.sp_icon_music);
                     box_item.set_title(data_m["name"].ToString());
                     box_item.set_tip(data_m["artist"].ToString());
+
+                    Carrot_Box_Btn_Item btn_del = box_item.create_item();
+                    btn_del.set_icon(app.carrot.sp_icon_del_data);
+                    btn_del.set_icon_color(Color.white);
+                    btn_del.set_color(Color.red);
+                    btn_del.set_act(() => this.delete(index));
                 }
             }
         }
@@ -48,6 +55,7 @@ public class Music_offiline : MonoBehaviour
 
     public void delete(int index)
     {
+        app.carrot.Show_msg(app.carrot.L("delete","Delete song"),"Successfully deleted song from archive!",Msg_Icon.Success);
         PlayerPrefs.DeleteKey("mo_" + index);
     }
 

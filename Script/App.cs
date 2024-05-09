@@ -102,15 +102,13 @@ public class App : MonoBehaviour
 
     private void Check_set_lang()
     {
-        if (PlayerPrefs.GetString("lang") == "") this.carrot.Show_list_lang(Reload_list);
+        if (PlayerPrefs.GetString("lang") == "") this.carrot.Show_list_lang(After_select_lang);
     }
 
-    private void Reload_list(string s_data)
+    private void After_select_lang(string s_lang)
     {
-        this.clear_all_contain();
-        string lang_sel = PlayerPrefs.GetString("lang", "en");
-        PlayerPrefs.SetString("lang_music",lang_sel);
-        this.show_more_list_music();
+        PlayerPrefs.SetString("lang_music", s_lang);
+        this.check_show_menu_main();
     }
 
     public void load_background()
@@ -197,19 +195,7 @@ public class App : MonoBehaviour
         playlist_online.Show(lang_music);
     }
 
-    private void act_fail_show_list_music(string s_data)
-    {
-        //if(this.s_data_last!="") this.act_get_list_music(this.s_data_last);
-    }
 
-    public void show_more_list_music()
-    {
-        /*
-        WWWForm frm = this.carrot.frm_act("list_music");
-        frm.AddField("lang_music", PlayerPrefs.GetString("lang_music","en"));
-        this.carrot.send(frm, this.act_get_list_music);
-        */
-    }
 
     public void show_list_radio(string lang_radio)
     {
@@ -231,7 +217,7 @@ public class App : MonoBehaviour
 
     public void show_select_lang()
     {
-        this.carrot.Show_list_lang(this.Reload_list);
+        this.carrot.Show_list_lang(this.After_select_lang);
     }
 
     public void act_search()
