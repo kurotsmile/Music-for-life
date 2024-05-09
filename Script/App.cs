@@ -11,6 +11,7 @@ public class App : MonoBehaviour
     private string link_deep_app;
     public Playlist playlist;
     public Music_online playlist_online;
+    public Music_offiline playlist_offline;
     public Music_Player player_music;
 
     [Header("Obj Prefab")]
@@ -80,6 +81,9 @@ public class App : MonoBehaviour
 
         this.s_data_last = PlayerPrefs.GetString("s_data_last");
         this.check_scene();
+
+        this.playlist_offline.On_Load();
+        this.playlist_online.On_load();
     }
 
     public void start_app_online()

@@ -1,4 +1,5 @@
 ﻿using Carrot;
+using System.Collections;
 using UnityEngine;
 
 public class Music_offiline : MonoBehaviour
@@ -10,9 +11,17 @@ public class Music_offiline : MonoBehaviour
     public Sprite ps_icon_offline;
     int leng=0;
 
-    void Start()
+    public void On_Load()
     {
-        this.leng = PlayerPrefs.GetInt("mfl_leng");
+        this.leng = PlayerPrefs.GetInt("mo_length",0);
+    }
+
+    public void Add(IDictionary data)
+    {
+        PlayerPrefs.SetString("mo_"+this.leng,Json.Serialize(data));
+        this.leng++;
+        PlayerPrefs.SetInt("mo_length", this.leng);
+
     }
 
     public void show_list_music_data()
@@ -24,9 +33,14 @@ public class Music_offiline : MonoBehaviour
             int index_m = 0;
             for(int i = 0; i < this.leng; i++)
             {
-                if (PlayerPrefs.GetString("mfl_name_"+i) != "")
+                string s_data = PlayerPrefs.GetString("mo_" + i);
+                if (s_data!= "")
                 {
-                    Carrot_Box_Item box_offline_item=app.Create_item("item_offline_" + i);
+                    IDictionary data_m = (IDictionary) Json.Deserialize(s_data);
+                    Carrot_Box_Item box_item=app.Create_item("mo_item_" + i);
+                    data_m["index"] = index_m;
+                    box_item.set_title(data_m["name"].ToString());
+                    box_item.set_tip(data_m["artist"].ToString());
                 }
             }
         }
@@ -34,16 +48,7 @@ public class Music_offiline : MonoBehaviour
 
     public void delete(int index)
     {
-        PlayerPrefs.DeleteKey("mfl_name_" + index);
-        PlayerPrefs.DeleteKey("mfl_color_" + index);
-        PlayerPrefs.DeleteKey("mfl_url_" + index);
-        PlayerPrefs.DeleteKey("mfl_lyrics_" + index);
-        PlayerPrefs.DeleteKey("mfl_link_" + index);
-        PlayerPrefs.DeleteKey("mfl_ytb_" + index);
-
-        this.GetComponent<App>().carrot.get_tool().delete_file("mfl_" + index + ".data");
-        this.GetComponent<App>().carrot.get_tool().delete_file("mfl_" + index + ".png");
-        this.show_list_music_data();
+        PlayerPrefs.DeleteKey("mo_" + index);
     }
 
 }

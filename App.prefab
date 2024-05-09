@@ -12351,6 +12351,7 @@ MonoBehaviour:
   deviceRotate: {fileID: 1274554567023907666}
   playlist: {fileID: 5552817251292395965}
   playlist_online: {fileID: 381742734416617333}
+  playlist_offline: {fileID: 7940950528551302809}
   player_music: {fileID: 3934995061198677745}
   prefab_item_music: {fileID: 346399769378897854, guid: 5c76e0e7f1ec6f749989da9d070de244, type: 3}
   prefab_item_loading: {fileID: 7643879728938420672, guid: 7c85cb3e887b54c4abff9dd52a163cdf, type: 3}

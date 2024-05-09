@@ -499,7 +499,7 @@ public class Music_Player : MonoBehaviour
 
     public void btn_save()
     {
-        //GameObject.Find("App").GetComponent<Music_offiline>().add_music(this.music_item_cur, this.data_music_save);
+        app.playlist_offline.Add(this.data_music_cur);
         this.obj_btn_save.SetActive(false);
         this.obj_btn_save_full.SetActive(false);
     }
