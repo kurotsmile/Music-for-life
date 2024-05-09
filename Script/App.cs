@@ -150,7 +150,7 @@ public class App : MonoBehaviour
         if (this.menu_sel == 6)this.GetComponent<Music_online>().show_list_artist();
         if (this.menu_sel == 7)this.GetComponent<Music_online>().show_list_genre();
         if (this.menu_sel == 8)this.GetComponent<Music_online>().show_list_year();
-        if (this.menu_sel == 9)this.GetComponent<App_shop>().show_list_shop();
+        if (this.menu_sel == 9)this.GetComponent<App_shop>().Show();
     }
 
     private void show_list_music()
