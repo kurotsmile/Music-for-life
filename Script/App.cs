@@ -575,4 +575,5 @@ public class App : MonoBehaviour
         obj_item_loading.transform.localPosition = Vector3.zero;
         obj_item_loading.GetComponentInChildren<Image>().color = carrot.color_highlight;
     }
+
 }

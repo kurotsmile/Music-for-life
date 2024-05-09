@@ -522,13 +522,31 @@ public class Music_Player : MonoBehaviour
 
     public void show_lyrics()
     {
-        this.box_lyrics=GameObject.Find("App").GetComponent<App>().carrot.Create_Box(PlayerPrefs.GetString("m_lyrics", "Lyrics"), this.icon_lyrics);
-        GameObject lyrics = Instantiate(this.prefab_lyrics_full);
-        Text txt_lyrics = lyrics.GetComponent<Text>();
-        txt_lyrics.text = this.data_music_cur["lyrics"].ToString();
-        this.box_lyrics.add_item(lyrics);
-        Destroy(lyrics);
-        GameObject.Find("App").GetComponent<App>().carrot.delay_function(1f, refesh_lyrics);
+        app.carrot.show_loading();
+        StructuredQuery q = new("song");
+        q.Add_select("lyrics");
+        q.Add_where("id", Query_OP.EQUAL, this.data_music_cur["id"].ToString());
+        app.carrot.server.Get_doc(q.ToJson(), Get_lyrics_done);
+    }
+
+    private void Get_lyrics_done(string s_data)
+    {
+        app.carrot.hide_loading();
+        Fire_Collection fc = new(s_data);
+        if (!fc.is_null)
+        {
+            IDictionary data_lyrics = fc.fire_document[0].Get_IDictionary();
+            if (data_lyrics["lyrics"] != null)
+            {
+                this.box_lyrics = app.carrot.Create_Box(app.carrot.L("m_lyrics", "Lyrics"), this.icon_lyrics);
+                GameObject lyrics = Instantiate(this.prefab_lyrics_full);
+                Text txt_lyrics = lyrics.GetComponent<Text>();
+                txt_lyrics.text = data_lyrics["lyrics"].ToString();
+                this.box_lyrics.add_item(lyrics);
+                Destroy(lyrics);
+                app.carrot.delay_function(1f, refesh_lyrics);
+            }
+        }
     }
 
     private void refesh_lyrics()
