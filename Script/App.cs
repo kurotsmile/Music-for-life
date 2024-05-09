@@ -13,6 +13,7 @@ public class App : MonoBehaviour
     public Music_online playlist_online;
     public Music_offiline playlist_offline;
     public Music_Player player_music;
+    public Playlist_Radio playlist_radio;
 
     [Header("Obj Prefab")]
     public GameObject prefab_item_music;
@@ -20,6 +21,7 @@ public class App : MonoBehaviour
 
     [Header("Asset icon")]
     public Sprite sp_icon_music;
+    public Sprite sp_icon_radio;
     public Sprite sp_avata_music_default;
 
     [Header("Main Item Panel")]
@@ -57,8 +59,6 @@ public class App : MonoBehaviour
     public Color32 color_row_2;
 
     private int menu_sel = 0;
-    private bool is_show_playlist_after_login = false;
-    private string s_data_last;
     private Carrot.Carrot_Box box_bk;
 
     void Start()
@@ -72,10 +72,8 @@ public class App : MonoBehaviour
         Screen.sleepTimeout = (int)SleepTimeout.NeverSleep;
 
         this.panel_footer.panel_menu_full.SetActive(false);
-        this.GetComponent<Playlist>().panel_new_playlist.SetActive(false);
         this.load_background();
 
-        this.s_data_last = PlayerPrefs.GetString("s_data_last");
         this.check_scene();
 
         this.playlist_offline.On_Load();
@@ -132,7 +130,7 @@ public class App : MonoBehaviour
         }
 
         if (this.menu_sel == 0) this.show_list_music();
-        if (this.menu_sel == 1) this.show_list_radio(PlayerPrefs.GetString("lang_music", "en"));
+        if (this.menu_sel == 1) this.playlist_radio.show();
         if (this.menu_sel == 2) this.show_list_sound();
 
         if (this.menu_sel == 4)
@@ -144,12 +142,9 @@ public class App : MonoBehaviour
         if (this.menu_sel == 5)
         {
             if (this.carrot.user.get_id_user_login() != "")
-                this.playlist.show_list_on_main();
+                this.playlist.show();
             else
-            {
-                this.is_show_playlist_after_login = true;
-                this.carrot.show_login();
-            }
+                this.carrot.user.show_login(this.playlist.show);
         }
         if (this.menu_sel == 6)this.GetComponent<Music_online>().show_list_artist();
         if (this.menu_sel == 7)this.GetComponent<Music_online>().show_list_genre();
@@ -174,11 +169,6 @@ public class App : MonoBehaviour
             this.player_music.hide_audio_wave();
             this.carrot.set_no_check_exit_app();
         }
-        else if (this.playlist.panel_new_playlist.activeInHierarchy)
-        {
-            this.playlist.panel_new_playlist.SetActive(false);
-            this.carrot.set_no_check_exit_app();
-        }
         else if (this.player_music.panel_aduio_mixer.activeInHierarchy)
         {
             this.player_music.panel_aduio_mixer.SetActive(false);
@@ -189,17 +179,6 @@ public class App : MonoBehaviour
     public void show_list_music(string lang_music)
     {
         playlist_online.Show(lang_music);
-    }
-
-
-
-    public void show_list_radio(string lang_radio)
-    {
-        /*
-        WWWForm frm = this.carrot.frm_act("list_radio");
-        frm.AddField("lang_radio", lang_radio);
-        this.carrot.send(frm, act_get_list_radio);
-        */
     }
 
     public void show_list_sound()
@@ -252,12 +231,6 @@ public class App : MonoBehaviour
     public void rate_app()
     {
         this.carrot.show_rate();
-    }
-
-    public void show_login_or_account()
-    {
-        this.is_show_playlist_after_login = false;
-        this.carrot.show_login();
     }
 
     public void show_select_background()
@@ -370,14 +343,6 @@ public class App : MonoBehaviour
     public void show_list_carrot_app()
     {
         this.carrot.show_list_carrot_app();
-    }
-
-    public void onActionWhereAfterLogin()
-    {
-        if (this.is_show_playlist_after_login)
-        {
-            this.GetComponent<Playlist>().show_list_on_main();
-        }
     }
 
     public void check_link_deep_app()
