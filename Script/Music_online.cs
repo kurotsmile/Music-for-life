@@ -210,7 +210,6 @@ public class Music_online : MonoBehaviour
                     box_item.set_act(() => { app.player_music.Play_by_data(data_m, box_item); });
                 }
             }
-            Debug.Log(s_data);
         });
     }
 }

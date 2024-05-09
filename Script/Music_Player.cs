@@ -221,7 +221,9 @@ public class Music_Player : MonoBehaviour
 
     public void Play_by_data(IDictionary data, Carrot_Box_Item box_item)
     {
+        this.is_status_play = false;
         this.app.carrot.ads.show_ads_Interstitial();
+        this.panel_player_mini.SetActive(true);
         this.GetComponent<AudioSource>().Stop();
         this.GetComponent<AudioSource>().clip = null;
         this.data_music_cur = data;
