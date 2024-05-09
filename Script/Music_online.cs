@@ -116,9 +116,9 @@ public class Music_online : MonoBehaviour
                 box_item.set_act(() => { app.player_music.Play_by_data(data_m); });
 
                 if (i % 2 == 0)
-                    box_item.GetComponent<Image>().color = app.color_a;
+                    box_item.GetComponent<Image>().color = app.color_row_1;
                 else
-                    box_item.GetComponent<Image>().color = app.color_b;
+                    box_item.GetComponent<Image>().color = app.color_row_2;
 
                 string s_id_avatar = "pic_avatar_" + data_m["id"].ToString();
                 Sprite sp_pic_avatar = app.carrot.get_tool().get_sprite_to_playerPrefs(s_id_avatar);

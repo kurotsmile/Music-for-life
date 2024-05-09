@@ -1,6 +1,7 @@
 ﻿using Carrot;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Music_offiline : MonoBehaviour
 {
@@ -48,6 +49,20 @@ public class Music_offiline : MonoBehaviour
                     btn_del.set_icon_color(Color.white);
                     btn_del.set_color(Color.red);
                     btn_del.set_act(() => this.delete(index));
+
+                    if (i % 2 == 0)
+                        box_item.GetComponent<Image>().color = app.color_row_1;
+                    else
+                        box_item.GetComponent<Image>().color = app.color_row_2;
+
+                    string s_id_avatar = "pic_avatar_" + data_m["id"].ToString();
+                    Sprite sp_pic_avatar = app.carrot.get_tool().get_sprite_to_playerPrefs(s_id_avatar);
+                    if (sp_pic_avatar != null)
+                        box_item.set_icon_white(sp_pic_avatar);
+                    else
+                        app.carrot.get_img_and_save_playerPrefs(data_m["avatar"].ToString(), box_item.img_icon, s_id_avatar);
+
+                    box_item.set_act(() => this.app.player_music.Play_by_data(data_m));
                 }
             }
         }

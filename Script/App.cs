@@ -18,10 +18,6 @@ public class App : MonoBehaviour
     public GameObject prefab_item_music;
     public GameObject prefab_item_loading;
 
-    [Header("UI")]
-    public Color color_a;
-    public Color color_b;
-
     [Header("Asset icon")]
     public Sprite sp_icon_music;
     public Sprite sp_avata_music_default;
