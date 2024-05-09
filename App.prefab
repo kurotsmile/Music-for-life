@@ -13146,6 +13146,7 @@ MonoBehaviour:
   deviceRotate: {fileID: 1274554567023907666}
   playlist: {fileID: 5552817251292395965}
   playlist_online: {fileID: 381742734416617333}
+  player_music: {fileID: 3934995061198677745}
   color_a: {r: 1, g: 0.4292453, b: 0.4292453, a: 0.050980393}
   color_b: {r: 1, g: 1, b: 1, a: 0.105882354}
   panel_main_title: {fileID: 237383347914139130}
@@ -21985,7 +21986,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 0.000015258789, y: 0.000030517578}
+  m_AnchoredPosition: {x: 0, y: 0.000030517578}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!222 &1956867512890842867
@@ -23409,6 +23410,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39da8ff5a195b844dbedda4416874772, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  app: {fileID: 3205462977892944801}
   icon_music: {fileID: 21300000, guid: 6a225faaf46361547965783133badc07, type: 3}
   icon_lyrics: {fileID: 21300000, guid: 9717b85ba2439014c82a52a4fa4830d5, type: 3}
   icon_music_defautl: {fileID: 21300000, guid: 272f3800672b1914bad83005df0aef81, type: 3}
@@ -27522,7 +27524,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 9151221178016330403}
   m_HandleRect: {fileID: 779965612902909487}
   m_Direction: 0
-  m_Value: -0.000000020299801
+  m_Value: 0.000000020299801
   m_Size: 0.24832815
   m_NumberOfSteps: 0
   m_OnValueChanged:

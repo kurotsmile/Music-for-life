@@ -19,7 +19,6 @@ public class Music_offiline : MonoBehaviour
         this.GetComponent<App>().clear_all_contain();
         if (this.leng > 0)
         {
-            this.GetComponent<App>().list_music = new List<Panel_item_music>();
             int index_m = 0;
             for(int i = 0; i < this.leng; i++)
             {
@@ -51,7 +50,7 @@ public class Music_offiline : MonoBehaviour
                     item_m.GetComponent<Panel_item_music>().btn_statu_play.SetActive(false);
                     item_m.GetComponent<Panel_item_music>().btn_add_playlist.SetActive(false);
                     index_m++;
-                    this.GetComponent<App>().list_music.Add(item_m.GetComponent<Panel_item_music>());
+                    
                 }
             }
         }

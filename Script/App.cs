@@ -12,6 +12,7 @@ public class App : MonoBehaviour
     private string link_deep_app;
     public Playlist playlist;
     public Music_online playlist_online;
+    public Music_Player player_music;
 
     [Header("UI")]
     public Color color_a;
@@ -41,7 +42,6 @@ public class App : MonoBehaviour
     public GameObject prefab_music_item_list;
     public Transform area_body_country;
     public GameObject canvas_render;
-    public IList<Panel_item_music> list_music;
     public GameObject btn_account_playlist;
     public Skybox bk;
 
@@ -385,18 +385,12 @@ public class App : MonoBehaviour
         Obj_item_music.transform.localPosition = new Vector3(Obj_item_music.transform.localPosition.x, Obj_item_music.transform.localPosition.y, 0f);
         Obj_item_music.transform.localRotation = Quaternion.Euler(Vector3.zero);
         Obj_item_music.transform.localScale = new Vector3(1f, 1f, 1f);
-        this.list_music.Add(Obj_item_music.GetComponent<Panel_item_music>());
     }
 
     public void play_music(Panel_item_music item_music)
     {
         this.carrot.ads.show_ads_Interstitial();
-        this.panel_music_player.GetComponent<Music_Player>().play_music_online(item_music);
-    }
-
-    public IList<Panel_item_music> get_list_music_data()
-    {
-        return list_music;
+        //this.panel_music_player.GetComponent<Music_Player>().play_music_online(item_music);
     }
 
     private void act_get_list_key_search(string s_data)
@@ -450,7 +444,6 @@ public class App : MonoBehaviour
     {
         IList all_data = (IList)Json.Deserialize(s_data);
         Debug.Log("Search data:" + s_data);
-        this.list_music = new List<Panel_item_music>();
         this.clear_all_contain();
         for (int i = 0; i < all_data.Count; i++)
         {
@@ -478,7 +471,6 @@ public class App : MonoBehaviour
         IDictionary data = (IDictionary)Json.Deserialize(s_data);
         IList all_radio = (IList)data["arr_radio"];
         Debug.Log("list Radio:" + s_data);
-        this.list_music = new List<Panel_item_music>();
         this.clear_all_contain();
         for (int i = 0; i < all_radio.Count; i++)
         {
@@ -494,7 +486,6 @@ public class App : MonoBehaviour
     {
         IList all_music=(IList)Json.Deserialize(s_data);
         Debug.Log("list sound:" + s_data);
-        this.list_music = new List<Panel_item_music>();
         this.clear_all_contain();
         for (int i = 0; i < all_music.Count; i++)
         {

@@ -1,14 +1,16 @@
 ﻿using Carrot;
 using Crosstales.Radio;
-using Crosstales.Radio.Util;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.UI;
 
 public class Music_Player : MonoBehaviour
 {
+    [Header("Obj Main")]
+    public App app;
+
+    [Header("Obj Player")]
     public Sprite icon_music;
     public Sprite icon_lyrics;
     public Sprite icon_music_defautl;
@@ -21,7 +23,6 @@ public class Music_Player : MonoBehaviour
     public Text txt_name_song_mini;
     public Image avatar_mini;
     public GameObject panel_loading_download;
-    private Panel_item_music music_item_cur;
     public Image img_btn_play;
     public Slider slider_timer_music;
     public Image img_slider_timer_music;
@@ -98,6 +99,8 @@ public class Music_Player : MonoBehaviour
     public Image img_aduo_wave_rotate;
 
     Carrot_Box box_lyrics;
+    private IDictionary data_music_cur = null;
+
     void Start()
     {
         this.GetComponent<RadioPlayer>().OnErrorInfo += this.Radio_act_error;
@@ -216,16 +219,15 @@ public class Music_Player : MonoBehaviour
         this.dropdown_ReverbFilters.RefreshShownValue();
     }
 
-    public void play_music_online(Panel_item_music m)
+    public void Play_by_data(IDictionary data, Carrot_Box_Item box_item)
     {
-        this.reset_list_music_data();
+        this.app.carrot.ads.show_ads_Interstitial();
         this.GetComponent<AudioSource>().Stop();
         this.GetComponent<AudioSource>().clip = null;
-        m.btn_statu_play.SetActive(true);
-        this.music_item_cur = m;
-        this.txt_name_song_mini.text = m.txt_name.text;
-        this.txt_name_song_full.text = m.txt_name.text;
-        if (m.genre.ToString() == "" && m.album.ToString() == "" && m.artist.ToString() == "" && m.year.ToString() == "")
+        this.data_music_cur = data;
+        this.txt_name_song_mini.text = data["name"].ToString();
+        this.txt_name_song_full.text = data["name"].ToString();
+        if (data["genre"].ToString() == "" && data["album"].ToString() == "" && data["artist"].ToString() == "" &&data["year"].ToString() == "")
         {
             this.panel_bar_info.SetActive(false);
         }
@@ -237,28 +239,24 @@ public class Music_Player : MonoBehaviour
             this.Item_info_year.SetActive(false);
 
             this.panel_bar_info.SetActive(true);
-            this.txt_info_artist.text = m.artist;
-            this.txt_info_album.text = m.album;
-            this.txt_info_genre.text = m.genre;
-            this.txt_info_year.text = m.year;
-            if (m.artist.ToString() != "") this.Item_info_artist.SetActive(true);
-            if (m.genre.ToString() != "") this.Item_info_genre.SetActive(true);
-            if (m.album.ToString() != "") this.Item_info_album.SetActive(true);
-            if (m.year.ToString() != "") this.Item_info_year.SetActive(true);
+            this.txt_info_artist.text = data["artist"].ToString();
+            this.txt_info_album.text = data["album"].ToString();
+            this.txt_info_genre.text = data["genre"].ToString();
+            this.txt_info_year.text = data["year"].ToString();
+            if (data["artist"].ToString().ToString() != "") this.Item_info_artist.SetActive(true);
+            if (data["genre"].ToString() != "") this.Item_info_genre.SetActive(true);
+            if (data["album"].ToString() != "") this.Item_info_album.SetActive(true);
+            if (data["year"].ToString() != "") this.Item_info_year.SetActive(true);
         }
 
-        this.avatar_mini.sprite = m.icon.sprite;
+        this.avatar_mini.sprite = box_item.img_icon.sprite;
         this.animation_avatar_full.enabled = false;
         this.button_download_file_mp3.SetActive(false);
         this.button_add_song_to_playlist.SetActive(false);
-        if (this.music_item_cur.icon.sprite == this.icon_music)
-            this.avatar_full.sprite = this.icon_music_defautl;
-        else
-            this.avatar_full.sprite = m.icon.sprite;
 
         this.obj_btn_save.SetActive(false);
         this.obj_btn_save_full.SetActive(false);
-        if (m.type == 1)
+        if (data["type"].ToString() == "1")
         {
             this.animation_avatar_full.enabled = true;
 
@@ -268,13 +266,12 @@ public class Music_Player : MonoBehaviour
             this.panel_loading_download_full.SetActive(true);
             this.GetComponent<RadioPlayer>().Stop();
             this.GetComponent<RadioPlayer>().Restart(0.5f);
-            this.GetComponent<RadioPlayer>().Station.Url = m.url;
-            this.GetComponent<RadioPlayer>().Station.Name = m.txt_name.text;
+            this.GetComponent<RadioPlayer>().Station.Url = data["mp3"].ToString();
+            this.GetComponent<RadioPlayer>().Station.Name = data["name"].ToString();
             this.GetComponent<RadioPlayer>().Play();
 
             this.slider_timer_music.gameObject.SetActive(false);
             this.is_status_play = true;
-            this.music_item_cur.btn_statu_play.GetComponent<Image>().color = myColor;
             this.img_btn_play.sprite = icon_pause;
             this.img_btn_play_full.sprite = icon_pause;
             this.img_icon_loop_full.gameObject.SetActive(false);
@@ -288,7 +285,7 @@ public class Music_Player : MonoBehaviour
             this.panel_loading_download_full.SetActive(true);
             this.img_icon_loop_full.gameObject.SetActive(true);
             this.img_icon_loop_mini.gameObject.SetActive(true);
-            if (this.music_item_cur.type == 0)
+            if (data["type"].ToString() == "0")
             {
                 this.panel_feel_full.SetActive(true);
                 this.txt_feel_tip.gameObject.SetActive(true);
@@ -298,73 +295,16 @@ public class Music_Player : MonoBehaviour
                 this.panel_feel_full.SetActive(false);
                 this.txt_feel_tip.gameObject.SetActive(false);
             }
-            if (m.url == "")
-            {
-                this.download_music(GameObject.Find("App").GetComponent<App>().carrot.mainhost + "/app_mygirl/app_my_girl_" + m.lang + "/" + m.id_m + ".mp3");
-            }
-            else
-            {
-                this.download_music(m.url);
-            }
+            if (data["mp3"].ToString()!= "") this.download_music(data["mp3"].ToString());
         }
-
-        this.slider_timer_music.gameObject.SetActive(false);
-        this.slider_timer_music_full.gameObject.SetActive(false);
-        this.is_status_play = false;
-
-        if (m.lyrics.ToString() == "")
-        {
-            this.btn_lyrics_full.SetActive(false);
-        }
-        else
-        {
-            this.btn_lyrics_full.SetActive(true);
-        }
-
-        if (m.link_ytb.ToString() == "")
-        {
-            this.btn_ytb_full.SetActive(false);
-        }
-        else
-        {
-            this.btn_ytb_full.SetActive(true);
-        }
-
-        if (this.music_item_cur.link_store.ToString() == "")
-        {
-            this.btn_link_full.SetActive(false);
-            this.btn_share_full.SetActive(false);
-        }
-        else
-        {
-            this.btn_link_full.SetActive(true);
-            this.btn_share_full.SetActive(true);
-        }
-
-        ColorUtility.TryParseHtmlString(m.s_color, out myColor);
-        this.img_slider_timer_music.color = myColor;
-        this.img_slider_timer_music_full.color = myColor;
-        this.img_btn_timer_music_full.color = myColor;
-        this.txt_feel_tip.color = myColor;
-        this.img_icon_loading.color = myColor;
-        if (this.panel_player_full.activeInHierarchy == false)
-        {
-            this.panel_player_mini.SetActive(true);
-        }
-        else
-        {
-            if (this.music_item_cur.type == 0) this.get_feel_music();
-
-        }
-
-        if(this.music_item_cur.type == 0 || this.music_item_cur.type == 2) if (this.music_item_cur.id_m != "") this.button_download_file_mp3.SetActive(true);
-        if(this.music_item_cur.type==0) this.button_add_song_to_playlist.SetActive(true); 
     }
+
+    
 
     public void stop()
     {
         this.StopAllCoroutines();
-        if (this.music_item_cur.type == 1)
+        if (this.data_music_cur["type"].ToString() == "1")
         {
             this.GetComponent<RadioPlayer>().Stop();
         }
@@ -372,7 +312,6 @@ public class Music_Player : MonoBehaviour
         {
             this.GetComponent<AudioSource>().Stop();
         }
-        if (this.music_item_cur != null) this.music_item_cur.btn_statu_play.SetActive(false);
         this.panel_player_mini.SetActive(false);
         this.panel_player_full.SetActive(false);
     }
@@ -386,7 +325,7 @@ public class Music_Player : MonoBehaviour
     {
         if (this.is_status_play)
         {
-            if (this.music_item_cur.type == 1)
+            if (this.data_music_cur["type"].ToString() == "1")
             {
   
             }
@@ -422,7 +361,7 @@ public class Music_Player : MonoBehaviour
 
     public void act_play_and_pause()
     {
-        if (this.music_item_cur.type == 1)
+        if (this.data_music_cur["type"].ToString() == "1")
         {
 
             if (this.GetComponent<RadioPlayer>().isAudioPlaying)
@@ -430,7 +369,6 @@ public class Music_Player : MonoBehaviour
                 this.GetComponent<RadioPlayer>().Stop();
                 this.img_btn_play.sprite = this.icon_play;
                 this.img_btn_play_full.sprite = this.icon_play;
-                if (this.music_item_cur != null) this.music_item_cur.btn_statu_play.GetComponent<Image>().color = Color.gray;
                 this.is_status_play = false;
                 this.animation_avatar_full.enabled = false;
             }
@@ -439,7 +377,6 @@ public class Music_Player : MonoBehaviour
                 this.GetComponent<RadioPlayer>().Play();
                 this.img_btn_play.sprite = this.icon_pause;
                 this.img_btn_play_full.sprite = this.icon_pause;
-                if (this.music_item_cur != null) this.music_item_cur.btn_statu_play.GetComponent<Image>().color = myColor;
                 this.is_status_play = true;
                 this.animation_avatar_full.enabled = true;
             }
@@ -452,7 +389,6 @@ public class Music_Player : MonoBehaviour
                 this.GetComponent<AudioSource>().Pause();
                 this.img_btn_play.sprite = this.icon_play;
                 this.img_btn_play_full.sprite = this.icon_play;
-                if (this.music_item_cur != null) this.music_item_cur.btn_statu_play.GetComponent<Image>().color = Color.gray;
                 this.is_status_play = false;
                 this.animation_avatar_full.enabled = false;
             }
@@ -461,7 +397,6 @@ public class Music_Player : MonoBehaviour
                 this.GetComponent<AudioSource>().Play();
                 this.img_btn_play.sprite = this.icon_pause;
                 this.img_btn_play_full.sprite = this.icon_pause;
-                if (this.music_item_cur != null) this.music_item_cur.btn_statu_play.GetComponent<Image>().color = myColor;
                 this.is_status_play = true;
                 this.animation_avatar_full.enabled = true;
                 this.is_click_control = false;
@@ -498,12 +433,11 @@ public class Music_Player : MonoBehaviour
                 this.slider_timer_music.gameObject.SetActive(true);
                 this.slider_timer_music_full.gameObject.SetActive(true);
                 this.is_status_play = true;
-                this.music_item_cur.btn_statu_play.GetComponent<Image>().color = myColor;
                 this.img_btn_play.sprite = icon_pause;
                 this.img_btn_play_full.sprite = icon_pause;
                 this.animation_avatar_full.enabled = true;
 
-                if (this.music_item_cur.type == 3)
+                if (this.data_music_cur["type"].ToString() == "3")
                 {
                     this.obj_btn_save.SetActive(false);
                     this.obj_btn_save_full.SetActive(false);
@@ -519,29 +453,12 @@ public class Music_Player : MonoBehaviour
 
     public void btn_next()
     {
-        this.reset_list_music_data();
-        if (this.music_item_cur.index < GameObject.Find("App").GetComponent<App>().get_list_music_data().Count - 1)
-        {
-            this.play_music_online(GameObject.Find("App").GetComponent<App>().get_list_music_data()[this.music_item_cur.index + 1]);
-        }
-        else
-        {
-            this.play_music_online(GameObject.Find("App").GetComponent<App>().get_list_music_data()[0]);
-        }
+ 
     }
 
     public void btn_prev()
     {
-        this.reset_list_music_data();
-        if (this.music_item_cur.index <= 0)
-        {
-            int last = GameObject.Find("App").GetComponent<App>().get_list_music_data().Count - 1;
-            this.play_music_online(GameObject.Find("App").GetComponent<App>().get_list_music_data()[last]);
-        }
-        else
-        {
-            this.play_music_online(GameObject.Find("App").GetComponent<App>().get_list_music_data()[this.music_item_cur.index - 1]);
-        }
+
     }
 
     public void btn_loop()
@@ -557,22 +474,14 @@ public class Music_Player : MonoBehaviour
 
     public void btn_save()
     {
-        GameObject.Find("App").GetComponent<Music_offiline>().add_music(this.music_item_cur, this.data_music_save);
+        //GameObject.Find("App").GetComponent<Music_offiline>().add_music(this.music_item_cur, this.data_music_save);
         this.obj_btn_save.SetActive(false);
         this.obj_btn_save_full.SetActive(false);
     }
 
-    private void reset_list_music_data()
-    {
-        foreach (Panel_item_music m in GameObject.Find("App").GetComponent<App>().get_list_music_data())
-        {
-            if(m!=null) m.btn_statu_play.SetActive(false);
-        }
-    }
-
     public void show_full()
     {
-        if (this.music_item_cur.type == 0)
+        if (this.data_music_cur["type"].ToString() == "0")
         {
             this.get_feel_music();
         }
@@ -591,7 +500,7 @@ public class Music_Player : MonoBehaviour
         this.box_lyrics=GameObject.Find("App").GetComponent<App>().carrot.Create_Box(PlayerPrefs.GetString("m_lyrics", "Lyrics"), this.icon_lyrics);
         GameObject lyrics = Instantiate(this.prefab_lyrics_full);
         Text txt_lyrics = lyrics.GetComponent<Text>();
-        txt_lyrics.text= this.music_item_cur.lyrics;
+        txt_lyrics.text = this.data_music_cur["lyrics"].ToString();
         this.box_lyrics.add_item(lyrics);
         Destroy(lyrics);
         GameObject.Find("App").GetComponent<App>().carrot.delay_function(1f, refesh_lyrics);
@@ -606,17 +515,17 @@ public class Music_Player : MonoBehaviour
 
     public void btn_ytb()
     {
-        Application.OpenURL(this.music_item_cur.link_ytb);
+        Application.OpenURL(this.data_music_cur["link_ytb"].ToString());
     }
 
     public void btn_link()
     {
-        Application.OpenURL(this.music_item_cur.link_store);
+        Application.OpenURL(this.app.carrot.mainhost + "?p=song&id=" + this.data_music_cur["id"].ToString());
     }
 
     public void btn_share()
     {
-        GameObject.Find("App").GetComponent<App>().carrot.show_share(this.music_item_cur.link_store, this.music_item_cur.txt_name.text);
+        app.carrot.show_share(this.app.carrot.mainhost + "?p=song&id=" + this.data_music_cur["id"].ToString(), this.data_music_cur["name"].ToString());
     }
 
     public void sel_feel_music(int sel_index)
@@ -667,29 +576,29 @@ public class Music_Player : MonoBehaviour
 
     private void act_handle_set_feel(string s_data)
     {
-        GameObject.Find("App").GetComponent<App>().carrot.Show_msg(PlayerPrefs.GetString("box_feel_title", "Music For Life"), PlayerPrefs.GetString("rate_music_thanks", "Thank you for evaluating your feelings about this song"));
-        GameObject.Find("App").GetComponent<App>().carrot.delay_function(2.3f, this.get_feel_music);
+        //GameObject.Find("App").GetComponent<App>().carrot.Show_msg(PlayerPrefs.GetString("box_feel_title", "Music For Life"), PlayerPrefs.GetString("rate_music_thanks", "Thank you for evaluating your feelings about this song"));
+        //GameObject.Find("App").GetComponent<App>().carrot.delay_function(2.3f, this.get_feel_music);
     }
 
     public void btn_show_info_artist()
     {
         this.back_mini_player();
-        GameObject.Find("App").GetComponent<Music_online>().show_list_item_in_info(this.music_item_cur.artist, "artist", this.music_item_cur.lang);
+        //GameObject.Find("App").GetComponent<Music_online>().show_list_item_in_info(this.music_item_cur.artist, "artist", this.music_item_cur.lang);
     }
     public void btn_show_info_album()
     {
         this.back_mini_player();
-        GameObject.Find("App").GetComponent<Music_online>().show_list_item_in_info(this.music_item_cur.album, "album", this.music_item_cur.lang);
+        //GameObject.Find("App").GetComponent<Music_online>().show_list_item_in_info(this.music_item_cur.album, "album", this.music_item_cur.lang);
     }
     public void btn_show_info_genre()
     {
         this.back_mini_player();
-        GameObject.Find("App").GetComponent<Music_online>().show_list_item_in_info(this.music_item_cur.genre, "genre", this.music_item_cur.lang);
+        //GameObject.Find("App").GetComponent<Music_online>().show_list_item_in_info(this.music_item_cur.genre, "genre", this.music_item_cur.lang);
     }
     public void btn_show_info_year()
     {
         this.back_mini_player();
-        GameObject.Find("App").GetComponent<Music_online>().show_list_item_in_info(this.music_item_cur.year, "year", this.music_item_cur.lang);
+       // GameObject.Find("App").GetComponent<Music_online>().show_list_item_in_info(this.music_item_cur.year, "year", this.music_item_cur.lang);
     }
 
     public void show_auido_mixer()
@@ -707,8 +616,8 @@ public class Music_Player : MonoBehaviour
 
     public void act_download_mp3_file()
     {
-        Application.OpenURL(this.music_item_cur.url);
-        GameObject.Find("App").GetComponent<App>().carrot.Show_msg(PlayerPrefs.GetString("title", "Music for life"), PlayerPrefs.GetString("get_mp3_success", "Export mp3 file download link successfully!"));
+        Application.OpenURL(this.data_music_cur["mp3"].ToString());
+        app.carrot.Show_msg(PlayerPrefs.GetString("title", "Music for life"), PlayerPrefs.GetString("get_mp3_success", "Export mp3 file download link successfully!"));
     }
 
     public void Radio_act_play_audio()
@@ -733,7 +642,7 @@ public class Music_Player : MonoBehaviour
     {
         if(!info.Contains("Station is already playing!"))
         {
-            GameObject.Find("App").GetComponent<App>().carrot.Show_msg(PlayerPrefs.GetString("m_radio","Radio"), PlayerPrefs.GetString("radio_error", "This radio channel is currently inactive, please try again another time. Now choose another radio station to listen to!"), Msg_Icon.Alert);
+            app.carrot.Show_msg(PlayerPrefs.GetString("m_radio","Radio"), PlayerPrefs.GetString("radio_error", "This radio channel is currently inactive, please try again another time. Now choose another radio station to listen to!"), Msg_Icon.Alert);
             this.stop();
         }
     }
@@ -751,10 +660,12 @@ public class Music_Player : MonoBehaviour
 
     public void btn_add_song_to_playlist()
     {
-        if(GameObject.Find("App").GetComponent<App>().carrot.user.get_id_user_login()!="")
-            GameObject.Find("App").GetComponent<Playlist>().show_add_song_to_playlist(this.music_item_cur.id_m, this.music_item_cur.lang);
+        /*
+        if(app.carrot.user.get_id_user_login()!="")
+           // GameObject.Find("App").GetComponent<Playlist>().show_add_song_to_playlist(this.music_item_cur.id_m, this.music_item_cur.lang);
         else
-            GameObject.Find("App").GetComponent<App>().carrot.show_login();
+            app.carrot.show_login();
+        */
     }
 
 }

@@ -110,7 +110,6 @@ public class Music_online : MonoBehaviour
     {
          IList all_music = (IList)Carrot.Json.Deserialize(s_data);
         this.GetComponent<App>().clear_all_contain();
-         this.GetComponent<App>().list_music=new List<Panel_item_music>();
         for (int i = 0; i < all_music.Count; i++)
         {
             IDictionary item_music = (IDictionary)all_music[i];
@@ -120,7 +119,7 @@ public class Music_online : MonoBehaviour
             else
                 obj_music.GetComponent<Image>().color = this.GetComponent<App>().color_row_2;
 
-            this.GetComponent<App>().list_music.Add(obj_music.GetComponent<Panel_item_music>());
+            
         }    
     }
 
@@ -179,6 +178,10 @@ public class Music_online : MonoBehaviour
         q.Add_select("genre");
         q.Add_select("artist");
         q.Add_select("year");
+        q.Add_select("album");
+        q.Add_select("lang");
+        q.Add_select("mp3");
+        q.Add_select("link_ytb");
         q.Set_limit(30);
         this.app.carrot.server.Get_doc(q.ToJson(), (s_data) =>
         {
@@ -188,6 +191,7 @@ public class Music_online : MonoBehaviour
                 for(int i = 0; i < fc.fire_document.Length; i++)
                 {
                     IDictionary data_m = fc.fire_document[i].Get_IDictionary();
+                    data_m["type"] = "0";
                     GameObject obj_item_m = Instantiate(this.prefab_item_music);
                     obj_item_m.transform.SetParent(app.canvas_render.transform);
                     obj_item_m.transform.localScale = new Vector3(1f, 1f, 1f);
@@ -203,6 +207,7 @@ public class Music_online : MonoBehaviour
                     box_item.set_icon(app.carrot.game.icon_play_music_game);
                     box_item.set_title(data_m["name"].ToString());
                     if(data_m["artist"]!=null)box_item.set_tip(data_m["artist"].ToString());
+                    box_item.set_act(() => { app.player_music.Play_by_data(data_m, box_item); });
                 }
             }
             Debug.Log(s_data);

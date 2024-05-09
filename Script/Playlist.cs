@@ -148,7 +148,6 @@ public class Playlist : MonoBehaviour
             Obj_item_music.transform.localPosition = new Vector3(Obj_item_music.transform.localPosition.x, Obj_item_music.transform.localPosition.y, 0f);
             Obj_item_music.transform.localRotation = Quaternion.Euler(Vector3.zero);
             Obj_item_music.transform.localScale = new Vector3(1f, 1f, 1f);
-            this.GetComponent<App>().list_music.Add(Obj_item_music.GetComponent<Panel_item_music>());
         }
     }
 
@@ -157,7 +156,6 @@ public class Playlist : MonoBehaviour
         this.s_name_current = title_playlist;
         this.s_id_curent = id_playlist;
         this.GetComponent<App>().clear_all_contain();
-        this.GetComponent<App>().list_music = new List<Panel_item_music>();
         this.GetComponent<App>().panel_main_select_country.SetActive(false);
         this.GetComponent<App>().title_name.text = title_playlist;
         this.GetComponent<App>().title_icon.sprite = this.icon;
