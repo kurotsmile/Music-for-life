@@ -564,7 +564,7 @@ public class App : MonoBehaviour
     public void Create_loading()
     {
         this.clear_all_contain();
-        GameObject obj_item_loading = Instantiate(this.prefab_item_music);
+        GameObject obj_item_loading = Instantiate(this.prefab_item_loading);
         obj_item_loading.name = "loading";
         obj_item_loading.transform.SetParent(this.canvas_render.transform);
         obj_item_loading.transform.localScale = new Vector3(1f, 1f, 1f);

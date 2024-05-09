@@ -44,7 +44,7 @@ public class Music_online : MonoBehaviour
 
     public void Show(string s_lang)
     {
-        app.clear_all_contain();
+        app.Create_loading();
         StructuredQuery q = new("song");
         q.Add_select("name");
         q.Add_select("genre");
@@ -62,6 +62,7 @@ public class Music_online : MonoBehaviour
             Fire_Collection fc = new(s_data);
             if (!fc.is_null)
             {
+                app.clear_all_contain();
                 this.s_type_temp = s_data;
 
                 Carrot_Box_Item item_title = app.Create_item("item_title");
