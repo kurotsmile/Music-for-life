@@ -22,6 +22,7 @@ public class App : MonoBehaviour
     [Header("Asset icon")]
     public Sprite sp_icon_music;
     public Sprite sp_icon_radio;
+    public Sprite sp_icon_storage;
     public Sprite sp_avata_music_default;
 
     [Header("Main Item Panel")]
@@ -135,8 +136,8 @@ public class App : MonoBehaviour
 
         if (this.menu_sel == 4)
         {
-            this.clear_all_contain();
-            this.carrot.delay_function(1f, this.GetComponent<Music_offiline>().show_list_music_data);
+            this.Create_loading();
+            this.carrot.delay_function(1f, this.playlist_offline.Show);
         }
 
         if (this.menu_sel == 5)
@@ -523,4 +524,8 @@ public class App : MonoBehaviour
         obj_item_loading.GetComponentInChildren<Image>().color = carrot.color_highlight;
     }
 
+    public void Btn_login()
+    {
+        carrot.show_login();
+    }
 }

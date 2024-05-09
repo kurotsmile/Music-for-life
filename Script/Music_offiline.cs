@@ -24,12 +24,17 @@ public class Music_offiline : MonoBehaviour
         PlayerPrefs.SetInt("mo_length", this.leng);
     }
 
-    public void show_list_music_data()
+    public void Show()
     {
         this.GetComponent<App>().StopAllCoroutines();
         this.GetComponent<App>().clear_all_contain();
         if (this.leng > 0)
         {
+            Carrot_Box_Item item_title =app.Create_item("item_title_offline");
+            item_title.set_icon(app.sp_icon_storage);
+            item_title.set_title(app.carrot.L("playlist", "Playlist"));
+            item_title.set_tip(app.carrot.L("playlist_tip", "Playlists you have stored for listening when not connected to the network"));
+
             int index_m = 0;
             for(int i = 0; i < this.leng; i++)
             {
