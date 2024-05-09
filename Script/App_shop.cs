@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -13,16 +11,13 @@ public class App_shop : MonoBehaviour
     public string[] p_key_check_buy;
     public int[] p_index_buy;
 
-    public GameObject prefab_item_shop;
-
     public void show_list_shop()
     {
         this.GetComponent<App>().clear_all_contain();
-        this.GetComponent<App>().title_name.text = PlayerPrefs.GetString("shop", "Shop");
-        this.GetComponent<App>().title_tip.text = PlayerPrefs.GetString("shop_tip", "Purchase and use in-app functions");
 
         for (int i = 0; i < p_name.Length; i++)
         {
+            /*
             GameObject p_create = Instantiate(this.prefab_item_shop);
             p_create.transform.SetParent(this.GetComponent<App>().canvas_render.transform);
             p_create.GetComponent<Item_shop_app>().txt_name.text = PlayerPrefs.GetString(this.p_name[i], this.p_name_en[i]);
@@ -46,6 +41,7 @@ public class App_shop : MonoBehaviour
                     p_create.GetComponent<Item_shop_app>().index_p = -2;
                 }
             }
+            */
         }
     }
 }

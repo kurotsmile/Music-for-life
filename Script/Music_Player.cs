@@ -72,12 +72,9 @@ public class Music_Player : MonoBehaviour
     public GameObject[] panel_sel_feel;
 
     private bool is_status_play;
-    Color myColor = new Color();
+    Color myColor = new();
 
     private byte[] data_music_save;
-
-    private int index_loop = 0;
-    private bool is_click_control = false;
 
     [Header("Audio mix")]
     public GameObject panel_aduio_mixer;
@@ -100,6 +97,10 @@ public class Music_Player : MonoBehaviour
 
     Carrot_Box box_lyrics;
     private IDictionary data_music_cur = null;
+    private IList list_data_music = null;
+    private int index_loop = 0;
+    private int index_item_play = -1;
+    private bool is_click_control = false;
 
     void Start()
     {
@@ -219,7 +220,7 @@ public class Music_Player : MonoBehaviour
         this.dropdown_ReverbFilters.RefreshShownValue();
     }
 
-    public void Play_by_data(IDictionary data, Carrot_Box_Item box_item)
+    public void Play_by_data(IDictionary data)
     {
         this.is_status_play = false;
         this.app.carrot.ads.show_ads_Interstitial();
@@ -227,8 +228,24 @@ public class Music_Player : MonoBehaviour
         this.GetComponent<AudioSource>().Stop();
         this.GetComponent<AudioSource>().clip = null;
         this.data_music_cur = data;
+        this.index_item_play = int.Parse(data["index"].ToString());
         this.txt_name_song_mini.text = data["name"].ToString();
         this.txt_name_song_full.text = data["name"].ToString();
+        this.avatar_mini.sprite = app.sp_avata_music_default;
+        this.avatar_full.sprite = app.sp_avata_music_default;
+
+        string s_id_avatar = "pic_avatar_" + data["id"].ToString();
+        Sprite sp_pic_avatar = app.carrot.get_tool().get_sprite_to_playerPrefs(s_id_avatar);
+        if (sp_pic_avatar != null)
+        {
+            this.avatar_full.sprite = sp_pic_avatar;
+            this.avatar_mini.sprite = sp_pic_avatar;
+        }
+        else
+        {
+            app.carrot.get_img_and_save_playerPrefs(data["avatar"].ToString(),null, s_id_avatar,this.Get_avatar_music_done);
+        }
+
         if (data["genre"].ToString() == "" && data["album"].ToString() == "" && data["artist"].ToString() == "" &&data["year"].ToString() == "")
         {
             this.panel_bar_info.SetActive(false);
@@ -251,7 +268,6 @@ public class Music_Player : MonoBehaviour
             if (data["year"].ToString() != "") this.Item_info_year.SetActive(true);
         }
 
-        this.avatar_mini.sprite = box_item.img_icon.sprite;
         this.animation_avatar_full.enabled = false;
         this.button_download_file_mp3.SetActive(false);
         this.button_add_song_to_playlist.SetActive(false);
@@ -301,7 +317,11 @@ public class Music_Player : MonoBehaviour
         }
     }
 
-    
+    private void Get_avatar_music_done(Texture2D tex)
+    {
+        this.avatar_full.sprite = app.carrot.get_tool().Texture2DtoSprite(tex);
+        this.avatar_mini.sprite = app.carrot.get_tool().Texture2DtoSprite(tex);
+    }
 
     public void stop()
     {
@@ -349,7 +369,6 @@ public class Music_Player : MonoBehaviour
                     {
                         this.btn_next();
                     }
-
                 }
                 else
                 {
@@ -455,12 +474,16 @@ public class Music_Player : MonoBehaviour
 
     public void btn_next()
     {
- 
+        this.index_item_play++;
+        IDictionary data_music = (IDictionary) this.list_data_music[this.index_item_play];
+        this.Play_by_data(data_music);
     }
 
     public void btn_prev()
     {
-
+        this.index_item_play--;
+        IDictionary data_music = (IDictionary)this.list_data_music[this.index_item_play];
+        this.Play_by_data(data_music);
     }
 
     public void btn_loop()
@@ -670,4 +693,8 @@ public class Music_Player : MonoBehaviour
         */
     }
 
+    public void Set_list_music(IList iList_music)
+    {
+        this.list_data_music = iList_music;
+    }
 }
