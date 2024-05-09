@@ -72,7 +72,6 @@ public class Music_Player : MonoBehaviour
     public GameObject[] panel_sel_feel;
 
     private bool is_status_play;
-    Color myColor = new();
 
     private byte[] data_music_save;
 
@@ -703,12 +702,11 @@ public class Music_Player : MonoBehaviour
 
     public void btn_add_song_to_playlist()
     {
-        /*
-        if(app.carrot.user.get_id_user_login()!="")
-           // GameObject.Find("App").GetComponent<Playlist>().show_add_song_to_playlist(this.music_item_cur.id_m, this.music_item_cur.lang);
+
+        if (app.carrot.user.get_id_user_login() != "")
+            app.playlist.Add(this.data_music_cur);
         else
-            app.carrot.show_login();
-        */
+            app.carrot.user.show_login(this.btn_add_song_to_playlist);
     }
 
     public void Set_list_music(IList iList_music)
