@@ -9,7 +9,7 @@ using System.Collections;
 public class RhythmVisualizator : MonoBehaviour {
 	
 	public GameObject soundBarPrefab;
-	public AudioSource audioSource;
+	AudioSource audioSource;
 
 	public AudioSource metronomeTick;
 
@@ -136,6 +136,8 @@ public class RhythmVisualizator : MonoBehaviour {
 
 		if (soundBarPrefab != null) {
 			halfBarsValue = barsQuantity / 2;
+
+			audioSource = GetComponent<AudioSource> ();
 			CreateSoundBars ();
 		} else {
 			Debug.LogWarning ("Please assign Sound Bar Prefab to the script");

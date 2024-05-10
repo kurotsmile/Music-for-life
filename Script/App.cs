@@ -14,6 +14,7 @@ public class App : MonoBehaviour
     public Music_offiline playlist_offline;
     public Music_Player player_music;
     public Playlist_Radio playlist_radio;
+    public Playlist_Sound playlist_sound;
 
     [Header("Obj Prefab")]
     public GameObject prefab_item_music;
@@ -22,6 +23,7 @@ public class App : MonoBehaviour
     [Header("Asset icon")]
     public Sprite sp_icon_music;
     public Sprite sp_icon_radio;
+    public Sprite sp_icon_sound;
     public Sprite sp_icon_storage;
     public Sprite sp_avata_music_default;
 
@@ -131,8 +133,8 @@ public class App : MonoBehaviour
         }
 
         if (this.menu_sel == 0) this.show_list_music();
-        if (this.menu_sel == 1) this.playlist_radio.show();
-        if (this.menu_sel == 2) this.show_list_sound();
+        if (this.menu_sel == 1) this.playlist_radio.Show();
+        if (this.menu_sel == 2) this.playlist_sound.Show();
 
         if (this.menu_sel == 4)
         {
@@ -181,15 +183,6 @@ public class App : MonoBehaviour
     {
         playlist_online.Show(lang_music);
     }
-
-    public void show_list_sound()
-    {
-        /*
-        WWWForm frm = this.carrot.frm_act("list_sound");
-        this.carrot.send(frm,this.act_get_list_sound);
-        */
-    }
-
 
     public void show_select_lang()
     {

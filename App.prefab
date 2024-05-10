@@ -11987,6 +11987,7 @@ GameObject:
   - component: {fileID: 3649883869581623789}
   - component: {fileID: 3235751567141624472}
   - component: {fileID: 1274554567023907666}
+  - component: {fileID: 1598705353389749533}
   m_Layer: 0
   m_Name: App
   m_TagString: Untagged
@@ -12036,10 +12037,12 @@ MonoBehaviour:
   playlist_offline: {fileID: 7940950528551302809}
   player_music: {fileID: 3934995061198677745}
   playlist_radio: {fileID: 1447378068418283363}
+  playlist_sound: {fileID: 1598705353389749533}
   prefab_item_music: {fileID: 346399769378897854, guid: 5c76e0e7f1ec6f749989da9d070de244, type: 3}
   prefab_item_loading: {fileID: 7643879728938420672, guid: 7c85cb3e887b54c4abff9dd52a163cdf, type: 3}
   sp_icon_music: {fileID: 21300000, guid: 6a225faaf46361547965783133badc07, type: 3}
   sp_icon_radio: {fileID: 21300000, guid: fdba6e2bfd0574349812f9cadc439c5a, type: 3}
+  sp_icon_sound: {fileID: 21300000, guid: 13ab8e0d0a8b0ac4dbcb968f70612c8e, type: 3}
   sp_icon_storage: {fileID: 21300000, guid: 96ba5e279fa55d940b8c504e0a405161, type: 3}
   sp_avata_music_default: {fileID: 21300000, guid: 272f3800672b1914bad83005df0aef81, type: 3}
   panel_footer: {fileID: 8211152241117825985}
@@ -12123,6 +12126,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f039189d570a4c74183ebc54b045109b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  app: {fileID: 0}
   p_icon:
   - {fileID: 21300000, guid: d027639c40e2a0148986e1fd3667d5ba, type: 3}
   - {fileID: 21300000, guid: b7498c039d333e845a8ef9d34fc47c8d, type: 3}
@@ -12362,6 +12366,19 @@ MonoBehaviour:
   - {fileID: 8642735942789132040}
   - {fileID: 1029694883668254874}
   is_load_on_start: 1
+--- !u!114 &1598705353389749533
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4002023899788120543}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5b6a3fc10a9cc346b13d9b99ba43496, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  app: {fileID: 3205462977892944801}
 --- !u!1 &4004341160965639597
 GameObject:
   m_ObjectHideFlags: 0
@@ -22786,7 +22803,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 4.999939, y: 0}
+  m_AnchoredPosition: {x: 4.9999084, y: 0}
   m_SizeDelta: {x: 10, y: -0.000011444}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5720525371951335300

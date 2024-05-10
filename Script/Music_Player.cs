@@ -232,6 +232,7 @@ public class Music_Player : MonoBehaviour
         this.txt_name_song_full.text = data["name"].ToString();
         this.avatar_mini.sprite = app.sp_avata_music_default;
         this.avatar_full.sprite = app.sp_avata_music_default;
+        this.slider_timer_music.gameObject.SetActive(false);
 
         string s_id_avatar = "pic_avatar_" + data["id"].ToString();
         Sprite sp_pic_avatar = app.carrot.get_tool().get_sprite_to_playerPrefs(s_id_avatar);
@@ -287,7 +288,6 @@ public class Music_Player : MonoBehaviour
             this.GetComponent<RadioPlayer>().Station.Name = data["name"].ToString();
             this.GetComponent<RadioPlayer>().Play();
 
-            this.slider_timer_music.gameObject.SetActive(false);
             this.is_status_play = true;
             this.img_btn_play.sprite = icon_pause;
             this.img_btn_play_full.sprite = icon_pause;
@@ -498,7 +498,7 @@ public class Music_Player : MonoBehaviour
 
     public void btn_save()
     {
-        app.playlist_offline.Add(this.data_music_cur);
+        app.playlist_offline.Add(this.data_music_cur,this.data_music_save);
         this.obj_btn_save.SetActive(false);
         this.obj_btn_save_full.SetActive(false);
     }
@@ -684,7 +684,7 @@ public class Music_Player : MonoBehaviour
     {
         if(!info.Contains("Station is already playing!"))
         {
-            app.carrot.Show_msg(PlayerPrefs.GetString("m_radio","Radio"), PlayerPrefs.GetString("radio_error", "This radio channel is currently inactive, please try again another time. Now choose another radio station to listen to!"), Msg_Icon.Alert);
+            app.carrot.Show_msg(app.carrot.L("m_radio","Radio"), app.carrot.L("radio_error", "This radio channel is currently inactive, please try again another time. Now choose another radio station to listen to!"), Msg_Icon.Alert);
             this.stop();
         }
     }

@@ -17,8 +17,10 @@ public class Music_offiline : MonoBehaviour
         this.leng = PlayerPrefs.GetInt("mo_length",0);
     }
 
-    public void Add(IDictionary data)
+    public void Add(IDictionary data, byte[] data_mp3)
     {
+        app.carrot.get_tool().save_file(this.leng+".mp3", data_mp3);
+        app.carrot.Show_msg(app.carrot.L("playlist", "Playlist"),app.carrot.L("save_song_success", "Successfully stored, you can listen to the song again in the playlist"));
         PlayerPrefs.SetString("mo_"+this.leng,Json.Serialize(data));
         this.leng++;
         PlayerPrefs.SetInt("mo_length", this.leng);
@@ -28,12 +30,20 @@ public class Music_offiline : MonoBehaviour
     {
         this.GetComponent<App>().StopAllCoroutines();
         this.GetComponent<App>().clear_all_contain();
+
+        Carrot_Box_Item item_title = app.Create_item("item_title_offline");
+        item_title.set_icon(app.sp_icon_storage);
+        item_title.set_title(app.carrot.L("playlist", "Playlist"));
+        item_title.set_tip(app.carrot.L("playlist_tip", "Playlists you have stored for listening when not connected to the network"));
+
+        Carrot_Box_Item item_add = app.Create_item("item_add");
+        item_add.set_icon(app.carrot.icon_carrot_add);
+        item_add.set_title(app.carrot.L("playlist", "Create Playlist"));
+        item_add.set_tip(app.carrot.L("playlist_tip", "Playlists you have stored for listening when not connected to the network"));
+
         if (this.leng > 0)
         {
-            Carrot_Box_Item item_title =app.Create_item("item_title_offline");
-            item_title.set_icon(app.sp_icon_storage);
-            item_title.set_title(app.carrot.L("playlist", "Playlist"));
-            item_title.set_tip(app.carrot.L("playlist_tip", "Playlists you have stored for listening when not connected to the network"));
+
 
             int index_m = 0;
             for(int i = 0; i < this.leng; i++)
@@ -53,7 +63,7 @@ public class Music_offiline : MonoBehaviour
                     btn_del.set_icon(app.carrot.sp_icon_del_data);
                     btn_del.set_icon_color(Color.white);
                     btn_del.set_color(Color.red);
-                    btn_del.set_act(() => this.delete(index));
+                    btn_del.set_act(() => this.Delete(index));
 
                     if (i % 2 == 0)
                         box_item.GetComponent<Image>().color = app.color_row_1;
@@ -73,10 +83,11 @@ public class Music_offiline : MonoBehaviour
         }
     }
 
-    public void delete(int index)
+    private void Delete(int index)
     {
         app.carrot.Show_msg(app.carrot.L("delete","Delete song"),"Successfully deleted song from archive!",Msg_Icon.Success);
         PlayerPrefs.DeleteKey("mo_" + index);
+        this.Show();
     }
 
 }
