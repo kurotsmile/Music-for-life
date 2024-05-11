@@ -52,7 +52,7 @@ public class Playlist_Radio : MonoBehaviour
             {
                 IDictionary data_radio = fc.fire_document[i].Get_IDictionary();
                 data_radio["index"] = i;
-                data_radio["type"] = "radio";
+                data_radio["type"] = "radio_online";
                 Carrot_Box_Item box_item = app.Create_item("item_radio_" + i);
                 box_item.set_icon(app.sp_icon_radio_broadcast);
                 box_item.set_title(data_radio["name"].ToString());

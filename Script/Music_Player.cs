@@ -243,7 +243,7 @@ public class Music_Player : MonoBehaviour
 
         this.obj_btn_save.SetActive(false);
         this.obj_btn_save_full.SetActive(false);
-        if (data["type"].ToString() == "radio")
+        if (data["type"].ToString() == "radio_online"|| data["type"].ToString() == "radio_offline")
         {
             this.panel_player_mini.SetActive(true);
             this.animation_avatar_full.enabled = true;
@@ -355,7 +355,7 @@ public class Music_Player : MonoBehaviour
     public void stop()
     {
         this.StopAllCoroutines();
-        if (this.data_music_cur["type"].ToString() == "radio")
+        if (this.data_music_cur["type"].ToString() == "radio_online" || this.data_music_cur["type"].ToString() == "radio_offline")
         {
             this.GetComponent<RadioPlayer>().Stop();
         }
@@ -407,7 +407,7 @@ public class Music_Player : MonoBehaviour
 
     public void act_play_and_pause()
     {
-        if (this.data_music_cur["type"].ToString() == "1")
+        if (this.data_music_cur["type"].ToString() == "radion_online"|| this.data_music_cur["type"].ToString() == "radion_offline")
         {
 
             if (this.GetComponent<RadioPlayer>().isAudioPlaying)
@@ -516,26 +516,21 @@ public class Music_Player : MonoBehaviour
     public void btn_save()
     {
         app.carrot.Show_msg(app.carrot.L("playlist", "Playlist"), app.carrot.L("save_song_success", "Successfully stored, you can listen to the song again in the playlist"));
-        if (this.data_music_cur["type"].ToString() == "music_online")
-        {
-            this.data_music_cur["type"] = "music_offline";
-            app.playlist_offline.Add(this.data_music_cur, this.data_music_save);
-        }
+        this.Check_show_btn_save();
+    }
 
-        if (this.data_music_cur["type"].ToString() == "radio_online")
+    private void Check_show_btn_save()
+    {
+        if (this.data_music_cur["type"].ToString()=="music_online"||this.data_music_cur["type"].ToString() == "radio_online" || this.data_music_cur["type"].ToString() == "sound_online")
         {
-            this.data_music_cur["type"] = "radion_offline";
-            app.playlist_offline.Add(this.data_music_cur);
+            this.obj_btn_save.SetActive(true);
+            this.obj_btn_save_full.SetActive(true);
         }
-
-        if (this.data_music_cur["type"].ToString() == "sound_online")
+        else
         {
-            this.data_music_cur["type"] = "sound_offline";
-            app.playlist_offline.Add(this.data_music_cur);
+            this.obj_btn_save.SetActive(false);
+            this.obj_btn_save_full.SetActive(false);
         }
-
-        this.obj_btn_save.SetActive(false);
-        this.obj_btn_save_full.SetActive(false);
     }
 
     public void show_full()
