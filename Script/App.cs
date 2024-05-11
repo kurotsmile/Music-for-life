@@ -25,6 +25,7 @@ public class App : MonoBehaviour
     public Sprite sp_icon_radio;
     public Sprite sp_icon_sound;
     public Sprite sp_icon_storage;
+    public Sprite sp_icon_sad;
     public Sprite sp_avata_music_default;
 
     [Header("Main Item Panel")]
@@ -515,6 +516,14 @@ public class App : MonoBehaviour
         obj_item_loading.transform.localScale = new Vector3(1f, 1f, 1f);
         obj_item_loading.transform.localPosition = Vector3.zero;
         obj_item_loading.GetComponentInChildren<Image>().color = carrot.color_highlight;
+    }
+
+    public void Create_list_none()
+    {
+        Carrot_Box_Item item_none = this.Create_item("item_none");
+        item_none.set_icon(this.sp_icon_sad);
+        item_none.set_title(carrot.L("list_none", "Empty list"));
+        item_none.set_title(carrot.L("list_none_tip", "No items found in the list"));
     }
 
     public void Btn_login()

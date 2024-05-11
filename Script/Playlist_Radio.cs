@@ -18,14 +18,15 @@ public class Playlist_Radio : MonoBehaviour
     void Act_get_done(string s_data)
     {
         Fire_Collection fc = new(s_data);
+
+        app.clear_all_contain();
+        Carrot_Box_Item item_title = app.Create_item("title");
+        item_title.set_icon(app.sp_icon_radio);
+        item_title.set_title(app.carrot.L("m_radio", "Radio"));
+        item_title.set_tip(app.carrot.L("m_radio_tip", "List of online radio stations listed by their respective countries"));
+
         if (!fc.is_null)
         {
-            app.clear_all_contain();
-            Carrot_Box_Item item_title=app.Create_item("title");
-            item_title.set_icon(app.sp_icon_radio);
-            item_title.set_title(app.carrot.L("m_radio", "Radio"));
-            item_title.set_tip(app.carrot.L("m_radio_tip", "List of online radio stations listed by their respective countries"));
-
             for(int i=0;i<fc.fire_document.Length;i++)
             {
                 IDictionary data_radio = fc.fire_document[i].Get_IDictionary();
@@ -40,6 +41,10 @@ public class Playlist_Radio : MonoBehaviour
                     box_item.GetComponent<Image>().color = app.color_row_2;
                 box_item.set_act(() => app.player_music.Play_by_data(data_radio));
             }
+        }
+        else
+        {
+            app.Create_list_none();
         }
     }
 
