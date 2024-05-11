@@ -221,6 +221,8 @@ public class Music_Player : MonoBehaviour
 
     public void Play_by_data(IDictionary data)
     {
+        Debug.Log(data["type"].ToString());
+
         this.data_music_save = null;
         this.is_status_play = false;
         this.app.carrot.ads.show_ads_Interstitial();
@@ -235,28 +237,6 @@ public class Music_Player : MonoBehaviour
         this.avatar_full.sprite = app.sp_avata_music_default;
         this.slider_timer_music.gameObject.SetActive(false);
 
-        if (data["genre"].ToString() == "" && data["album"].ToString() == "" && data["artist"].ToString() == "" &&data["year"].ToString() == "")
-        {
-            this.panel_bar_info.SetActive(false);
-        }
-        else
-        {
-            this.Item_info_artist.SetActive(false);
-            this.Item_info_genre.SetActive(false);
-            this.Item_info_album.SetActive(false);
-            this.Item_info_year.SetActive(false);
-
-            this.panel_bar_info.SetActive(true);
-            this.txt_info_artist.text = data["artist"].ToString();
-            this.txt_info_album.text = data["album"].ToString();
-            this.txt_info_genre.text = data["genre"].ToString();
-            this.txt_info_year.text = data["year"].ToString();
-            if (data["artist"].ToString().ToString() != "") this.Item_info_artist.SetActive(true);
-            if (data["genre"].ToString() != "") this.Item_info_genre.SetActive(true);
-            if (data["album"].ToString() != "") this.Item_info_album.SetActive(true);
-            if (data["year"].ToString() != "") this.Item_info_year.SetActive(true);
-        }
-
         this.animation_avatar_full.enabled = false;
         this.button_download_file_mp3.SetActive(false);
         this.button_add_song_to_playlist.SetActive(false);
@@ -265,6 +245,7 @@ public class Music_Player : MonoBehaviour
         this.obj_btn_save_full.SetActive(false);
         if (data["type"].ToString() == "radio")
         {
+            this.panel_player_mini.SetActive(true);
             this.animation_avatar_full.enabled = true;
 
             this.slider_download_full.value = 0;
@@ -273,7 +254,7 @@ public class Music_Player : MonoBehaviour
             this.panel_loading_download_full.SetActive(true);
             this.GetComponent<RadioPlayer>().Stop();
             this.GetComponent<RadioPlayer>().Restart(0.5f);
-            this.GetComponent<RadioPlayer>().Station.Url = data["mp3"].ToString();
+            this.GetComponent<RadioPlayer>().Station.Url = data["url"].ToString();
             this.GetComponent<RadioPlayer>().Station.Name = data["name"].ToString();
             this.GetComponent<RadioPlayer>().Play();
 
@@ -284,20 +265,55 @@ public class Music_Player : MonoBehaviour
             this.img_icon_loop_mini.gameObject.SetActive(false);
             this.panel_feel_full.SetActive(false);
             this.txt_feel_tip.gameObject.SetActive(false);
+
+            this.slider_timer_music.gameObject.SetActive(true);
+            this.slider_timer_music_full.gameObject.SetActive(true);
+
+            this.obj_btn_save.SetActive(true);
+            this.obj_btn_save_full.SetActive(true);
         }
 
-        if (data["type"].ToString() == "music_online" || data["type"].ToString() == "music_offline")
+        if (data["type"].ToString() == "music_online" || 
+            data["type"].ToString() == "music_offline" || 
+            data["type"].ToString() == "sound_online"||
+            data["type"].ToString() == "sound_offline"
+        )
         {
-            string s_id_avatar = "pic_avatar_" + data["id"].ToString();
-            Sprite sp_pic_avatar = app.carrot.get_tool().get_sprite_to_playerPrefs(s_id_avatar);
-            if (sp_pic_avatar != null)
+            if (data["type"].ToString()== "music_online"|| data["type"].ToString() == "music_offline")
             {
-                this.avatar_full.sprite = sp_pic_avatar;
-                this.avatar_mini.sprite = sp_pic_avatar;
-            }
-            else
-            {
-                app.carrot.get_img_and_save_playerPrefs(data["avatar"].ToString(), null, s_id_avatar, this.Get_avatar_music_done);
+                if (data["genre"].ToString() == "" && data["album"].ToString() == "" && data["artist"].ToString() == "" && data["year"].ToString() == "")
+                {
+                    this.panel_bar_info.SetActive(false);
+                }
+                else
+                {
+                    this.Item_info_artist.SetActive(false);
+                    this.Item_info_genre.SetActive(false);
+                    this.Item_info_album.SetActive(false);
+                    this.Item_info_year.SetActive(false);
+
+                    this.panel_bar_info.SetActive(true);
+                    this.txt_info_artist.text = data["artist"].ToString();
+                    this.txt_info_album.text = data["album"].ToString();
+                    this.txt_info_genre.text = data["genre"].ToString();
+                    this.txt_info_year.text = data["year"].ToString();
+                    if (data["artist"].ToString().ToString() != "") this.Item_info_artist.SetActive(true);
+                    if (data["genre"].ToString() != "") this.Item_info_genre.SetActive(true);
+                    if (data["album"].ToString() != "") this.Item_info_album.SetActive(true);
+                    if (data["year"].ToString() != "") this.Item_info_year.SetActive(true);
+                }
+
+                string s_id_avatar = "pic_avatar_" + data["id"].ToString();
+                Sprite sp_pic_avatar = app.carrot.get_tool().get_sprite_to_playerPrefs(s_id_avatar);
+                if (sp_pic_avatar != null)
+                {
+                    this.avatar_full.sprite = sp_pic_avatar;
+                    this.avatar_mini.sprite = sp_pic_avatar;
+                }
+                else
+                {
+                    app.carrot.get_img_and_save_playerPrefs(data["avatar"].ToString(), null, s_id_avatar, this.Get_avatar_music_done);
+                }
             }
 
             this.panel_loading_download.SetActive(true);
@@ -339,7 +355,7 @@ public class Music_Player : MonoBehaviour
     public void stop()
     {
         this.StopAllCoroutines();
-        if (this.data_music_cur["type"].ToString() == "1")
+        if (this.data_music_cur["type"].ToString() == "radio")
         {
             this.GetComponent<RadioPlayer>().Stop();
         }
@@ -360,11 +376,7 @@ public class Music_Player : MonoBehaviour
     {
         if (this.is_status_play)
         {
-            if (this.data_music_cur["type"].ToString() == "1")
-            {
-  
-            }
-            else
+            if (this.data_music_cur["type"].ToString() == "music_online"|| this.data_music_cur["type"].ToString() == "music_offline")
             {
                 if (this.is_click_control == false && this.GetComponent<AudioSource>().isPlaying == false)
                 {
@@ -470,16 +482,8 @@ public class Music_Player : MonoBehaviour
                 this.img_btn_play_full.sprite = icon_pause;
                 this.animation_avatar_full.enabled = true;
 
-                if (this.data_music_cur["type"].ToString() == "3")
-                {
-                    this.obj_btn_save.SetActive(false);
-                    this.obj_btn_save_full.SetActive(false);
-                }
-                else
-                {
-                    this.obj_btn_save.SetActive(true);
-                    this.obj_btn_save_full.SetActive(true);
-                }
+                this.obj_btn_save.SetActive(true);
+                this.obj_btn_save_full.SetActive(true);
             }
         }
     }
@@ -511,8 +515,25 @@ public class Music_Player : MonoBehaviour
 
     public void btn_save()
     {
-        app.playlist_offline.Add(this.data_music_cur,this.data_music_save);
         app.carrot.Show_msg(app.carrot.L("playlist", "Playlist"), app.carrot.L("save_song_success", "Successfully stored, you can listen to the song again in the playlist"));
+        if (this.data_music_cur["type"].ToString() == "music_online")
+        {
+            this.data_music_cur["type"] = "music_offline";
+            app.playlist_offline.Add(this.data_music_cur, this.data_music_save);
+        }
+
+        if (this.data_music_cur["type"].ToString() == "radio_online")
+        {
+            this.data_music_cur["type"] = "radion_offline";
+            app.playlist_offline.Add(this.data_music_cur);
+        }
+
+        if (this.data_music_cur["type"].ToString() == "sound_online")
+        {
+            this.data_music_cur["type"] = "sound_offline";
+            app.playlist_offline.Add(this.data_music_cur);
+        }
+
         this.obj_btn_save.SetActive(false);
         this.obj_btn_save_full.SetActive(false);
     }
@@ -673,25 +694,28 @@ public class Music_Player : MonoBehaviour
     public void act_download_mp3_file()
     {
         Application.OpenURL(this.data_music_cur["mp3"].ToString());
-        app.carrot.Show_msg(PlayerPrefs.GetString("title", "Music for life"), PlayerPrefs.GetString("get_mp3_success", "Export mp3 file download link successfully!"));
+        app.carrot.Show_msg(app.carrot.L("title", "Music for life"), app.carrot.L("get_mp3_success", "Export mp3 file download link successfully!"));
     }
 
     public void Radio_act_play_audio()
     {
         this.panel_loading_download.SetActive(false);
         this.panel_loading_download_full.SetActive(false);
+        this.panel_player_mini.SetActive(true);
     }
 
     public void Radio_act_get_data()
     {
         this.panel_loading_download.SetActive(true);
         this.panel_loading_download_full.SetActive(true);
+        this.panel_player_mini.SetActive(true);
     }
 
     public void Radio_act_end_get_data()
     {
         this.panel_loading_download.SetActive(false);
         this.panel_loading_download_full.SetActive(false);
+        this.panel_player_mini.SetActive(true);
     }
 
     public void Radio_act_error(Crosstales.Radio.Model.RadioStation station, string info)
@@ -699,7 +723,6 @@ public class Music_Player : MonoBehaviour
         if(!info.Contains("Station is already playing!"))
         {
             app.carrot.Show_msg(app.carrot.L("m_radio","Radio"), app.carrot.L("radio_error", "This radio channel is currently inactive, please try again another time. Now choose another radio station to listen to!"), Msg_Icon.Alert);
-            this.stop();
         }
     }
 

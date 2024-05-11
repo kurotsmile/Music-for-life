@@ -20,7 +20,6 @@ public class Music_offiline : MonoBehaviour
 
     public void Add(IDictionary data, byte[] data_mp3)
     {
-        data["type"] = "music_offline";
         app.carrot.get_tool().save_file(this.leng+".data", data_mp3);
         this.Add(data);
     }

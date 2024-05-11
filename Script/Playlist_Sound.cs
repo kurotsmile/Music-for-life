@@ -45,7 +45,8 @@ public class Playlist_Sound : MonoBehaviour
             for(int i = 0; i < fc.fire_document.Length; i++)
             {
                 IDictionary data_sound = fc.fire_document[i].Get_IDictionary();
-                data_sound["type"] = "sound";
+                data_sound["type"] = "sound_online";
+                data_sound["index"] = i;
                 Carrot_Box_Item item_sound = app.Create_item("item_sound_" + i);
                 item_sound.set_icon(app.sp_icon_audio);
                 item_sound.set_title(data_sound["name"].ToString());
@@ -55,6 +56,8 @@ public class Playlist_Sound : MonoBehaviour
                     item_sound.GetComponent<Image>().color = app.color_row_1;
                 else
                     item_sound.GetComponent<Image>().color = app.color_row_2;
+
+                item_sound.set_act(() => app.player_music.Play_by_data(data_sound));
             }
         }
         else
