@@ -274,7 +274,7 @@ public class Music_Player : MonoBehaviour
 
         this.obj_btn_save.SetActive(false);
         this.obj_btn_save_full.SetActive(false);
-        if (data["type"].ToString() == "1")
+        if (data["type"].ToString() == "radio")
         {
             this.animation_avatar_full.enabled = true;
 
@@ -296,13 +296,14 @@ public class Music_Player : MonoBehaviour
             this.panel_feel_full.SetActive(false);
             this.txt_feel_tip.gameObject.SetActive(false);
         }
-        else
+
+        if (data["type"].ToString() == "music")
         {
             this.panel_loading_download.SetActive(true);
             this.panel_loading_download_full.SetActive(true);
             this.img_icon_loop_full.gameObject.SetActive(true);
             this.img_icon_loop_mini.gameObject.SetActive(true);
-            if (data["type"].ToString() == "0")
+            if (data["type"].ToString() == "music")
             {
                 this.panel_feel_full.SetActive(true);
                 this.txt_feel_tip.gameObject.SetActive(true);
@@ -499,6 +500,7 @@ public class Music_Player : MonoBehaviour
     public void btn_save()
     {
         app.playlist_offline.Add(this.data_music_cur,this.data_music_save);
+        app.carrot.Show_msg(app.carrot.L("playlist", "Playlist"), app.carrot.L("save_song_success", "Successfully stored, you can listen to the song again in the playlist"));
         this.obj_btn_save.SetActive(false);
         this.obj_btn_save_full.SetActive(false);
     }
@@ -702,7 +704,6 @@ public class Music_Player : MonoBehaviour
 
     public void btn_add_song_to_playlist()
     {
-
         if (app.carrot.user.get_id_user_login() != "")
             app.playlist.Add(this.data_music_cur);
         else

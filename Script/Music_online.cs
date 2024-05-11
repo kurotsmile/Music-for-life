@@ -10,7 +10,6 @@ public class Music_online : MonoBehaviour
     public GameObject prefab_item_music;
 
     private string s_data_temp = "";
-    private string s_data_json_list_lang_offline="";
 
     [Header("Obj Online")]
     public Sprite icon_artist;
@@ -20,7 +19,7 @@ public class Music_online : MonoBehaviour
 
     public void On_load()
     {
-        if (app.carrot.is_offline()) this.s_data_json_list_lang_offline = PlayerPrefs.GetString("s_data_json_list_lang_offline", "");
+        if(app.carrot.is_offline()) this.s_data_temp = PlayerPrefs.GetString("s_data_music_");
     }
 
     public void show_list_artist()
@@ -74,6 +73,8 @@ public class Music_online : MonoBehaviour
         q.Set_limit(30);
         this.app.carrot.server.Get_doc(q.ToJson(), (s_data) =>
         {
+            this.s_data_temp = s_data;
+            PlayerPrefs.SetString("s_data_music_", s_data);
             this.Load_list_by_data(s_data);
         });
     }

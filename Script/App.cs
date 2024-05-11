@@ -22,8 +22,11 @@ public class App : MonoBehaviour
 
     [Header("Asset icon")]
     public Sprite sp_icon_music;
+    public Sprite sp_icon_music_song;
     public Sprite sp_icon_radio;
+    public Sprite sp_icon_radio_broadcast; 
     public Sprite sp_icon_sound;
+    public Sprite sp_icon_audio;
     public Sprite sp_icon_storage;
     public Sprite sp_icon_sad;
     public Sprite sp_avata_music_default;
@@ -82,6 +85,7 @@ public class App : MonoBehaviour
 
         this.playlist_offline.On_Load();
         this.playlist_online.On_load();
+        this.playlist_radio.On_Load();
     }
 
     public void start_app_online()

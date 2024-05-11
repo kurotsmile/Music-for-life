@@ -12041,9 +12041,13 @@ MonoBehaviour:
   prefab_item_music: {fileID: 346399769378897854, guid: 5c76e0e7f1ec6f749989da9d070de244, type: 3}
   prefab_item_loading: {fileID: 7643879728938420672, guid: 7c85cb3e887b54c4abff9dd52a163cdf, type: 3}
   sp_icon_music: {fileID: 21300000, guid: 6a225faaf46361547965783133badc07, type: 3}
+  sp_icon_music_song: {fileID: 21300000, guid: 56d517b22c52db044ae09aeccda5b608, type: 3}
   sp_icon_radio: {fileID: 21300000, guid: fdba6e2bfd0574349812f9cadc439c5a, type: 3}
+  sp_icon_radio_broadcast: {fileID: 21300000, guid: 758e8491abec2f547b3fbf4666b6e336, type: 3}
   sp_icon_sound: {fileID: 21300000, guid: 13ab8e0d0a8b0ac4dbcb968f70612c8e, type: 3}
+  sp_icon_audio: {fileID: 21300000, guid: 50c3717def0be6449af840190f986902, type: 3}
   sp_icon_storage: {fileID: 21300000, guid: 96ba5e279fa55d940b8c504e0a405161, type: 3}
+  sp_icon_sad: {fileID: 21300000, guid: 617d7e20c63682d479f00da8a4659653, type: 3}
   sp_avata_music_default: {fileID: 21300000, guid: 272f3800672b1914bad83005df0aef81, type: 3}
   panel_footer: {fileID: 8211152241117825985}
   canvas_render: {fileID: 2997965751780510492}
