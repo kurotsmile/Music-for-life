@@ -11533,6 +11533,7 @@ MonoBehaviour:
   sp_icon_storage: {fileID: 21300000, guid: 96ba5e279fa55d940b8c504e0a405161, type: 3}
   sp_icon_sad: {fileID: 21300000, guid: 617d7e20c63682d479f00da8a4659653, type: 3}
   sp_icon_playlist: {fileID: 21300000, guid: e3d3e18ffde461b4a931ac5b0c89b5d8, type: 3}
+  sp_icon_shop: {fileID: 0}
   sp_avata_music_default: {fileID: 21300000, guid: 272f3800672b1914bad83005df0aef81, type: 3}
   panel_footer: {fileID: 8211152241117825985}
   canvas_render: {fileID: 2997965751780510492}
@@ -11693,9 +11694,9 @@ MonoBehaviour:
   - rate
   - share
   - background
-  - more_app
+  - other_app
   - reset
-  - select_lang
+  - language
   - sel_feel_tip
   - create_playlist
   - account_playlist_tip
@@ -11707,6 +11708,7 @@ MonoBehaviour:
   - load_song
   - load_song
   - shop
+  - setting
   emp:
   - {fileID: 6218839683653191576}
   - {fileID: 162277595198353856}
@@ -11733,6 +11735,7 @@ MonoBehaviour:
   - {fileID: 323815228408113343}
   - {fileID: 3500552422917852411}
   - {fileID: 6754280181846517069}
+  - {fileID: 4064929415217153565}
   List_img_change_icon_lang:
   - {fileID: 1984330687179713994}
 --- !u!114 &3235751567141624472
@@ -27870,8 +27873,8 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1668402965110090359}
   - {fileID: 8965350598736121872}
+  - {fileID: 1668402965110090359}
   m_Father: {fileID: 6541424042644133981}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -29003,6 +29006,18 @@ PrefabInstance:
     - target: {fileID: 11460114, guid: 15f347b63bfac8e4cb73595b2d590a95, type: 3}
       propertyPath: cameraControl
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11460114, guid: 15f347b63bfac8e4cb73595b2d590a95, type: 3}
+      propertyPath: metronomeTick
+      value: 
+      objectReference: {fileID: 77296209054796779}
+    - target: {fileID: 198000013729626860, guid: 15f347b63bfac8e4cb73595b2d590a95, type: 3}
+      propertyPath: InitialModule.startSizeY.minMaxState
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 198000013729626860, guid: 15f347b63bfac8e4cb73595b2d590a95, type: 3}
+      propertyPath: InitialModule.startSizeZ.minMaxState
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

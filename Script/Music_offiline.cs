@@ -11,7 +11,9 @@ public class Music_offiline : MonoBehaviour
     [Header("Obj Offline")]
     public Sprite ps_icon_offline;
     int leng=0;
+
     private Carrot_Window_Input box_inp = null;
+    private Carrot_Box box = null;
 
     public void On_Load()
     {
@@ -79,6 +81,7 @@ public class Music_offiline : MonoBehaviour
                     {
                         box_item.set_tip(app.carrot.L("playlist", "Playlist"));
                         box_item.set_icon(this.app.sp_icon_playlist);
+                        box_item.set_act(() => Show_menu_folder());
                     }
 
                     if (data_m["type"].ToString() == "music_offline")
@@ -95,9 +98,35 @@ public class Music_offiline : MonoBehaviour
                             else
                                 if (data_m["avatar"] != null) app.carrot.get_img_and_save_playerPrefs(data_m["avatar"].ToString(), box_item.img_icon, s_id_avatar);
                         }
+                        box_item.set_act(() => this.app.player_music.Play_by_data(data_m));
                     }
 
-                    box_item.set_act(() => this.app.player_music.Play_by_data(data_m));
+                    if (data_m["type"].ToString() == "radio_offline")
+                    {
+                        box_item.set_tip(app.carrot.L("m_radio", "Radio"));
+                        box_item.set_icon(this.app.sp_icon_radio);
+
+                        if (data_m["id"] != null)
+                        {
+                            string s_id_avatar = "pic_avatar_" + data_m["id"].ToString();
+                            Sprite sp_pic_avatar = app.carrot.get_tool().get_sprite_to_playerPrefs(s_id_avatar);
+                            if (sp_pic_avatar != null)
+                                box_item.set_icon_white(sp_pic_avatar);
+                            else
+                                if (data_m["avatar"] != null) app.carrot.get_img_and_save_playerPrefs(data_m["avatar"].ToString(), box_item.img_icon, s_id_avatar);
+                        }
+                        box_item.set_act(() => this.app.player_music.Play_by_data(data_m));
+                    }
+
+
+                    if (data_m["type"].ToString() == "sound_offline")
+                    {
+                        box_item.set_tip(app.carrot.L("m_sound", "Sound"));
+                        box_item.set_icon(this.app.sp_icon_audio);
+                        box_item.set_act(() => this.app.player_music.Play_by_data(data_m));
+                    }
+
+                   
                 }
             }
         }
@@ -129,4 +158,11 @@ public class Music_offiline : MonoBehaviour
         this.Show();
     }
 
+    private void Show_menu_folder()
+    {
+        app.carrot.play_sound_click();
+        if (box != null) this.box.close();
+        this.box = app.carrot.Create_Box();
+        this.box.set_title(app.carrot.L("menu","Menu"));
+    }
 }

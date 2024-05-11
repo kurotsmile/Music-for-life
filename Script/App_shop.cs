@@ -20,6 +20,11 @@ public class App_shop : MonoBehaviour
     {
         this.app.clear_all_contain();
 
+        Carrot_Box_Item item_title = app.Create_item("shop_title");
+        item_title.set_icon(app.sp_icon_shop);
+        item_title.set_title(app.carrot.L("shop", "Shop"));
+        item_title.set_tip(app.carrot.L("shop_tip", "Purchase and use in-app functions"));
+
         for (int i = 0; i < p_name.Length; i++)
         {
             Carrot_Box_Item item_shop=app.Create_item("item_shop_" + i);

@@ -269,8 +269,7 @@ public class Music_Player : MonoBehaviour
             this.slider_timer_music.gameObject.SetActive(true);
             this.slider_timer_music_full.gameObject.SetActive(true);
 
-            this.obj_btn_save.SetActive(true);
-            this.obj_btn_save_full.SetActive(true);
+            this.Check_show_btn_save();
         }
 
         if (data["type"].ToString() == "music_online" || 
@@ -376,7 +375,7 @@ public class Music_Player : MonoBehaviour
     {
         if (this.is_status_play)
         {
-            if (this.data_music_cur["type"].ToString() == "music_online"|| this.data_music_cur["type"].ToString() == "music_offline")
+            if (this.data_music_cur["type"].ToString() == "music_online"|| this.data_music_cur["type"].ToString() == "music_offline"|| this.data_music_cur["type"].ToString() == "sound_online" || this.data_music_cur["type"].ToString() == "sound_offline")
             {
                 if (this.is_click_control == false && this.GetComponent<AudioSource>().isPlaying == false)
                 {
@@ -482,8 +481,7 @@ public class Music_Player : MonoBehaviour
                 this.img_btn_play_full.sprite = icon_pause;
                 this.animation_avatar_full.enabled = true;
 
-                this.obj_btn_save.SetActive(true);
-                this.obj_btn_save_full.SetActive(true);
+                this.Check_show_btn_save();
             }
         }
     }
@@ -535,7 +533,7 @@ public class Music_Player : MonoBehaviour
 
     public void show_full()
     {
-        if (this.data_music_cur["type"].ToString() == "0")
+        if (this.data_music_cur["type"].ToString() == "music_online")
         {
             this.get_feel_music();
         }
