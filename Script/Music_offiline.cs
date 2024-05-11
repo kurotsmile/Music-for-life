@@ -2,7 +2,6 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.WSA;
 
 public class Music_offiline : MonoBehaviour
 {
@@ -21,7 +20,8 @@ public class Music_offiline : MonoBehaviour
 
     public void Add(IDictionary data, byte[] data_mp3)
     {
-        app.carrot.get_tool().save_file(this.leng+".mp3", data_mp3);
+        data["type"] = "music_offline";
+        app.carrot.get_tool().save_file(this.leng+".data", data_mp3);
         this.Add(data);
     }
 
@@ -56,10 +56,11 @@ public class Music_offiline : MonoBehaviour
                 string s_data = PlayerPrefs.GetString("mo_" + i);
                 if (s_data!= "")
                 {
+                    index_m++;
                     var index = i;
                     IDictionary data_m = (IDictionary) Json.Deserialize(s_data);
                     Carrot_Box_Item box_item=app.Create_item("mo_item_" + i);
-                    data_m["index"] = index_m;
+                    data_m["index"] = i;
                   
                     box_item.set_title(data_m["name"].ToString());
                     if(data_m["artist"]!=null) box_item.set_tip(data_m["artist"].ToString());
@@ -75,27 +76,26 @@ public class Music_offiline : MonoBehaviour
                     else
                         box_item.GetComponent<Image>().color = app.color_row_2;
 
-                    if (data_m["id"] != null)
-                    {
-                        string s_id_avatar = "pic_avatar_" + data_m["id"].ToString();
-                        Sprite sp_pic_avatar = app.carrot.get_tool().get_sprite_to_playerPrefs(s_id_avatar);
-                        if (sp_pic_avatar != null)
-                            box_item.set_icon_white(sp_pic_avatar);
-                        else
-                            if(data_m["avatar"]!=null) app.carrot.get_img_and_save_playerPrefs(data_m["avatar"].ToString(), box_item.img_icon, s_id_avatar);
-                    }
-
                     if (data_m["type"].ToString() == "folder")
                     {
                         box_item.set_tip(app.carrot.L("playlist", "Playlist"));
-                        box_item.set_icon(this.app.sp_icon_music);
+                        box_item.set_icon(this.app.sp_icon_playlist);
                     }
 
-
-                    if (data_m["type"].ToString() == "music")
+                    if (data_m["type"].ToString() == "music_offline")
                     {
-                        box_item.set_tip(app.carrot.L("song", "Song"));
+                        box_item.set_tip(app.carrot.L("m_music", "Music"));
                         box_item.set_icon(this.app.sp_icon_music);
+
+                        if (data_m["id"] != null)
+                        {
+                            string s_id_avatar = "pic_avatar_" + data_m["id"].ToString();
+                            Sprite sp_pic_avatar = app.carrot.get_tool().get_sprite_to_playerPrefs(s_id_avatar);
+                            if (sp_pic_avatar != null)
+                                box_item.set_icon_white(sp_pic_avatar);
+                            else
+                                if (data_m["avatar"] != null) app.carrot.get_img_and_save_playerPrefs(data_m["avatar"].ToString(), box_item.img_icon, s_id_avatar);
+                        }
                     }
 
                     box_item.set_act(() => this.app.player_music.Play_by_data(data_m));

@@ -29,6 +29,7 @@ public class App : MonoBehaviour
     public Sprite sp_icon_audio;
     public Sprite sp_icon_storage;
     public Sprite sp_icon_sad;
+    public Sprite sp_icon_playlist;
     public Sprite sp_avata_music_default;
 
     [Header("Main Item Panel")]
@@ -147,17 +148,10 @@ public class App : MonoBehaviour
             this.carrot.delay_function(1f, this.playlist_offline.Show);
         }
 
-        if (this.menu_sel == 5)
-        {
-            if (this.carrot.user.get_id_user_login() != "")
-                this.playlist.show();
-            else
-                this.carrot.user.show_login(this.playlist.show);
-        }
-        if (this.menu_sel == 6)this.GetComponent<Music_online>().show_list_artist();
-        if (this.menu_sel == 7)this.GetComponent<Music_online>().show_list_genre();
-        if (this.menu_sel == 8)this.GetComponent<Music_online>().show_list_year();
-        if (this.menu_sel == 9)this.GetComponent<App_shop>().Show();
+        if (this.menu_sel == 5)this.GetComponent<Music_online>().show_list_artist();
+        if (this.menu_sel == 6)this.GetComponent<Music_online>().show_list_genre();
+        if (this.menu_sel == 7)this.GetComponent<Music_online>().show_list_year();
+        if (this.menu_sel == 8)this.GetComponent<App_shop>().Show();
     }
 
     private void show_list_music()

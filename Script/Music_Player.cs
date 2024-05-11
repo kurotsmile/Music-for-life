@@ -221,6 +221,7 @@ public class Music_Player : MonoBehaviour
 
     public void Play_by_data(IDictionary data)
     {
+        this.data_music_save = null;
         this.is_status_play = false;
         this.app.carrot.ads.show_ads_Interstitial();
         this.panel_player_mini.SetActive(true);
@@ -233,18 +234,6 @@ public class Music_Player : MonoBehaviour
         this.avatar_mini.sprite = app.sp_avata_music_default;
         this.avatar_full.sprite = app.sp_avata_music_default;
         this.slider_timer_music.gameObject.SetActive(false);
-
-        string s_id_avatar = "pic_avatar_" + data["id"].ToString();
-        Sprite sp_pic_avatar = app.carrot.get_tool().get_sprite_to_playerPrefs(s_id_avatar);
-        if (sp_pic_avatar != null)
-        {
-            this.avatar_full.sprite = sp_pic_avatar;
-            this.avatar_mini.sprite = sp_pic_avatar;
-        }
-        else
-        {
-            app.carrot.get_img_and_save_playerPrefs(data["avatar"].ToString(),null, s_id_avatar,this.Get_avatar_music_done);
-        }
 
         if (data["genre"].ToString() == "" && data["album"].ToString() == "" && data["artist"].ToString() == "" &&data["year"].ToString() == "")
         {
@@ -297,23 +286,47 @@ public class Music_Player : MonoBehaviour
             this.txt_feel_tip.gameObject.SetActive(false);
         }
 
-        if (data["type"].ToString() == "music")
+        if (data["type"].ToString() == "music_online" || data["type"].ToString() == "music_offline")
         {
+            string s_id_avatar = "pic_avatar_" + data["id"].ToString();
+            Sprite sp_pic_avatar = app.carrot.get_tool().get_sprite_to_playerPrefs(s_id_avatar);
+            if (sp_pic_avatar != null)
+            {
+                this.avatar_full.sprite = sp_pic_avatar;
+                this.avatar_mini.sprite = sp_pic_avatar;
+            }
+            else
+            {
+                app.carrot.get_img_and_save_playerPrefs(data["avatar"].ToString(), null, s_id_avatar, this.Get_avatar_music_done);
+            }
+
             this.panel_loading_download.SetActive(true);
             this.panel_loading_download_full.SetActive(true);
             this.img_icon_loop_full.gameObject.SetActive(true);
             this.img_icon_loop_mini.gameObject.SetActive(true);
-            if (data["type"].ToString() == "music")
+
+            if (data["type"].ToString() == "music_online")
             {
                 this.panel_feel_full.SetActive(true);
                 this.txt_feel_tip.gameObject.SetActive(true);
+                if (data["mp3"].ToString() != "") this.download_music(data["mp3"].ToString());
             }
             else
             {
                 this.panel_feel_full.SetActive(false);
                 this.txt_feel_tip.gameObject.SetActive(false);
+                string path_file = this.index_item_play+ ".data";
+                if (app.carrot.get_tool().check_file_exist(path_file))
+                {
+                    string url_mp3=app.carrot.get_tool().get_file_path(path_file);
+                    Debug.Log(url_mp3);
+                    this.download_music(url_mp3);
+                }
+                else
+                {
+                    if (data["mp3"].ToString() != "") this.download_music(data["mp3"].ToString());
+                }
             }
-            if (data["mp3"].ToString()!= "") this.download_music(data["mp3"].ToString());
         }
     }
 
@@ -340,7 +353,7 @@ public class Music_Player : MonoBehaviour
 
     private void download_music(string url)
     {
-        StartCoroutine(downloadAudio(url));
+        StartCoroutine(DownloadAudio(url));
     }
 
     void Update()
@@ -425,8 +438,7 @@ public class Music_Player : MonoBehaviour
         }
     }
 
-
-    IEnumerator downloadAudio(string s_url)
+    IEnumerator DownloadAudio(string s_url)
     {
         using (UnityWebRequest www = UnityWebRequestMultimedia.GetAudioClip(s_url, AudioType.MPEG))
         {

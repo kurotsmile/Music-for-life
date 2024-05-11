@@ -108,7 +108,7 @@ public class Music_online : MonoBehaviour
             for (int i = 0; i < fc.fire_document.Length; i++)
             {
                 IDictionary data_m = fc.fire_document[i].Get_IDictionary();
-                data_m["type"] = "0";
+                data_m["type"] = "music_online";
                 data_m["index"] = i;
                 Carrot_Box_Item box_item = app.Create_item("item_m_" + i);
                 box_item.set_icon(app.carrot.game.icon_play_music_game);
