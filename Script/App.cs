@@ -15,6 +15,7 @@ public class App : MonoBehaviour
     public Music_Player player_music;
     public Playlist_Radio playlist_radio;
     public Playlist_Sound playlist_sound;
+    public App_shop shop;
 
     [Header("Obj Prefab")]
     public GameObject prefab_item_music;
@@ -37,7 +38,6 @@ public class App : MonoBehaviour
 
     [Header("Obj Other")]
     public GameObject canvas_render;
-    public GameObject btn_account_playlist;
     public Skybox bk;
 
     [Header("Obj Scene Roation")]
@@ -148,10 +148,10 @@ public class App : MonoBehaviour
             this.carrot.delay_function(1f, this.playlist_offline.Show);
         }
 
-        if (this.menu_sel == 5)this.GetComponent<Music_online>().show_list_artist();
-        if (this.menu_sel == 6)this.GetComponent<Music_online>().show_list_genre();
-        if (this.menu_sel == 7)this.GetComponent<Music_online>().show_list_year();
-        if (this.menu_sel == 8)this.GetComponent<App_shop>().Show();
+        if (this.menu_sel == 6)this.GetComponent<Music_online>().show_list_artist();
+        if (this.menu_sel == 7)this.GetComponent<Music_online>().show_list_genre();
+        if (this.menu_sel == 8)this.GetComponent<Music_online>().show_list_year();
+        if (this.menu_sel == 9) this.shop.Show();
     }
 
     private void show_list_music()

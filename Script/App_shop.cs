@@ -18,7 +18,7 @@ public class App_shop : MonoBehaviour
 
     public void Show()
     {
-        this.GetComponent<App>().clear_all_contain();
+        this.app.clear_all_contain();
 
         for (int i = 0; i < p_name.Length; i++)
         {
