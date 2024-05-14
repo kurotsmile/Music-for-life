@@ -1,6 +1,8 @@
 ﻿using Carrot;
 using System;
 using System.Collections;
+using System.Collections.Generic;
+using System.Reflection;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -24,12 +26,14 @@ public class Music_offiline : MonoBehaviour
 
     public void Add(IDictionary data, byte[] data_mp3)
     {
+        data["index"] = leng;
         app.carrot.get_tool().save_file(this.leng+".data", data_mp3);
         this.Add(data);
-    }
+    } 
 
     public void Add(IDictionary data)
     {
+        data["index"] = leng;
         PlayerPrefs.SetString("mo_" + this.leng, Json.Serialize(data));
         this.leng++;
         PlayerPrefs.SetInt("mo_length", this.leng);
@@ -42,6 +46,8 @@ public class Music_offiline : MonoBehaviour
 
     public void Show()
     {
+        if (box != null) box.close();
+        if (box_inp != null) box.close();
         this.GetComponent<App>().StopAllCoroutines();
         this.GetComponent<App>().clear_all_contain();
 
@@ -56,87 +62,119 @@ public class Music_offiline : MonoBehaviour
         item_add.set_tip(app.carrot.L("create_playlist_tip", "Manage your songs in lists and folders"));
         item_add.set_act(() => Create_folder());
 
+        List<IDictionary> list_item = this.get_list_all_type();
+        for(int i = 0; i < list_item.Count; i++) this.Create_item(list_item[i]);
+    }
+
+    private List<IDictionary> get_list_all_type()
+    {
+        List<IDictionary> list = new();
         if (this.leng > 0)
         {
-            int index_m = 0;
-            for(int i = 0; i < this.leng; i++)
+            for (int i = 0; i < this.leng; i++)
             {
                 string s_data = PlayerPrefs.GetString("mo_" + i);
-                if (s_data!= "")
+                if (s_data != "")
                 {
-                    index_m++;
-                    var index = i;
-                    IDictionary data_m = (IDictionary) Json.Deserialize(s_data);
-                    Carrot_Box_Item box_item=app.Create_item("mo_item_" + i);
-                    data_m["index"] = i;
-                  
-                    box_item.set_title(data_m["name"].ToString());
-                    if(data_m["artist"]!=null) box_item.set_tip(data_m["artist"].ToString());
-
-                    Carrot_Box_Btn_Item btn_del = box_item.create_item();
-                    btn_del.set_icon(app.carrot.sp_icon_del_data);
-                    btn_del.set_icon_color(Color.white);
-                    btn_del.set_color(Color.red);
-                    btn_del.set_act(() => this.Delete(index));
-
-                    if (i % 2 == 0)
-                        box_item.GetComponent<Image>().color = app.color_row_1;
-                    else
-                        box_item.GetComponent<Image>().color = app.color_row_2;
-
-                    if (data_m["type"].ToString() == "folder")
-                    {
-                        box_item.set_tip(app.carrot.L("playlist", "Playlist"));
-                        box_item.set_icon(this.app.sp_icon_playlist);
-                        box_item.set_act(() => Show_menu_folder(data_m));
-                    }
-
-                    if (data_m["type"].ToString() == "music_offline")
-                    {
-                        box_item.set_tip(app.carrot.L("m_music", "Music"));
-                        box_item.set_icon(this.app.sp_icon_music);
-
-                        if (data_m["id"] != null)
-                        {
-                            string s_id_avatar = "pic_avatar_" + data_m["id"].ToString();
-                            Sprite sp_pic_avatar = app.carrot.get_tool().get_sprite_to_playerPrefs(s_id_avatar);
-                            if (sp_pic_avatar != null)
-                                box_item.set_icon_white(sp_pic_avatar);
-                            else
-                                if (data_m["avatar"] != null) app.carrot.get_img_and_save_playerPrefs(data_m["avatar"].ToString(), box_item.img_icon, s_id_avatar);
-                        }
-                        box_item.set_act(() => this.app.player_music.Play_by_data(data_m));
-                    }
-
-                    if (data_m["type"].ToString() == "radio_offline")
-                    {
-                        box_item.set_tip(app.carrot.L("m_radio", "Radio"));
-                        box_item.set_icon(this.app.sp_icon_radio);
-
-                        if (data_m["id"] != null)
-                        {
-                            string s_id_avatar = "pic_avatar_" + data_m["id"].ToString();
-                            Sprite sp_pic_avatar = app.carrot.get_tool().get_sprite_to_playerPrefs(s_id_avatar);
-                            if (sp_pic_avatar != null)
-                                box_item.set_icon_white(sp_pic_avatar);
-                            else
-                                if (data_m["avatar"] != null) app.carrot.get_img_and_save_playerPrefs(data_m["avatar"].ToString(), box_item.img_icon, s_id_avatar);
-                        }
-                        box_item.set_act(() => this.app.player_music.Play_by_data(data_m));
-                    }
-
-
-                    if (data_m["type"].ToString() == "sound_offline")
-                    {
-                        box_item.set_tip(app.carrot.L("m_sound", "Sound"));
-                        box_item.set_icon(this.app.sp_icon_audio);
-                        box_item.set_act(() => this.app.player_music.Play_by_data(data_m));
-                    }
-
-                    this.Create_btn_menu(box_item).set_act(()=>this.Show_menu_folder(data_m));
+                    IDictionary data_m = (IDictionary)Json.Deserialize(s_data);
+                    if(data_m["father"]==null) list.Add(data_m);
                 }
             }
         }
+        return list;
+    }
+
+    private List<IDictionary> Get_list_folder()
+    {
+        List<IDictionary> list = new();
+        if (this.leng > 0)
+        {
+            for (int i = 0; i < this.leng; i++)
+            {
+                string s_data = PlayerPrefs.GetString("mo_" + i);
+                if (s_data != "")
+                {
+                    IDictionary data_m = (IDictionary)Json.Deserialize(s_data);
+                    if (data_m["type"].ToString() == "folder") list.Add(data_m);
+                }
+            }
+        }
+        return list;
+    }
+
+    private Carrot_Box_Item Create_item(IDictionary data_m,bool is_list_main=true)
+    {
+        var index = int.Parse(data_m["index"].ToString());
+        Carrot_Box_Item box_item = null;
+        if(is_list_main)
+            box_item=app.Create_item("mo_item_" + index);
+        else
+            box_item =this.box.create_item("mo_item_" + index);
+
+        box_item.set_title(data_m["name"].ToString());
+        if (data_m["artist"] != null) box_item.set_tip(data_m["artist"].ToString());
+
+        Carrot_Box_Btn_Item btn_del = box_item.create_item();
+        btn_del.set_icon(app.carrot.sp_icon_del_data);
+        btn_del.set_icon_color(Color.white);
+        btn_del.set_color(Color.red);
+        btn_del.set_act(() => this.Delete(index));
+
+        if (index % 2 == 0)
+            box_item.GetComponent<Image>().color = app.color_row_1;
+        else
+            box_item.GetComponent<Image>().color = app.color_row_2;
+
+        if (data_m["type"].ToString() == "folder")
+        {
+            box_item.set_tip(app.carrot.L("playlist", "Playlist"));
+            box_item.set_icon(this.app.sp_icon_playlist);
+            box_item.set_act(() => Show_menu_folder(data_m));
+        }
+
+        if (data_m["type"].ToString() == "music_offline")
+        {
+            box_item.set_tip(app.carrot.L("m_music", "Music"));
+            box_item.set_icon(this.app.sp_icon_music);
+
+            if (data_m["id"] != null)
+            {
+                string s_id_avatar = "pic_avatar_" + data_m["id"].ToString();
+                Sprite sp_pic_avatar = app.carrot.get_tool().get_sprite_to_playerPrefs(s_id_avatar);
+                if (sp_pic_avatar != null)
+                    box_item.set_icon_white(sp_pic_avatar);
+                else
+                    if (data_m["avatar"] != null) app.carrot.get_img_and_save_playerPrefs(data_m["avatar"].ToString(), box_item.img_icon, s_id_avatar);
+            }
+            box_item.set_act(() => this.app.player_music.Play_by_data(data_m));
+        }
+
+        if (data_m["type"].ToString() == "radio_offline")
+        {
+            box_item.set_tip(app.carrot.L("m_radio", "Radio"));
+            box_item.set_icon(this.app.sp_icon_radio);
+
+            if (data_m["id"] != null)
+            {
+                string s_id_avatar = "pic_avatar_" + data_m["id"].ToString();
+                Sprite sp_pic_avatar = app.carrot.get_tool().get_sprite_to_playerPrefs(s_id_avatar);
+                if (sp_pic_avatar != null)
+                    box_item.set_icon_white(sp_pic_avatar);
+                else
+                    if (data_m["avatar"] != null) app.carrot.get_img_and_save_playerPrefs(data_m["avatar"].ToString(), box_item.img_icon, s_id_avatar);
+            }
+            box_item.set_act(() => this.app.player_music.Play_by_data(data_m));
+        }
+
+        if (data_m["type"].ToString() == "sound_offline")
+        {
+            box_item.set_tip(app.carrot.L("m_sound", "Sound"));
+            box_item.set_icon(this.app.sp_icon_audio);
+            box_item.set_act(() => this.app.player_music.Play_by_data(data_m));
+        }
+
+        this.Create_btn_menu(box_item).set_act(() => this.Show_menu_folder(data_m));
+        return box_item;
     }
 
     private Carrot_Box_Btn_Item Create_btn_menu(Carrot_Box_Item item)
@@ -196,6 +234,7 @@ public class Music_offiline : MonoBehaviour
             item_move.set_icon(app.sp_icon_move);
             item_move.set_title("Move");
             item_move.set_tip("Move this item to another list");
+            item_move.set_act(() => Show_move_playlist(data));
         }
  
         Carrot_Box_Item item_del = box.create_item("item_del");
@@ -216,11 +255,37 @@ public class Music_offiline : MonoBehaviour
     private void Act_done_name(string s_name)
     {
         this.data_cur["name"] = s_name;
-        if (box_inp != null) box_inp.close();
-        if (box != null) box.close();
         int index=int.Parse(this.data_cur["index"].ToString());
         this.Update_data(index,this.data_cur);
         app.carrot.Show_msg("Update name item success!");
+        this.Show();
+    }
+
+    private void Show_move_playlist(IDictionary data)
+    {
+        if (box != null) box.close();
+        this.box = this.app.carrot.Create_Box();
+        this.box.set_icon(app.sp_icon_move);
+        this.box.set_title("Move"+" - " + data["name"].ToString());
+
+        List<IDictionary> list_item = this.Get_list_folder();
+        for (int i = 0; i < list_item.Count; i++)
+        {
+            var data_item = list_item[i];
+            Carrot_Box_Item item_folder=this.Create_item(list_item[i], false);
+            item_folder.set_act(() =>
+            {
+                this.Act_move_item_to_playlist(data, data_item);
+            });
+        }
+    }
+
+    private void Act_move_item_to_playlist(IDictionary data_to,IDictionary data_from)
+    {
+        data_to["father"] = data_from["index"].ToString();
+        this.Update_data(int.Parse(data_to["index"].ToString()),data_to);
+        app.carrot.play_sound_click();
+        app.carrot.Show_msg("Successfully moved to playlist","success");
         this.Show();
     }
 }
