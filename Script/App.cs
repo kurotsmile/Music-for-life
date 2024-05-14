@@ -28,6 +28,7 @@ public class App : MonoBehaviour
     public Sprite sp_icon_radio_broadcast; 
     public Sprite sp_icon_sound;
     public Sprite sp_icon_audio;
+    public Sprite sp_icon_move;
     public Sprite sp_icon_storage;
     public Sprite sp_icon_sad;
     public Sprite sp_icon_playlist;
@@ -148,10 +149,6 @@ public class App : MonoBehaviour
             this.Create_loading();
             this.carrot.delay_function(1f, this.playlist_offline.Show);
         }
-
-        if (this.menu_sel == 6)this.GetComponent<Music_online>().show_list_artist();
-        if (this.menu_sel == 7)this.GetComponent<Music_online>().show_list_genre();
-        if (this.menu_sel == 8)this.GetComponent<Music_online>().show_list_year();
         if (this.menu_sel == 9) this.shop.Show();
     }
 

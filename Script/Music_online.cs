@@ -22,29 +22,23 @@ public class Music_online : MonoBehaviour
         if(app.carrot.is_offline()) this.s_data_temp = PlayerPrefs.GetString("s_data_music_");
     }
 
-    public void show_list_artist()
-    {
-        this.Show_list_info_by_type("artist");
-    }
-
-    public void show_list_genre()
-    {
-        this.Show_list_info_by_type("genre");
-    }
-
-    public void show_list_year()
-    {
-        this.Show_list_info_by_type("year");
-    }
-
-    private void Show_list_info_by_type(string s_type)
-    {
-
-    }
-
     public void Get_song_by_id(string s_id)
     {
+        app.carrot.show_loading();
+        StructuredQuery q = new("song");
+        q.Add_where("id", Query_OP.EQUAL, s_id);
+        app.carrot.server.Get_doc(q.ToJson(), Get_song_done);
+    }
 
+    private void Get_song_done(string s_data)
+    {
+        app.carrot.hide_loading();
+        Fire_Collection fc = new(s_data);
+        if (!fc.is_null)
+        {
+            IDictionary data_song = fc.fire_document[0].Get_IDictionary();
+            app.player_music.Play_by_data(data_song);
+        }
     }
 
     public void Show(string s_lang)

@@ -1,4 +1,5 @@
 ﻿using Carrot;
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
@@ -14,6 +15,7 @@ public class Music_offiline : MonoBehaviour
 
     private Carrot_Window_Input box_inp = null;
     private Carrot_Box box = null;
+    private IDictionary data_cur = null;
 
     public void On_Load()
     {
@@ -31,6 +33,11 @@ public class Music_offiline : MonoBehaviour
         PlayerPrefs.SetString("mo_" + this.leng, Json.Serialize(data));
         this.leng++;
         PlayerPrefs.SetInt("mo_length", this.leng);
+    }
+
+    private void Update_data(int index,IDictionary data)
+    {
+        PlayerPrefs.SetString("mo_" + index, Json.Serialize(data));
     }
 
     public void Show()
@@ -81,7 +88,7 @@ public class Music_offiline : MonoBehaviour
                     {
                         box_item.set_tip(app.carrot.L("playlist", "Playlist"));
                         box_item.set_icon(this.app.sp_icon_playlist);
-                        box_item.set_act(() => Show_menu_folder());
+                        box_item.set_act(() => Show_menu_folder(data_m));
                     }
 
                     if (data_m["type"].ToString() == "music_offline")
@@ -126,10 +133,19 @@ public class Music_offiline : MonoBehaviour
                         box_item.set_act(() => this.app.player_music.Play_by_data(data_m));
                     }
 
-                   
+                    this.Create_btn_menu(box_item).set_act(()=>this.Show_menu_folder(data_m));
                 }
             }
         }
+    }
+
+    private Carrot_Box_Btn_Item Create_btn_menu(Carrot_Box_Item item)
+    {
+        Carrot_Box_Btn_Item btn_menu=item.create_item();
+        btn_menu.set_icon(app.carrot.icon_carrot_all_category);
+        btn_menu.set_icon_color(Color.white);
+        btn_menu.set_color(app.carrot.color_highlight);
+        return btn_menu;
     }
 
     private void Delete(int index)
@@ -158,11 +174,53 @@ public class Music_offiline : MonoBehaviour
         this.Show();
     }
 
-    private void Show_menu_folder()
+    private void Show_menu_folder(IDictionary data)
     {
+        this.data_cur = data;
         app.carrot.play_sound_click();
         if (box != null) this.box.close();
         this.box = app.carrot.Create_Box();
-        this.box.set_title(app.carrot.L("menu","Menu"));
+        this.box.set_icon(app.carrot.icon_carrot_advanced);
+        this.box.set_title(app.carrot.L("menu","Menu")+" - " + data["name"].ToString());
+
+        var index = int.Parse(data["index"].ToString());
+        Carrot_Box_Item item_rename = box.create_item("item_rename");
+        item_rename.set_icon(app.carrot.icon_carrot_write);
+        item_rename.set_title("Rename");
+        item_rename.set_tip("Change the name of this item");
+        item_rename.set_act(() => Rename(data));
+
+        if (data["type"].ToString()=="music_offline"|| data["type"].ToString() == "radio_offline"|| data["type"].ToString() == "sound_offline")
+        {
+            Carrot_Box_Item item_move = box.create_item("item_move");
+            item_move.set_icon(app.sp_icon_move);
+            item_move.set_title("Move");
+            item_move.set_tip("Move this item to another list");
+        }
+ 
+        Carrot_Box_Item item_del = box.create_item("item_del");
+        item_del.set_icon(app.carrot.sp_icon_del_data);
+        item_del.set_title("Delete");
+        item_del.set_tip("Remove this item from the list");
+        item_del.set_act(() => this.Delete(index));
+    }
+
+    private void Rename(IDictionary data)
+    {
+        app.carrot.play_sound_click();
+        this.data_cur = data;
+        this.box_inp= app.carrot.Show_input("Rename", "Change the name of this item", data["name"].ToString());
+        box_inp.set_act_done(Act_done_name);
+    }
+
+    private void Act_done_name(string s_name)
+    {
+        this.data_cur["name"] = s_name;
+        if (box_inp != null) box_inp.close();
+        if (box != null) box.close();
+        int index=int.Parse(this.data_cur["index"].ToString());
+        this.Update_data(index,this.data_cur);
+        app.carrot.Show_msg("Update name item success!");
+        this.Show();
     }
 }

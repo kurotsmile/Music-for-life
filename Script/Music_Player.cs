@@ -513,6 +513,24 @@ public class Music_Player : MonoBehaviour
 
     public void btn_save()
     {
+        if (this.data_music_cur["type"].ToString()=="music_online")
+        {
+            this.data_music_cur["type"] = "music_offline";
+            app.playlist_offline.Add(this.data_music_cur, this.data_music_save);
+        }
+
+        if (this.data_music_cur["type"].ToString() == "radio_online")
+        {
+            this.data_music_cur["type"] = "radio_offline";
+            app.playlist_offline.Add(this.data_music_cur, this.data_music_save);
+        }
+
+        if (this.data_music_cur["type"].ToString() == "sound_online")
+        {
+            this.data_music_cur["type"] = "sound_offline";
+            app.playlist_offline.Add(this.data_music_cur, this.data_music_save);
+        }
+
         app.carrot.Show_msg(app.carrot.L("playlist", "Playlist"), app.carrot.L("save_song_success", "Successfully stored, you can listen to the song again in the playlist"));
         this.Check_show_btn_save();
     }
