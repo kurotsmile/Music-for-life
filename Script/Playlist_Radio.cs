@@ -64,7 +64,7 @@ public class Playlist_Radio : MonoBehaviour
                 box_item.set_act(() => app.player_music.Play_by_data(data_radio));
 
                 Carrot_Box_Btn_Item btn_add_playlist = box_item.create_item();
-                btn_add_playlist.set_icon(app.sp_icon_storage);
+                btn_add_playlist.set_icon(app.sp_icon_storage_save);
                 btn_add_playlist.set_icon_color(Color.white);
                 btn_add_playlist.set_color(app.carrot.color_highlight);
                 btn_add_playlist.set_act(() =>

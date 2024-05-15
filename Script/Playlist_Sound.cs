@@ -57,11 +57,29 @@ public class Playlist_Sound : MonoBehaviour
                     item_sound.GetComponent<Image>().color = app.color_row_2;
 
                 item_sound.set_act(() => app.player_music.Play_by_data(data_sound));
+
+                Carrot_Box_Btn_Item btn_add_playlist = item_sound.create_item();
+                btn_add_playlist.set_icon(app.sp_icon_storage_save);
+                btn_add_playlist.set_icon_color(Color.white);
+                btn_add_playlist.set_color(app.carrot.color_highlight);
+                btn_add_playlist.set_act(() =>
+                {
+                    this.Storage_item(data_sound, btn_add_playlist.gameObject);
+                });
             }
         }
         else
         {
             app.Create_list_none();
         }
+    }
+
+    private void Storage_item(IDictionary data, GameObject obj_btn_storage)
+    {
+        app.carrot.play_sound_click();
+        Destroy(obj_btn_storage);
+        data["type"] = "radio_offline";
+        app.playlist_offline.Add(data);
+        app.carrot.Show_msg(app.carrot.L("playlist", "Playlist"), app.carrot.L("save_song_success", "Successfully stored, you can listen to the song again in the playlist"));
     }
 }
