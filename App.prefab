@@ -11535,7 +11535,8 @@ MonoBehaviour:
   sp_icon_storage: {fileID: 21300000, guid: 96ba5e279fa55d940b8c504e0a405161, type: 3}
   sp_icon_sad: {fileID: 21300000, guid: 617d7e20c63682d479f00da8a4659653, type: 3}
   sp_icon_playlist: {fileID: 21300000, guid: e3d3e18ffde461b4a931ac5b0c89b5d8, type: 3}
-  sp_icon_shop: {fileID: 0}
+  sp_icon_shop: {fileID: 21300000, guid: 14d9cfee3bc91d74091d7370486c78f9, type: 3}
+  sp_icon_back: {fileID: 21300000, guid: a5f24ec07c54802469ad09ffd6bced63, type: 3}
   sp_avata_music_default: {fileID: 21300000, guid: 272f3800672b1914bad83005df0aef81, type: 3}
   panel_footer: {fileID: 8211152241117825985}
   canvas_render: {fileID: 2997965751780510492}

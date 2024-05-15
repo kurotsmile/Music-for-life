@@ -33,6 +33,7 @@ public class App : MonoBehaviour
     public Sprite sp_icon_sad;
     public Sprite sp_icon_playlist;
     public Sprite sp_icon_shop;
+    public Sprite sp_icon_back;
     public Sprite sp_avata_music_default;
 
     [Header("Main Item Panel")]

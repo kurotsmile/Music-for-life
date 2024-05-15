@@ -47,7 +47,7 @@ public class Music_offiline : MonoBehaviour
     public void Show()
     {
         if (box != null) box.close();
-        if (box_inp != null) box.close();
+        if (box_inp != null) box_inp.close();
         this.GetComponent<App>().StopAllCoroutines();
         this.GetComponent<App>().clear_all_contain();
 
@@ -66,7 +66,7 @@ public class Music_offiline : MonoBehaviour
         for(int i = 0; i < list_item.Count; i++) this.Create_item(list_item[i]);
     }
 
-    private List<IDictionary> get_list_all_type()
+    private List<IDictionary> get_list_all_type(string index_father = "")
     {
         List<IDictionary> list = new();
         if (this.leng > 0)
@@ -77,7 +77,18 @@ public class Music_offiline : MonoBehaviour
                 if (s_data != "")
                 {
                     IDictionary data_m = (IDictionary)Json.Deserialize(s_data);
-                    if(data_m["father"]==null) list.Add(data_m);
+                    
+                    if (index_father == "")
+                    {
+                        if (data_m["father"] == null) list.Add(data_m);
+                    }
+                    else
+                    {
+                        if (data_m["father"] != null)
+                        {
+                            if (data_m["father"].ToString() == index_father) list.Add(data_m);
+                        }
+                    }
                 }
             }
         }
@@ -129,7 +140,7 @@ public class Music_offiline : MonoBehaviour
         {
             box_item.set_tip(app.carrot.L("playlist", "Playlist"));
             box_item.set_icon(this.app.sp_icon_playlist);
-            box_item.set_act(() => Show_menu_folder(data_m));
+            box_item.set_act(() => Show_all_item_in_folder(data_m));
         }
 
         if (data_m["type"].ToString() == "music_offline")
@@ -287,5 +298,29 @@ public class Music_offiline : MonoBehaviour
         app.carrot.play_sound_click();
         app.carrot.Show_msg("Successfully moved to playlist","success");
         this.Show();
+    }
+
+    private void Show_all_item_in_folder(IDictionary data_folder)
+    {
+        app.clear_all_contain();
+
+        Carrot_Box_Item item_title = app.Create_item("item_title_offline");
+        item_title.set_icon(app.sp_icon_playlist);
+        item_title.set_title(data_folder["name"].ToString());
+        item_title.set_tip(app.carrot.L("playlist", "Playlist"));
+
+        Carrot_Box_Item item_back = app.Create_item("item_back");
+        item_back.set_icon(app.sp_icon_back);
+        item_back.set_title("Back");
+        item_back.set_tip("Return to the original playlist");
+        item_back.set_act(() => Show());
+
+
+        List<IDictionary> list_item = this.get_list_all_type(data_folder["index"].ToString());
+        for (int i = 0; i < list_item.Count; i++)
+        {
+            var data_item = list_item[i];
+            Carrot_Box_Item item_folder = this.Create_item(list_item[i]);
+        }
     }
 }
