@@ -5909,8 +5909,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 72.269196, y: -21.9}
-  m_SizeDelta: {x: 134.53839, y: 33.8}
+  m_AnchoredPosition: {x: 75.10938, y: -21.9}
+  m_SizeDelta: {x: 140.21877, y: 33.8}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2649715376787313308
 CanvasRenderer:
@@ -9586,8 +9586,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 209.80759, y: -21.9}
-  m_SizeDelta: {x: 134.53839, y: 33.8}
+  m_AnchoredPosition: {x: 218.32816, y: -21.9}
+  m_SizeDelta: {x: 140.21877, y: 33.8}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7363340358959773059
 CanvasRenderer:
@@ -18452,8 +18452,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 347.34598, y: -21.9}
-  m_SizeDelta: {x: 134.53839, y: 33.8}
+  m_AnchoredPosition: {x: 361.5469, y: -21.9}
+  m_SizeDelta: {x: 140.21877, y: 33.8}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &927178930373803901
 CanvasRenderer:
@@ -24316,7 +24316,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7956460511708795163}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0

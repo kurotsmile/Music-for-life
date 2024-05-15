@@ -88,7 +88,7 @@ public class App : MonoBehaviour
         Screen.sleepTimeout = (int)SleepTimeout.NeverSleep;
 
         this.panel_footer.panel_menu_full.SetActive(false);
-        this.load_background();
+        this.Load_background();
 
         this.check_scene();
 
@@ -99,9 +99,15 @@ public class App : MonoBehaviour
 
     public void start_app_online()
     {
-        if (PlayerPrefs.GetString("lang") == "") this.carrot.delay_function(2f, this.Check_set_lang);
-        this.menu_sel = PlayerPrefs.GetInt("menu_sel",0);
-        this.check_show_menu_main();
+        this.menu_sel = PlayerPrefs.GetInt("menu_sel", 0);
+        if (PlayerPrefs.GetString("lang") == "")
+        {
+            this.carrot.delay_function(1f, this.Check_set_lang);
+        }
+        else
+        {
+            this.check_show_menu_main();
+        }
         if (this.carrot.store_public == Store.Microsoft_Store) this.arr_icon_menu_func[1].transform.parent.gameObject.SetActive(false);
     }
 
@@ -122,7 +128,7 @@ public class App : MonoBehaviour
         this.check_show_menu_main();
     }
 
-    public void load_background()
+    public void Load_background()
     {
         Texture2D data_pic_bk=this.carrot.get_tool().get_texture2D_to_playerPrefs("bk_app");
         if (data_pic_bk != null) this.set_skybox_Texture(data_pic_bk);

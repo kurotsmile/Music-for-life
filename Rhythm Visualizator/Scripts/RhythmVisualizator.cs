@@ -3,14 +3,11 @@
 // Video: https://www.youtube.com/watch?v=i5uRU45fi8U
 
 using UnityEngine;
-using System.Collections;
 
-[RequireComponent (typeof(AudioSource))]
 public class RhythmVisualizator : MonoBehaviour {
 	
 	public GameObject soundBarPrefab;
-	AudioSource audioSource;
-
+    public AudioSource audioSource;
 	public AudioSource metronomeTick;
 
 	[Space(5)]
@@ -131,19 +128,18 @@ public class RhythmVisualizator : MonoBehaviour {
 
 	void Awake () {
 		Application.targetFrameRate = 60;
-
 		rhythmParticleSystem = GetComponentInChildren<ParticleSystem> ();
-
-		if (soundBarPrefab != null) {
-			halfBarsValue = barsQuantity / 2;
-
-			audioSource = GetComponent<AudioSource> ();
-			CreateSoundBars ();
-		} else {
-			Debug.LogWarning ("Please assign Sound Bar Prefab to the script");
-			enabled = false;
-		}
-	}
+        if (soundBarPrefab != null)
+        {
+            halfBarsValue = barsQuantity / 2;
+            CreateSoundBars();
+        }
+        else
+        {
+            Debug.LogWarning("Please assign Sound Bar Prefab to the script");
+            enabled = false;
+        }
+    }
 
 	// Apply the time beetween BPM and other
 	public void MSDelay () {
