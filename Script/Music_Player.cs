@@ -320,7 +320,7 @@ public class Music_Player : MonoBehaviour
             this.img_icon_loop_full.gameObject.SetActive(true);
             this.img_icon_loop_mini.gameObject.SetActive(true);
 
-            if (data["type"].ToString() == "music_online")
+            if (data["type"].ToString() == "music_online"|| data["type"].ToString() == "sound_online")
             {
                 this.panel_feel_full.SetActive(true);
                 this.txt_feel_tip.gameObject.SetActive(true);
@@ -330,7 +330,7 @@ public class Music_Player : MonoBehaviour
             {
                 this.panel_feel_full.SetActive(false);
                 this.txt_feel_tip.gameObject.SetActive(false);
-                string path_file = this.index_item_play+ ".data";
+                string path_file = data["index"].ToString() + ".data";
                 if (app.carrot.get_tool().check_file_exist(path_file))
                 {
                     string url_mp3=app.carrot.get_tool().get_file_path(path_file);
@@ -339,7 +339,7 @@ public class Music_Player : MonoBehaviour
                 }
                 else
                 {
-                    if (data["mp3"].ToString() != "") this.download_music(data["mp3"].ToString());
+                    if (data["mp3"].ToString() != "") this.download_music(data["mp3"].ToString(), data["index"].ToString());
                 }
             }
         }
@@ -366,9 +366,9 @@ public class Music_Player : MonoBehaviour
         this.panel_player_full.SetActive(false);
     }
 
-    private void download_music(string url)
+    private void download_music(string url,string index_save_offline="")
     {
-        StartCoroutine(DownloadAudio(url));
+        StartCoroutine(DownloadAudio(url,index_save_offline));
     }
 
     void Update()
@@ -449,7 +449,7 @@ public class Music_Player : MonoBehaviour
         }
     }
 
-    IEnumerator DownloadAudio(string s_url)
+    IEnumerator DownloadAudio(string s_url,string index_save_offline="")
     {
         using (UnityWebRequest www = UnityWebRequestMultimedia.GetAudioClip(s_url, AudioType.MPEG))
         {
@@ -470,6 +470,7 @@ public class Music_Player : MonoBehaviour
                 this.GetComponent<AudioSource>().clip = DownloadHandlerAudioClip.GetContent(www);
                 this.GetComponent<AudioSource>().Play();
                 this.data_music_save = www.downloadHandler.data;
+                if (index_save_offline != "") app.carrot.get_tool().save_file(index_save_offline + ".data",this.data_music_save);
                 this.slider_timer_music.maxValue = this.GetComponent<AudioSource>().clip.length;
                 this.slider_timer_music_full.maxValue = this.GetComponent<AudioSource>().clip.length;
                 this.panel_loading_download.SetActive(false);
