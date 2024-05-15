@@ -78,7 +78,7 @@ public class Playlist_Sound : MonoBehaviour
     {
         app.carrot.play_sound_click();
         Destroy(obj_btn_storage);
-        data["type"] = "radio_offline";
+        data["type"] = "sound_offline";
         app.playlist_offline.Add(data);
         app.carrot.Show_msg(app.carrot.L("playlist", "Playlist"), app.carrot.L("save_song_success", "Successfully stored, you can listen to the song again in the playlist"));
     }

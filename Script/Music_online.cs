@@ -17,6 +17,8 @@ public class Music_online : MonoBehaviour
     public Sprite icon_year;
     public Sprite icon_album;
 
+    private Carrot_Box box;
+
     public void On_load()
     {
         if(app.carrot.is_offline()) this.s_data_temp = PlayerPrefs.GetString("s_data_music_");
@@ -124,6 +126,12 @@ public class Music_online : MonoBehaviour
 
                 list_music.Add(data_m);
             }
+
+            Carrot_Box_Item item_sort = app.Create_item("item_sort");
+            item_sort.set_icon(app.sp_icon_sort);
+            item_sort.set_title("Sort");
+            item_sort.set_tip("Change the way the list is sorted according to different data types");
+
             this.app.player_music.Set_list_music(list_music);
         }
     }
@@ -133,5 +141,32 @@ public class Music_online : MonoBehaviour
         PlayerPrefs.SetString("lang_music", key);
         this.s_data_temp = "";
         this.Show(key);
+    }
+
+    private void Show_change_sort()
+    {
+        this.box = app.carrot.Create_Box();
+        this.box.set_icon(app.sp_icon_sort);
+        this.box.set_title("Sort");
+
+        Carrot_Box_Item item_sort_name_asc = box.create_item("sort_name");
+        item_sort_name_asc.set_icon(app.sp_icon_sort);
+        item_sort_name_asc.set_title("Sort by name");
+        item_sort_name_asc.set_title("Sort by name in descending order");
+
+        Carrot_Box_Item item_sort_name_desc = box.create_item("sort_name");
+        item_sort_name_desc.set_icon(app.sp_icon_sort);
+        item_sort_name_desc.set_title("Sort by name");
+        item_sort_name_desc.set_title("Sort by name in ascending order");
+
+        Carrot_Box_Item sort_date_asc = box.create_item("sort_date");
+        sort_date_asc.set_icon(app.sp_icon_sort);
+        sort_date_asc.set_title("Sort by name");
+        sort_date_asc.set_title("Sort by name in descending order");
+
+        Carrot_Box_Item sort_date_desc = box.create_item("sort_date_desc");
+        sort_date_desc.set_icon(app.sp_icon_sort);
+        sort_date_desc.set_title("Sort by date");
+        sort_date_desc.set_title("Sort by date in ascending order");
     }
 }

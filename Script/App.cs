@@ -35,6 +35,9 @@ public class App : MonoBehaviour
     public Sprite sp_icon_playlist;
     public Sprite sp_icon_shop;
     public Sprite sp_icon_back;
+    public Sprite sp_icon_sort;
+    public Sprite sp_icon_sort_name;
+    public Sprite sp_icon_sort_date;
     public Sprite sp_avata_music_default;
 
     [Header("Main Item Panel")]
