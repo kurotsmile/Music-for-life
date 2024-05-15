@@ -364,6 +364,7 @@ public class Music_Player : MonoBehaviour
         }
         this.panel_player_mini.SetActive(false);
         this.panel_player_full.SetActive(false);
+        this.is_status_play = false;
     }
 
     private void download_music(string url,string index_save_offline="")
@@ -792,5 +793,10 @@ public class Music_Player : MonoBehaviour
                 this.Play_by_data(data_m);
             });
         }
+    }
+
+    public bool get_status_play()
+    {
+        return this.is_status_play;
     }
 }

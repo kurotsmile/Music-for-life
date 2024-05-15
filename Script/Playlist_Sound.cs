@@ -70,6 +70,7 @@ public class Playlist_Sound : MonoBehaviour
                     this.Storage_item(data_sound, btn_add_playlist.gameObject);
                 });
                 this.list_data_play.Add(data_sound);
+                app.Create_btn_add_play(item_sound);
             }
         }
         else

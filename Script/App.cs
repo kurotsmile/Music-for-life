@@ -39,7 +39,9 @@ public class App : MonoBehaviour
     public Sprite sp_icon_sort;
     public Sprite sp_icon_sort_name;
     public Sprite sp_icon_sort_date;
+    public Sprite sp_icon_sync;
     public Sprite sp_avata_music_default;
+    public Sprite sp_add_play;
 
     [Header("Main Item Panel")]
     public Panel_footer panel_footer;
@@ -537,5 +539,16 @@ public class App : MonoBehaviour
     public void Btn_login()
     {
         carrot.show_login();
+    }
+
+    public void Create_btn_add_play(Carrot_Box_Item item)
+    {
+        if (player_music.get_status_play())
+        {
+            Carrot_Box_Btn_Item btn_menu = item.create_item();
+            btn_menu.set_icon(sp_add_play);
+            btn_menu.set_icon_color(Color.white);
+            btn_menu.set_color(carrot.color_highlight);
+        }
     }
 }

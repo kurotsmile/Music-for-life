@@ -75,6 +75,7 @@ public class Playlist_Radio : MonoBehaviour
                     this.Storage_item(data_radio, btn_add_playlist.gameObject);
                 });
                 this.list_data_play.Add(data_radio);
+                app.Create_btn_add_play(box_item);
             }
         }
         else

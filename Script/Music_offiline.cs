@@ -64,6 +64,12 @@ public class Music_offiline : MonoBehaviour
 
         List<IDictionary> list_item = this.get_list_all_type();
         for(int i = 0; i < list_item.Count; i++) this.Create_item(list_item[i]);
+
+        Carrot_Box_Item item_backup = app.Create_item("item_backup");
+        item_backup.set_icon(app.sp_icon_sync);
+        item_backup.set_title(app.carrot.L("backup", "Backup"));
+        item_backup.set_tip(app.carrot.L("backup_tip", "Backup and sync playlists to the cloud"));
+        item_backup.set_act(() => Create_folder());
     }
 
     private List<IDictionary> get_list_all_type(string index_father = "")
@@ -178,6 +184,7 @@ public class Music_offiline : MonoBehaviour
                     if (data_m["avatar"] != null) app.carrot.get_img_and_save_playerPrefs(data_m["avatar"].ToString(), box_item.img_icon, s_id_avatar);
             }
             box_item.set_act(() => play_item_from_playlist(data_m));
+            app.Create_btn_add_play(box_item);
         }
 
         if (data_m["type"].ToString() == "radio_offline")
@@ -195,6 +202,7 @@ public class Music_offiline : MonoBehaviour
                     if (data_m["avatar"] != null) app.carrot.get_img_and_save_playerPrefs(data_m["avatar"].ToString(), box_item.img_icon, s_id_avatar);
             }
             box_item.set_act(() => play_item_from_playlist(data_m));
+            app.Create_btn_add_play(box_item);
         }
 
         if (data_m["type"].ToString() == "sound_offline")
@@ -202,6 +210,7 @@ public class Music_offiline : MonoBehaviour
             box_item.set_tip(app.carrot.L("m_sound", "Sound"));
             box_item.set_icon(this.app.sp_icon_audio);
             box_item.set_act(() => play_item_from_playlist(data_m));
+            app.Create_btn_add_play(box_item);
         }
 
         this.Create_btn_menu(box_item).set_act(() => this.Show_menu_folder(data_m));
@@ -329,6 +338,12 @@ public class Music_offiline : MonoBehaviour
         item_title.set_title(data_folder["name"].ToString());
         item_title.set_tip(app.carrot.L("playlist", "Playlist"));
 
+        Carrot_Box_Item item_play = app.Create_item("item_play");
+        item_play.set_icon(app.carrot.game.icon_play_music_game);
+        item_play.set_title("Play");
+        item_play.set_tip("Play all items in this list");
+        item_play.set_act(() => play_all_item_in_playlist());
+
         Carrot_Box_Item item_back = app.Create_item("item_back");
         item_back.set_icon(app.sp_icon_back);
         item_back.set_title("Back");
@@ -347,5 +362,20 @@ public class Music_offiline : MonoBehaviour
     {
         app.player_music.Play_by_data(data);
         if (this.list_data_play.Count > 0) app.player_music.Set_list_music(this.list_data_play);
+    }
+
+    private void play_all_item_in_playlist()
+    {
+        app.carrot.play_sound_click();
+        if (this.list_data_play.Count > 0)
+        {
+            app.player_music.Play_by_data(this.list_data_play[0]);
+            app.player_music.Set_list_music(this.list_data_play);
+        }
+        else
+        {
+            app.carrot.Show_msg(app.carrot.L("title","Music For Life"),"There are no songs in this list yet, add songs here to start playing",Msg_Icon.Error);
+            app.carrot.play_vibrate();
+        }
     }
 }
