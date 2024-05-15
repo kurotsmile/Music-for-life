@@ -319,7 +319,6 @@ public class Music_offiline : MonoBehaviour
         List<IDictionary> list_item = this.get_list_all_type(data_folder["index"].ToString());
         for (int i = 0; i < list_item.Count; i++)
         {
-            var data_item = list_item[i];
             Carrot_Box_Item item_folder = this.Create_item(list_item[i]);
         }
     }

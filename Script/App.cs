@@ -30,6 +30,7 @@ public class App : MonoBehaviour
     public Sprite sp_icon_audio;
     public Sprite sp_icon_move;
     public Sprite sp_icon_storage;
+    public Sprite sp_icon_storage_save;
     public Sprite sp_icon_sad;
     public Sprite sp_icon_playlist;
     public Sprite sp_icon_shop;
