@@ -1,5 +1,6 @@
 using Carrot;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,6 +10,7 @@ public class Playlist_Sound : MonoBehaviour
     public App app;
 
     private string s_data_temp = "";
+    private List<IDictionary> list_data_play;
 
     public void Show()
     {
@@ -41,11 +43,12 @@ public class Playlist_Sound : MonoBehaviour
         Fire_Collection fc = new(s_data);
         if (!fc.is_null)
         {
+            this.list_data_play = new List<IDictionary>();
             for(int i = 0; i < fc.fire_document.Length; i++)
             {
                 IDictionary data_sound = fc.fire_document[i].Get_IDictionary();
                 data_sound["type"] = "sound_online";
-                data_sound["index"] = i;
+                data_sound["index_play"] = i;
                 Carrot_Box_Item item_sound = app.Create_item("item_sound_" + i);
                 item_sound.set_icon(app.sp_icon_audio);
                 item_sound.set_title(data_sound["name"].ToString());
@@ -56,7 +59,7 @@ public class Playlist_Sound : MonoBehaviour
                 else
                     item_sound.GetComponent<Image>().color = app.color_row_2;
 
-                item_sound.set_act(() => app.player_music.Play_by_data(data_sound));
+                item_sound.set_act(() => this.Play(data_sound));
 
                 Carrot_Box_Btn_Item btn_add_playlist = item_sound.create_item();
                 btn_add_playlist.set_icon(app.sp_icon_storage_save);
@@ -66,6 +69,7 @@ public class Playlist_Sound : MonoBehaviour
                 {
                     this.Storage_item(data_sound, btn_add_playlist.gameObject);
                 });
+                this.list_data_play.Add(data_sound);
             }
         }
         else
@@ -81,5 +85,11 @@ public class Playlist_Sound : MonoBehaviour
         data["type"] = "sound_offline";
         app.playlist_offline.Add(data);
         app.carrot.Show_msg(app.carrot.L("playlist", "Playlist"), app.carrot.L("save_song_success", "Successfully stored, you can listen to the song again in the playlist"));
+    }
+
+    private void Play(IDictionary data)
+    {
+        this.app.player_music.Play_by_data(data);
+        if (this.list_data_play.Count > 0) this.app.player_music.Set_list_music(this.list_data_play);
     }
 }

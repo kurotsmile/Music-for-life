@@ -21,6 +21,7 @@ public class Music_online : MonoBehaviour
     public Sprite icon_album;
 
     private Carrot_Box box;
+    private List<IDictionary> list_data_play;
 
     public void On_load()
     {
@@ -109,17 +110,17 @@ public class Music_online : MonoBehaviour
             btn_list_lang.set_act(() => app.carrot.lang.Show_list_lang(this.Act_show_list_by_lang,false));
             item_sel_lang.set_act(()=> app.carrot.lang.Show_list_lang(this.Act_show_list_by_lang, false));
 
-            IList list_music = (IList)Json.Deserialize("[]");
+            this.list_data_play = new List<IDictionary>();
             for (int i = 0; i < fc.fire_document.Length; i++)
             {
                 IDictionary data_m = fc.fire_document[i].Get_IDictionary();
                 data_m["type"] = "music_online";
-                data_m["index"] = i;
+                data_m["index_play"] = i;
                 Carrot_Box_Item box_item = app.Create_item("item_m_" + i);
                 box_item.set_icon(app.carrot.game.icon_play_music_game);
                 box_item.set_title(data_m["name"].ToString());
                 if (data_m["artist"] != null) box_item.set_tip(data_m["artist"].ToString());
-                box_item.set_act(() => { app.player_music.Play_by_data(data_m); });
+                box_item.set_act(() => this.Play(data_m));
 
                 if (i % 2 == 0)
                     box_item.GetComponent<Image>().color = app.color_row_1;
@@ -142,7 +143,7 @@ public class Music_online : MonoBehaviour
                     this.Storage_item(data_m, btn_save.gameObject);
                 });
 
-                list_music.Add(data_m);
+                this.list_data_play.Add(data_m);
             }
 
             Carrot_Box_Item item_sort = app.Create_item("item_sort");
@@ -150,8 +151,6 @@ public class Music_online : MonoBehaviour
             item_sort.set_title("Sort");
             item_sort.set_tip("Change the way the list is sorted according to different data types");
             item_sort.set_act(() => Show_change_sort());
-
-            this.app.player_music.Set_list_music(list_music);
         }
     }
 
@@ -224,5 +223,11 @@ public class Music_online : MonoBehaviour
         data["type"] = "music_offline";
         app.playlist_offline.Add(data);
         app.carrot.Show_msg(app.carrot.L("playlist", "Playlist"), app.carrot.L("save_song_success", "Successfully stored, you can listen to the song again in the playlist"));
+    }
+
+    private void Play(IDictionary data)
+    {
+        app.player_music.Play_by_data(data);
+        if (this.list_data_play.Count > 0) app.player_music.Set_list_music(this.list_data_play);
     }
 }

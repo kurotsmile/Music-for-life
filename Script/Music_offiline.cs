@@ -1,8 +1,6 @@
 ﻿using Carrot;
-using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Reflection;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -23,6 +21,7 @@ public class Music_offiline : MonoBehaviour
     public void On_Load()
     {
         this.leng = PlayerPrefs.GetInt("mo_length",0);
+        this.list_data_play = new();
     }
 
     public void Add(IDictionary data, byte[] data_mp3)
@@ -72,6 +71,7 @@ public class Music_offiline : MonoBehaviour
         List<IDictionary> list = new();
         if (this.leng > 0)
         {
+            int count_item_valible = 0;
             this.list_data_play = new List<IDictionary>();
             for (int i = 0; i < this.leng; i++)
             {
@@ -85,7 +85,12 @@ public class Music_offiline : MonoBehaviour
                         if (data_m["father"] == null)
                         {
                             list.Add(data_m);
-                            if (data_m["type"].ToString() != "folder") this.list_data_play.Add(data_m);
+                            if (data_m["type"].ToString() != "folder")
+                            {
+                                data_m["index_play"] = count_item_valible.ToString();
+                                this.list_data_play.Add(data_m);
+                                count_item_valible++;
+                            }
                         }
                     }
                     else
@@ -95,7 +100,12 @@ public class Music_offiline : MonoBehaviour
                             if (data_m["father"].ToString() == index_father)
                             {
                                 list.Add(data_m);
-                                if (data_m["type"].ToString() != "folder") this.list_data_play.Add(data_m);
+                                if (data_m["type"].ToString() != "folder")
+                                {
+                                    data_m["index_play"] = count_item_valible.ToString();
+                                    this.list_data_play.Add(data_m);
+                                    count_item_valible++;
+                                }
                             }
                         }
                     }

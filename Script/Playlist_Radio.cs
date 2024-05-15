@@ -1,5 +1,6 @@
 using Carrot;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,10 +9,12 @@ public class Playlist_Radio : MonoBehaviour
     [Header("Obj Main")]
     public App app;
     private string s_data_temp = "";
+    private List<IDictionary> list_data_play;
 
     public void On_Load()
     {
         if (app.carrot.is_offline()) this.s_data_temp = PlayerPrefs.GetString("s_data_offline_radio");
+        this.list_data_play=new List<IDictionary>();
     }
 
     public void Show()
@@ -51,7 +54,7 @@ public class Playlist_Radio : MonoBehaviour
             for (int i = 0; i < fc.fire_document.Length; i++)
             {
                 IDictionary data_radio = fc.fire_document[i].Get_IDictionary();
-                data_radio["index"] = i;
+                data_radio["index_play"] = i;
                 data_radio["type"] = "radio_online";
                 Carrot_Box_Item box_item = app.Create_item("item_radio_" + i);
                 box_item.set_icon(app.sp_icon_radio_broadcast);
@@ -61,7 +64,7 @@ public class Playlist_Radio : MonoBehaviour
                     box_item.GetComponent<Image>().color = app.color_row_1;
                 else
                     box_item.GetComponent<Image>().color = app.color_row_2;
-                box_item.set_act(() => app.player_music.Play_by_data(data_radio));
+                box_item.set_act(() => Play(data_radio));
 
                 Carrot_Box_Btn_Item btn_add_playlist = box_item.create_item();
                 btn_add_playlist.set_icon(app.sp_icon_storage_save);
@@ -71,6 +74,7 @@ public class Playlist_Radio : MonoBehaviour
                 {
                     this.Storage_item(data_radio, btn_add_playlist.gameObject);
                 });
+                this.list_data_play.Add(data_radio);
             }
         }
         else
@@ -86,6 +90,12 @@ public class Playlist_Radio : MonoBehaviour
         data["type"] = "radio_offline";
         app.playlist_offline.Add(data);
         app.carrot.Show_msg(app.carrot.L("playlist", "Playlist"), app.carrot.L("save_song_success", "Successfully stored, you can listen to the song again in the playlist"));
+    }
+
+    private void Play(IDictionary data)
+    {
+        this.app.player_music.Play_by_data(data);
+        if(this.list_data_play.Count>0) this.app.player_music.Set_list_music(this.list_data_play);
     }
 
 }

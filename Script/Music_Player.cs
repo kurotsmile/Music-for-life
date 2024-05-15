@@ -230,7 +230,7 @@ public class Music_Player : MonoBehaviour
         this.GetComponent<AudioSource>().Stop();
         this.GetComponent<AudioSource>().clip = null;
         this.data_music_cur = data;
-        this.index_item_play = int.Parse(data["index"].ToString());
+        this.index_item_play = int.Parse(data["index_play"].ToString());
         this.txt_name_song_mini.text = data["name"].ToString();
         this.txt_name_song_full.text = data["name"].ToString();
         this.avatar_mini.sprite = app.sp_avata_music_default;
