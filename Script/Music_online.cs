@@ -10,6 +10,8 @@ public class Music_online : MonoBehaviour
     public GameObject prefab_item_music;
 
     private string s_data_temp = "";
+    private string order_at = "publishedAt";
+    private Query_Order_Direction order_type = Query_Order_Direction.ASCENDING;
 
     [Header("Obj Online")]
     public Sprite icon_artist;
@@ -65,7 +67,7 @@ public class Music_online : MonoBehaviour
         q.Add_select("avatar");
         q.Add_select("link_ytb");
         q.Add_where("lang", Query_OP.EQUAL, s_lang);
-        q.Add_order("publishedAt");
+        q.Add_order(this.order_at,this.order_type);
         q.Set_limit(30);
         this.app.carrot.server.Get_doc(q.ToJson(), (s_data) =>
         {
@@ -87,6 +89,12 @@ public class Music_online : MonoBehaviour
             item_title.set_icon(app.sp_icon_music);
             item_title.set_title(app.carrot.L("m_music", "Music"));
             item_title.set_tip(app.carrot.L("m_music_tip", "Online playlists are listed by respective countries"));
+
+            Carrot_Box_Btn_Item btn_sort = item_title.create_item();
+            btn_sort.set_icon(app.sp_icon_sort);
+            btn_sort.set_color(app.carrot.color_highlight);
+            btn_sort.set_icon_color(Color.white);
+            btn_sort.set_act(() => Show_change_sort());
 
             Carrot_Box_Item item_sel_lang = app.Create_item("item_sel_lang");
             item_sel_lang.set_icon(app.carrot.lang.icon);
@@ -131,6 +139,7 @@ public class Music_online : MonoBehaviour
             item_sort.set_icon(app.sp_icon_sort);
             item_sort.set_title("Sort");
             item_sort.set_tip("Change the way the list is sorted according to different data types");
+            item_sort.set_act(() => Show_change_sort());
 
             this.app.player_music.Set_list_music(list_music);
         }
@@ -145,28 +154,56 @@ public class Music_online : MonoBehaviour
 
     private void Show_change_sort()
     {
+        app.carrot.play_sound_click();
+
         this.box = app.carrot.Create_Box();
         this.box.set_icon(app.sp_icon_sort);
         this.box.set_title("Sort");
 
         Carrot_Box_Item item_sort_name_asc = box.create_item("sort_name");
-        item_sort_name_asc.set_icon(app.sp_icon_sort);
+        item_sort_name_asc.set_icon(app.sp_icon_sort_name);
         item_sort_name_asc.set_title("Sort by name");
         item_sort_name_asc.set_title("Sort by name in descending order");
+        item_sort_name_asc.set_act(() =>
+        {
+            this.Act_change_sort("name", Query_Order_Direction.DESCENDING);
+        });
 
         Carrot_Box_Item item_sort_name_desc = box.create_item("sort_name");
-        item_sort_name_desc.set_icon(app.sp_icon_sort);
+        item_sort_name_desc.set_icon(app.sp_icon_sort_name);
         item_sort_name_desc.set_title("Sort by name");
         item_sort_name_desc.set_title("Sort by name in ascending order");
+        item_sort_name_desc.set_act(() =>
+        {
+            this.Act_change_sort("name", Query_Order_Direction.ASCENDING);
+        });
 
         Carrot_Box_Item sort_date_asc = box.create_item("sort_date");
-        sort_date_asc.set_icon(app.sp_icon_sort);
+        sort_date_asc.set_icon(app.sp_icon_sort_date);
         sort_date_asc.set_title("Sort by name");
         sort_date_asc.set_title("Sort by name in descending order");
+        sort_date_asc.set_act(() =>
+        {
+            this.Act_change_sort("publishedAt", Query_Order_Direction.DESCENDING);
+        });
 
         Carrot_Box_Item sort_date_desc = box.create_item("sort_date_desc");
-        sort_date_desc.set_icon(app.sp_icon_sort);
+        sort_date_desc.set_icon(app.sp_icon_sort_date);
         sort_date_desc.set_title("Sort by date");
         sort_date_desc.set_title("Sort by date in ascending order");
+        sort_date_desc.set_act(() =>
+        {
+            this.Act_change_sort("publishedAt", Query_Order_Direction.ASCENDING);
+        });
+    }
+
+    private void Act_change_sort(string key_sort, Query_Order_Direction direction)
+    {
+        app.carrot.play_sound_click();
+        if (box != null) box.close();
+        this.order_at = key_sort;
+        this.order_type = direction;
+        this.s_data_temp = "";
+        this.Show(PlayerPrefs.GetString("lang_music", "en"));
     }
 }
