@@ -94,7 +94,7 @@ public class Music_Player : MonoBehaviour
     public Image img_audio_wave_style;
     public Image img_aduo_wave_rotate;
 
-    Carrot_Box box_lyrics;
+    Carrot_Box box = null;
     private IDictionary data_music_cur = null;
     private IList list_data_music = null;
     private int index_loop = 0;
@@ -583,11 +583,11 @@ public class Music_Player : MonoBehaviour
             IDictionary data_lyrics = fc.fire_document[0].Get_IDictionary();
             if (data_lyrics["lyrics"] != null)
             {
-                this.box_lyrics = app.carrot.Create_Box(app.carrot.L("m_lyrics", "Lyrics"), this.icon_lyrics);
+                this.box = app.carrot.Create_Box(app.carrot.L("m_lyrics", "Lyrics"), this.icon_lyrics);
                 GameObject lyrics = Instantiate(this.prefab_lyrics_full);
                 Text txt_lyrics = lyrics.GetComponent<Text>();
                 txt_lyrics.text = data_lyrics["lyrics"].ToString();
-                this.box_lyrics.add_item(lyrics);
+                this.box.add_item(lyrics);
                 Destroy(lyrics);
                 app.carrot.delay_function(1f, refesh_lyrics);
             }
@@ -596,8 +596,8 @@ public class Music_Player : MonoBehaviour
 
     private void refesh_lyrics()
     {
-        this.box_lyrics.gameObject.SetActive(false);
-        this.box_lyrics.gameObject.SetActive(true);
+        this.box.gameObject.SetActive(false);
+        this.box.gameObject.SetActive(true);
         Canvas.ForceUpdateCanvases();
     }
 
@@ -759,5 +759,37 @@ public class Music_Player : MonoBehaviour
     public void Set_list_music(IList iList_music)
     {
         this.list_data_music = iList_music;
+    }
+
+    public void Btn_show_list_cur()
+    {
+        this.box = app.carrot.Create_Box();
+        this.box.set_icon(app.sp_icon_music_list_now);
+        this.box.set_title("Playlist currently playing");
+
+        for (int i = 0; i < this.list_data_music.Count; i++)
+        {
+            IDictionary data_m = (IDictionary) this.list_data_music[i];
+            Carrot_Box_Item item_m=box.create_item();
+            item_m.set_icon(app.carrot.game.icon_play_music_game);
+            item_m.set_title(data_m["name"].ToString());
+            item_m.set_tip(data_m["type"].ToString());
+
+            if (this.data_music_cur["type"].ToString() == data_m["type"].ToString())
+            {
+                if (this.data_music_cur["id"].ToString() == data_m["id"].ToString()) item_m.set_icon(app.carrot.game.icon_pause_music_game);
+            }
+
+            if (i % 2 == 0)
+                item_m.GetComponent<Image>().color = app.color_row_1;
+            else
+                item_m.GetComponent<Image>().color = app.color_row_2;
+
+            item_m.set_act(() =>
+            {
+                if (box != null) box.close();
+                this.Play_by_data(data_m);
+            });
+        }
     }
 }

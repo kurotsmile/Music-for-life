@@ -18,6 +18,7 @@ public class Music_offiline : MonoBehaviour
     private Carrot_Window_Input box_inp = null;
     private Carrot_Box box = null;
     private IDictionary data_cur = null;
+    private List<IDictionary> list_data_play;
 
     public void On_Load()
     {
@@ -71,6 +72,7 @@ public class Music_offiline : MonoBehaviour
         List<IDictionary> list = new();
         if (this.leng > 0)
         {
+            this.list_data_play = new List<IDictionary>();
             for (int i = 0; i < this.leng; i++)
             {
                 string s_data = PlayerPrefs.GetString("mo_" + i);
@@ -80,13 +82,21 @@ public class Music_offiline : MonoBehaviour
                     
                     if (index_father == "")
                     {
-                        if (data_m["father"] == null) list.Add(data_m);
+                        if (data_m["father"] == null)
+                        {
+                            list.Add(data_m);
+                            if (data_m["type"].ToString() != "folder") this.list_data_play.Add(data_m);
+                        }
                     }
                     else
                     {
                         if (data_m["father"] != null)
                         {
-                            if (data_m["father"].ToString() == index_father) list.Add(data_m);
+                            if (data_m["father"].ToString() == index_father)
+                            {
+                                list.Add(data_m);
+                                if (data_m["type"].ToString() != "folder") this.list_data_play.Add(data_m);
+                            }
                         }
                     }
                 }
@@ -157,7 +167,7 @@ public class Music_offiline : MonoBehaviour
                 else
                     if (data_m["avatar"] != null) app.carrot.get_img_and_save_playerPrefs(data_m["avatar"].ToString(), box_item.img_icon, s_id_avatar);
             }
-            box_item.set_act(() => this.app.player_music.Play_by_data(data_m));
+            box_item.set_act(() => play_item_from_playlist(data_m));
         }
 
         if (data_m["type"].ToString() == "radio_offline")
@@ -174,14 +184,14 @@ public class Music_offiline : MonoBehaviour
                 else
                     if (data_m["avatar"] != null) app.carrot.get_img_and_save_playerPrefs(data_m["avatar"].ToString(), box_item.img_icon, s_id_avatar);
             }
-            box_item.set_act(() => this.app.player_music.Play_by_data(data_m));
+            box_item.set_act(() => play_item_from_playlist(data_m));
         }
 
         if (data_m["type"].ToString() == "sound_offline")
         {
             box_item.set_tip(app.carrot.L("m_sound", "Sound"));
             box_item.set_icon(this.app.sp_icon_audio);
-            box_item.set_act(() => this.app.player_music.Play_by_data(data_m));
+            box_item.set_act(() => play_item_from_playlist(data_m));
         }
 
         this.Create_btn_menu(box_item).set_act(() => this.Show_menu_folder(data_m));
@@ -321,5 +331,11 @@ public class Music_offiline : MonoBehaviour
         {
             Carrot_Box_Item item_folder = this.Create_item(list_item[i]);
         }
+    }
+
+    private void play_item_from_playlist(IDictionary data)
+    {
+        app.player_music.Play_by_data(data);
+        if (this.list_data_play.Count > 0) app.player_music.Set_list_music(this.list_data_play);
     }
 }

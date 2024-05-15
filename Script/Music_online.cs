@@ -1,5 +1,6 @@
 ﻿using Carrot;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -132,6 +133,15 @@ public class Music_online : MonoBehaviour
                 else
                     app.carrot.get_img_and_save_playerPrefs(data_m["avatar"].ToString(), box_item.img_icon, s_id_avatar);
 
+                Carrot_Box_Btn_Item btn_save = box_item.create_item();
+                btn_save.set_icon(app.sp_icon_storage_save);
+                btn_save.set_icon_color(Color.white);
+                btn_save.set_color(app.carrot.color_highlight);
+                btn_save.set_act(() =>
+                {
+                    this.Storage_item(data_m, btn_save.gameObject);
+                });
+
                 list_music.Add(data_m);
             }
 
@@ -205,5 +215,14 @@ public class Music_online : MonoBehaviour
         this.order_type = direction;
         this.s_data_temp = "";
         this.Show(PlayerPrefs.GetString("lang_music", "en"));
+    }
+
+    private void Storage_item(IDictionary data, GameObject obj_btn_storage)
+    {
+        app.carrot.play_sound_click();
+        Destroy(obj_btn_storage);
+        data["type"] = "music_offline";
+        app.playlist_offline.Add(data);
+        app.carrot.Show_msg(app.carrot.L("playlist", "Playlist"), app.carrot.L("save_song_success", "Successfully stored, you can listen to the song again in the playlist"));
     }
 }

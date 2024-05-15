@@ -24,6 +24,7 @@ public class App : MonoBehaviour
     [Header("Asset icon")]
     public Sprite sp_icon_music;
     public Sprite sp_icon_music_song;
+    public Sprite sp_icon_music_list_now;
     public Sprite sp_icon_radio;
     public Sprite sp_icon_radio_broadcast; 
     public Sprite sp_icon_sound;
