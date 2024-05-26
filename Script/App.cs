@@ -15,6 +15,7 @@ public class App : MonoBehaviour
     public Music_Player player_music;
     public Playlist_Radio playlist_radio;
     public Playlist_Sound playlist_sound;
+    public List_Backgrounds list_background;
     public App_shop shop;
 
     [Header("Obj Prefab")]
@@ -42,6 +43,7 @@ public class App : MonoBehaviour
     public Sprite sp_icon_sync;
     public Sprite sp_avata_music_default;
     public Sprite sp_add_play;
+    public Sprite sp_icon_background;
 
     [Header("Main Item Panel")]
     public Panel_footer panel_footer;
@@ -240,10 +242,7 @@ public class App : MonoBehaviour
 
     public void show_select_background()
     {
-        /*
-        WWWForm frm = carrot.frm_act("list_background");
-        this.carrot.send(frm,this.act_list_background);
-        */
+        this.list_background.Show();
     }
 
     private void act_list_background(string s_data)
@@ -550,5 +549,11 @@ public class App : MonoBehaviour
             btn_menu.set_icon_color(Color.white);
             btn_menu.set_color(carrot.color_highlight);
         }
+    }
+
+    public void Act_server_fail(string s_error)
+    {
+        carrot.play_vibrate();
+        carrot.Show_msg("Error", "There was a problem processing to the server! Please try again another time!\n"+s_error, Msg_Icon.Error);
     }
 }

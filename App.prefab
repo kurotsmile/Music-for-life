@@ -11001,6 +11001,7 @@ GameObject:
   - component: {fileID: 1274554567023907666}
   - component: {fileID: 1598705353389749533}
   - component: {fileID: 2703560039320707962}
+  - component: {fileID: 2134344391607570198}
   m_Layer: 0
   m_Name: App
   m_TagString: Untagged
@@ -11051,6 +11052,7 @@ MonoBehaviour:
   player_music: {fileID: 3934995061198677745}
   playlist_radio: {fileID: 1447378068418283363}
   playlist_sound: {fileID: 1598705353389749533}
+  list_background: {fileID: 2134344391607570198}
   shop: {fileID: 7051723909265147860}
   prefab_item_music: {fileID: 346399769378897854, guid: 5c76e0e7f1ec6f749989da9d070de244, type: 3}
   prefab_item_loading: {fileID: 7643879728938420672, guid: 7c85cb3e887b54c4abff9dd52a163cdf, type: 3}
@@ -11066,7 +11068,7 @@ MonoBehaviour:
   sp_icon_storage_save: {fileID: 21300000, guid: 4261648dc226c0742978f4d73504173e, type: 3}
   sp_icon_sad: {fileID: 21300000, guid: 617d7e20c63682d479f00da8a4659653, type: 3}
   sp_icon_playlist: {fileID: 21300000, guid: e3d3e18ffde461b4a931ac5b0c89b5d8, type: 3}
-  sp_icon_shop: {fileID: 21300000, guid: 14d9cfee3bc91d74091d7370486c78f9, type: 3}
+  sp_icon_shop: {fileID: 21300000, guid: 17c446a40184a434090c9756786c75ba, type: 3}
   sp_icon_back: {fileID: 21300000, guid: a5f24ec07c54802469ad09ffd6bced63, type: 3}
   sp_icon_sort: {fileID: 21300000, guid: 3dcb8e4fcfcc36a4fa9e66cc4fb74545, type: 3}
   sp_icon_sort_name: {fileID: 21300000, guid: b724371d28275324fbee9b5065ef37c3, type: 3}
@@ -11074,6 +11076,7 @@ MonoBehaviour:
   sp_icon_sync: {fileID: 21300000, guid: ecd2839dddebb7d47ac2e08e9b2f0e6d, type: 3}
   sp_avata_music_default: {fileID: 21300000, guid: 272f3800672b1914bad83005df0aef81, type: 3}
   sp_add_play: {fileID: 21300000, guid: 6918b6b8d7780934ead38f225192a8da, type: 3}
+  sp_icon_background: {fileID: 21300000, guid: e9bc786a80f86c84996aa55d7fa45fc3, type: 3}
   panel_footer: {fileID: 8211152241117825985}
   canvas_render: {fileID: 2997965751780510492}
   bk: {fileID: 8593796487300678624}
@@ -11394,6 +11397,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   app: {fileID: 0}
+--- !u!114 &2134344391607570198
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4002023899788120543}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d3022e9e89b7cc42a2931eda490a76b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  app: {fileID: 3205462977892944801}
 --- !u!1 &4004341160965639597
 GameObject:
   m_ObjectHideFlags: 0

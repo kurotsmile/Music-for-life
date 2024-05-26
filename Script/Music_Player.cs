@@ -1,9 +1,11 @@
 ﻿using Carrot;
 using Crosstales.Radio;
 using System.Collections;
+using System.Text.RegularExpressions;
 using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.UI;
+using UnityEngine.Windows;
 
 public class Music_Player : MonoBehaviour
 {
@@ -587,8 +589,8 @@ public class Music_Player : MonoBehaviour
             {
                 this.box = app.carrot.Create_Box(app.carrot.L("m_lyrics", "Lyrics"), this.icon_lyrics);
                 GameObject lyrics = Instantiate(this.prefab_lyrics_full);
-                Text txt_lyrics = lyrics.GetComponent<Text>();
-                txt_lyrics.text = data_lyrics["lyrics"].ToString();
+                Text txt_lyrics = lyrics.GetComponent<Text>(); 
+                txt_lyrics.text = Regex.Replace(data_lyrics["lyrics"].ToString(), "<.*?>", string.Empty);
                 this.box.add_item(lyrics);
                 Destroy(lyrics);
                 app.carrot.delay_function(1f, refesh_lyrics);

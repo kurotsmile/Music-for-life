@@ -28,6 +28,7 @@ public class App_shop : MonoBehaviour
         for (int i = 0; i < p_name.Length; i++)
         {
             Carrot_Box_Item item_shop=app.Create_item("item_shop_" + i);
+            item_shop.set_icon(app.carrot.icon_carrot_buy);
             item_shop.set_title(app.carrot.L(this.p_name[i], this.p_name_en[i]));
             item_shop.set_tip(app.carrot.L(this.p_tip[i], this.p_tip_en[i]));
             if (i % 2 == 0)
