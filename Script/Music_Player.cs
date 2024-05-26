@@ -675,22 +675,22 @@ public class Music_Player : MonoBehaviour
     public void btn_show_info_artist()
     {
         this.back_mini_player();
-        //GameObject.Find("App").GetComponent<Music_online>().show_list_item_in_info(this.music_item_cur.artist, "artist", this.music_item_cur.lang);
+        this.app.playlist_online.Show_list_item_in_info("artist", this.data_music_cur["artist"].ToString(), this.data_music_cur["lang"].ToString());
     }
     public void btn_show_info_album()
     {
         this.back_mini_player();
-        //GameObject.Find("App").GetComponent<Music_online>().show_list_item_in_info(this.music_item_cur.album, "album", this.music_item_cur.lang);
+        this.app.playlist_online.Show_list_item_in_info("album", this.data_music_cur["album"].ToString(), this.data_music_cur["lang"].ToString());
     }
     public void btn_show_info_genre()
     {
         this.back_mini_player();
-        //GameObject.Find("App").GetComponent<Music_online>().show_list_item_in_info(this.music_item_cur.genre, "genre", this.music_item_cur.lang);
+        this.app.playlist_online.Show_list_item_in_info("genre", this.data_music_cur["genre"].ToString(), this.data_music_cur["lang"].ToString());
     }
     public void btn_show_info_year()
     {
         this.back_mini_player();
-       // GameObject.Find("App").GetComponent<Music_online>().show_list_item_in_info(this.music_item_cur.year, "year", this.music_item_cur.lang);
+        this.app.playlist_online.Show_list_item_in_info("year", this.data_music_cur["year"].ToString(), this.data_music_cur["lang"].ToString());
     }
 
     public void show_auido_mixer()

@@ -1,4 +1,5 @@
 ﻿using Carrot;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -76,7 +77,7 @@ public class Music_online : MonoBehaviour
             this.s_data_temp = s_data;
             PlayerPrefs.SetString("s_data_music_", s_data);
             this.Load_list_by_data(s_data);
-        });
+        },app.Act_server_fail);
     }
 
     private void Load_list_by_data(string s_data)
@@ -230,5 +231,21 @@ public class Music_online : MonoBehaviour
     {
         app.player_music.Play_by_data(data);
         if (this.list_data_play.Count > 0) app.player_music.Set_list_music(this.list_data_play);
+    }
+
+    internal void Show_list_item_in_info(string s_type, string s_val, string s_lang)
+    {
+        app.carrot.show_loading();
+        StructuredQuery q = new("song");
+        q.Add_where(s_type, Query_OP.EQUAL, s_val);
+        q.Add_where("lang", Query_OP.EQUAL, s_lang);
+        app.carrot.server.Get_doc(q.ToJson(), (data) =>
+        {
+            Fire_Collection fc = new Fire_Collection(data);
+            if (!fc.is_null)
+            {
+                Debug.Log(data);
+            }
+        },app.Act_server_fail);
     }
 }
