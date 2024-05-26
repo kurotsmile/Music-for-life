@@ -7,7 +7,7 @@ public class App : MonoBehaviour
 {
     [Header("Obj Main")]
     public Carrot.Carrot carrot;
-    public Carrot.Carrot_DeviceOrientationChange deviceRotate;
+    public Carrot_DeviceOrientationChange deviceRotate;
     private string link_deep_app;
     public Playlist playlist;
     public Music_online playlist_online;

@@ -11410,6 +11410,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   app: {fileID: 3205462977892944801}
+  texture2d_bk_default: {fileID: 2800000, guid: 02c039434931dd34fb8c60038d5b454b, type: 3}
 --- !u!1 &4004341160965639597
 GameObject:
   m_ObjectHideFlags: 0

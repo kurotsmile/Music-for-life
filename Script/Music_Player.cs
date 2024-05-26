@@ -695,6 +695,7 @@ public class Music_Player : MonoBehaviour
 
     public void show_auido_mixer()
     {
+        app.carrot.play_sound_click();
         this.panel_aduio_mixer.SetActive(true);
     }
 

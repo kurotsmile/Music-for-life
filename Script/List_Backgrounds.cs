@@ -4,15 +4,20 @@ using UnityEngine;
 
 public class List_Backgrounds: MonoBehaviour
 {
-
+    [Header("Main Obj")]
     public App app;
+
+    [Header("Background Obj")]
+    public Texture2D texture2d_bk_default;
+
     private Carrot_Box box;
     private string s_data_temp = "";
 
     public void On_Load()
     {
+        if (app.carrot.is_offline()) this.s_data_temp = PlayerPrefs.GetString("s_data_bk_offline","");
         Texture2D data_pic_bk = this.app.carrot.get_tool().get_texture2D_to_playerPrefs("bk_app");
-        if (data_pic_bk != null) this.set_skybox_Texture(data_pic_bk);
+        if (data_pic_bk != null) this.Set_skybox_Texture(data_pic_bk);
     }
 
     public void Show()
@@ -37,6 +42,7 @@ public class List_Backgrounds: MonoBehaviour
 
     private void Load_list_by_data(string data)
     {
+        PlayerPrefs.SetString("s_data_bk_offline", data);
         this.s_data_temp = data;
         Fire_Collection fc = new(data);
         if (!fc.is_null)
@@ -45,6 +51,9 @@ public class List_Backgrounds: MonoBehaviour
             this.box.set_title(app.carrot.L("bk", "Background"));
             this.box.set_icon(app.icon_background);
             this.box.set_type(Carrot_Box_Type.Grid_Box);
+
+            Carrot_Box_Btn_Item btn_del=this.box.create_btn_menu_header(app.carrot.sp_icon_del_data);
+            btn_del.set_act(() => this.Delete_bk_app());
 
             for (int i = 0; i < fc.fire_document.Length; i++)
             {
@@ -68,13 +77,13 @@ public class List_Backgrounds: MonoBehaviour
         if (this.box != null) this.box.close();
         Texture2D texture = app.carrot.get_tool().get_texture2D_to_playerPrefs(id_bk_app);
         this.app.carrot.get_tool().PlayerPrefs_Save_texture2D("bk_app",texture);
-        this.set_skybox_Texture(texture);
+        this.Set_skybox_Texture(texture);
         this.app.panel_footer.hide_menu_full();
     }
 
-    private void set_skybox_Texture(Texture textT)
+    private void Set_skybox_Texture(Texture textT)
     {
-        Material result = new Material(Shader.Find("RenderFX/Skybox"));
+        Material result = new(Shader.Find("RenderFX/Skybox"));
         result.SetTexture("_FrontTex", textT);
         result.SetTexture("_BackTex", textT);
         result.SetTexture("_LeftTex", textT);
@@ -82,5 +91,13 @@ public class List_Backgrounds: MonoBehaviour
         result.SetTexture("_UpTex", textT);
         result.SetTexture("_DownTex", textT);
         this.app.bk.material = result;
+    }
+
+    private void Delete_bk_app()
+    {
+        PlayerPrefs.DeleteKey("bk_app");
+        app.carrot.play_sound_click();
+        this.Set_skybox_Texture(this.texture2d_bk_default);
+        if (this.box != null) this.box.close();
     }
 }                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             
