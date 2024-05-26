@@ -79,23 +79,22 @@ public class App : MonoBehaviour
     public Color32 color_row_2;
 
     private int menu_sel = 0;
-    private Carrot.Carrot_Box box_bk;
 
     void Start()
     {
+        Screen.sleepTimeout = (int)SleepTimeout.NeverSleep;
+
         this.link_deep_app = Application.absoluteURL;
         Application.deepLinkActivated += onDeepLinkActivated;
         this.carrot.Load_Carrot(this.check_exit_app);
         this.carrot.shop.onCarrotPaySuccess += this.onBuySuccessPayCarrot;
         this.carrot.shop.onCarrotRestoreSuccess += this.onRestoreSuccessPayCarrot;
 
-        Screen.sleepTimeout = (int)SleepTimeout.NeverSleep;
-
         this.panel_footer.panel_menu_full.SetActive(false);
-        this.Load_background();
-
+        
         this.check_scene();
 
+        this.list_background.On_Load();
         this.playlist_offline.On_Load();
         this.playlist_online.On_load();
         this.playlist_radio.On_Load();
@@ -130,12 +129,6 @@ public class App : MonoBehaviour
     {
         PlayerPrefs.SetString("lang_music", s_lang);
         this.check_show_menu_main();
-    }
-
-    public void Load_background()
-    {
-        Texture2D data_pic_bk=this.carrot.get_tool().get_texture2D_to_playerPrefs("bk_app");
-        if (data_pic_bk != null) this.set_skybox_Texture(data_pic_bk);
     }
 
     public void open_menu_footer(int index)
@@ -243,50 +236,6 @@ public class App : MonoBehaviour
     public void show_select_background()
     {
         this.list_background.Show();
-    }
-
-    private void act_list_background(string s_data)
-    {
-        IList all_background = (IList)Json.Deserialize(s_data);
-        if (this.box_bk != null) this.box_bk.close();
-        this.box_bk=this.carrot.show_grid();
-        this.box_bk.set_title("Background");
-        foreach (IDictionary bk in all_background)
-        {
-            GameObject obj_img = new GameObject();
-            GameObject item_bk = box_bk.add_item(obj_img);
-            item_bk.AddComponent<Image>();
-            item_bk.transform.localPosition = new Vector3(item_bk.transform.localPosition.x, item_bk.transform.localPosition.y, 0f);
-            item_bk.transform.localRotation = Quaternion.Euler(Vector3.zero);
-            item_bk.transform.localScale = new Vector3(1f, 1f, 1f);
-            item_bk.AddComponent<Button>().onClick.AddListener(() => download_bk_act(bk["url_bk"].ToString()));
-            this.carrot.get_img(bk["url"].ToString(), item_bk.GetComponent<Image>());
-            Destroy(obj_img);
-        }
-    }
-
-    private void download_bk_act(string bk_link)
-    {
-        this.carrot.get_img_and_save_playerPrefs(bk_link, null, "bk_app", act_done_bk_act);
-    }
-
-    private void act_done_bk_act(Texture2D pic_data)
-    {
-        if (this.box_bk != null) this.box_bk.close();
-        this.set_skybox_Texture(pic_data);
-        this.panel_footer.hide_menu_full();
-    }
-
-    public void set_skybox_Texture(Texture textT)
-    {
-        Material result = new Material(Shader.Find("RenderFX/Skybox"));
-        result.SetTexture("_FrontTex", textT);
-        result.SetTexture("_BackTex", textT);
-        result.SetTexture("_LeftTex", textT);
-        result.SetTexture("_RightTex", textT);
-        result.SetTexture("_UpTex", textT);
-        result.SetTexture("_DownTex", textT);
-        this.bk.material = result;
     }
 
     public void buy_success(Product product)

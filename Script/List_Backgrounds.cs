@@ -8,6 +8,13 @@ public class List_Backgrounds: MonoBehaviour
     public App app;
     private Carrot_Box box;
     private string s_data_temp = "";
+
+    public void On_Load()
+    {
+        Texture2D data_pic_bk = this.app.carrot.get_tool().get_texture2D_to_playerPrefs("bk_app");
+        if (data_pic_bk != null) this.set_skybox_Texture(data_pic_bk);
+    }
+
     public void Show()
     {
         app.carrot.play_sound_click();
@@ -50,13 +57,30 @@ public class List_Backgrounds: MonoBehaviour
                 else
                     app.carrot.get_img_and_save_playerPrefs(data_bk["icon"].ToString(), bk_item.img_icon, s_id_sp_bk);
 
-                bk_item.set_act(() => this.Set_bk_for_app());
+                bk_item.set_act(() => this.Set_bk_for_app(s_id_sp_bk));
             }
         }
     }
 
-    private void Set_bk_for_app()
+    private void Set_bk_for_app(string id_bk_app)
     {
-        app.carrot.Show_msg("sdsd");
+        app.carrot.play_sound_click();
+        if (this.box != null) this.box.close();
+        Texture2D texture = app.carrot.get_tool().get_texture2D_to_playerPrefs(id_bk_app);
+        this.app.carrot.get_tool().PlayerPrefs_Save_texture2D("bk_app",texture);
+        this.set_skybox_Texture(texture);
+        this.app.panel_footer.hide_menu_full();
+    }
+
+    private void set_skybox_Texture(Texture textT)
+    {
+        Material result = new Material(Shader.Find("RenderFX/Skybox"));
+        result.SetTexture("_FrontTex", textT);
+        result.SetTexture("_BackTex", textT);
+        result.SetTexture("_LeftTex", textT);
+        result.SetTexture("_RightTex", textT);
+        result.SetTexture("_UpTex", textT);
+        result.SetTexture("_DownTex", textT);
+        this.app.bk.material = result;
     }
 }                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             
