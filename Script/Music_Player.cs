@@ -593,12 +593,12 @@ public class Music_Player : MonoBehaviour
                 txt_lyrics.text = Regex.Replace(data_lyrics["lyrics"].ToString(), "<.*?>", string.Empty);
                 this.box.add_item(lyrics);
                 Destroy(lyrics);
-                app.carrot.delay_function(1f, refesh_lyrics);
+                app.carrot.delay_function(1f, Refesh_lyrics);
             }
         }
     }
 
-    private void refesh_lyrics()
+    private void Refesh_lyrics()
     {
         this.box.gameObject.SetActive(false);
         this.box.gameObject.SetActive(true);
