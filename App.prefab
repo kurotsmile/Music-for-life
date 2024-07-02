@@ -11054,6 +11054,7 @@ MonoBehaviour:
   playlist_sound: {fileID: 1598705353389749533}
   list_background: {fileID: 2134344391607570198}
   shop: {fileID: 7051723909265147860}
+  file: {fileID: 0}
   prefab_item_music: {fileID: 346399769378897854, guid: 5c76e0e7f1ec6f749989da9d070de244, type: 3}
   prefab_item_loading: {fileID: 7643879728938420672, guid: 7c85cb3e887b54c4abff9dd52a163cdf, type: 3}
   sp_icon_music: {fileID: 21300000, guid: 6a225faaf46361547965783133badc07, type: 3}
@@ -11078,6 +11079,7 @@ MonoBehaviour:
   sp_add_play: {fileID: 21300000, guid: 6918b6b8d7780934ead38f225192a8da, type: 3}
   sp_icon_background: {fileID: 21300000, guid: e9bc786a80f86c84996aa55d7fa45fc3, type: 3}
   sp_icon_import: {fileID: 21300000, guid: 23e5ff8033a1223418fe8d2eabb713eb, type: 3}
+  sp_icon_import_folder: {fileID: 21300000, guid: 83f7f432d40ebd34281f7177ee11a834, type: 3}
   panel_footer: {fileID: 8211152241117825985}
   canvas_render: {fileID: 2997965751780510492}
   bk: {fileID: 8593796487300678624}

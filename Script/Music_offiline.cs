@@ -1,7 +1,9 @@
 ﻿using Carrot;
+using Crosstales.Common.Util;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -62,6 +64,12 @@ public class Music_offiline : MonoBehaviour
         item_item_song.set_title(app.carrot.L("add_song_sd", "Add songs from storage"));
         item_item_song.set_tip(app.carrot.L("add_song_sd_tip", "Add songs from storage or from files on your device"));
         item_item_song.set_act(() => Import_song_from_sd());
+
+        Carrot_Box_Item item_item_folder = app.Create_item("item_item_folder");
+        item_item_folder.set_icon(app.sp_icon_import_folder);
+        item_item_folder.set_title(app.carrot.L("add_song_sd_folder", "Add folder songs from storage"));
+        item_item_folder.set_tip(app.carrot.L("add_song_sd_folder_tip", "Add folder songs from storage or from files on your device"));
+        item_item_folder.set_act(() => Import_song_from_sd_folder());
 
         Carrot_Box_Item item_add = app.Create_item("item_add");
         item_add.set_icon(app.carrot.icon_carrot_add);
@@ -388,16 +396,55 @@ public class Music_offiline : MonoBehaviour
 
     private void Import_song_from_sd() 
     {
+        this.app.carrot.play_sound_click();
         this.app.file.Set_filter(Carrot_File_Data.AudioData);
         this.app.file.Open_file(Import_song_done);
     }
 
+    private void Import_song_from_sd_folder()
+    {
+        this.app.carrot.play_sound_click();
+        this.app.file.Set_filter(Carrot_File_Data.AudioData);
+        this.app.file.Open_folders(Import_song_folder_done);
+    }
+
+    private void Import_song_folder_done(string[] s_path)
+    {
+        foreach (var s_url_folder in s_path)
+        {
+            int index_folder = leng;
+            IDictionary data_folder = (IDictionary)Json.Deserialize("{}");
+            data_folder["name"] = FileHelper.GetDirectoryName(s_url_folder);
+            data_folder["type"] = "folder";
+            this.Add(data_folder);
+
+            foreach (var s in FileHelper.GetFiles(s_url_folder))
+            {
+                string s_extension=FileHelper.GetExtension(s);
+                if (s_extension == "mp3" || s_extension == "wav" || s_extension == "ogg")
+                {
+                    IDictionary data = this.Create_data_song(s);
+                    data["father"] = index_folder;
+                    data["type"] = "music_offline";
+                    this.Add(data);
+                }
+            }
+        }
+
+        this.Show();
+        this.app.carrot.Show_msg("Add Song", "Import " + s_path.Length + " folder success!");
+    }
+
     private void Import_song_done(string[] s_path)
     {
-        IDictionary data = this.Create_data_song(s_path[0]);
-        data["type"] = "music_offline";
-        this.Add(data);
-        this.app.carrot.Show_msg("Add Song","Import file success!\n" + s_path[0]);
+        foreach (var s_url_file in s_path)
+        {
+            IDictionary data = this.Create_data_song(s_url_file);
+            data["type"] = "music_offline";
+            this.Add(data);
+        }
+        this.Show();
+        this.app.carrot.Show_msg("Add Song","Import "+s_path.Length+" file success!");
     }
 
     private IDictionary Create_data_song(string s_url_mp3)

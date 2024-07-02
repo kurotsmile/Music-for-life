@@ -46,6 +46,7 @@ public class App : MonoBehaviour
     public Sprite sp_add_play;
     public Sprite sp_icon_background;
     public Sprite sp_icon_import;
+    public Sprite sp_icon_import_folder;
 
     [Header("Main Item Panel")]
     public Panel_footer panel_footer;
@@ -91,6 +92,11 @@ public class App : MonoBehaviour
         this.carrot.Load_Carrot(this.check_exit_app);
         this.carrot.shop.onCarrotPaySuccess += this.onBuySuccessPayCarrot;
         this.carrot.shop.onCarrotRestoreSuccess += this.onRestoreSuccessPayCarrot;
+
+        if (this.carrot.os_app == OS.Window)
+            this.file.type = Carrot_File_Type.StandaloneFileBrowser;
+        else
+            this.file.type = Carrot_File_Type.SimpleFileBrowser;
 
         this.panel_footer.panel_menu_full.SetActive(false);
         
