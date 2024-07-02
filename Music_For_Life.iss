@@ -22,8 +22,8 @@ DefaultDirName={autopf}\{#MyAppName}
 DisableProgramGroupPage=yes
 ;PrivilegesRequired=lowest
 OutputDir=D:\
-OutputBaseFilename=Attendance
-SetupIconFile=J:\Unity3d Project\Music for life\icon.ico
+OutputBaseFilename=Music for life
+SetupIconFile=J:\Unity3d Project\Music for life\music.ico
 Compression=lzma
 SolidCompression=yes
 WizardStyle=modern
@@ -35,10 +35,10 @@ Name: "english"; MessagesFile: "compiler:Default.isl"
 Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked
 
 [Files]
-Source: "D:\Build\Music_for_Life\Music for life.exe.exe"; DestDir: "{app}"; Flags: ignoreversion
+Source: "D:\Build\Music_for_Life\Music for life.exe"; DestDir: "{app}"; Flags: ignoreversion
 Source: "D:\Build\Music_for_Life\UnityCrashHandler64.exe"; DestDir: "{app}"; Flags: ignoreversion
 Source: "D:\Build\Music_for_Life\UnityPlayer.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "D:\Build\Music_for_Life\Attendance_Data\*"; DestDir: "{app}\Attendance_Data"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "D:\Build\Music_for_Life\Music for life_Data\*"; DestDir: "{app}\Music for life_Data"; Flags: ignoreversion recursesubdirs createallsubdirs
 Source: "D:\Build\Music_for_Life\MonoBleedingEdge\*"; DestDir: "{app}\MonoBleedingEdge"; Flags: ignoreversion recursesubdirs createallsubdirs
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
