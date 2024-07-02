@@ -17,6 +17,7 @@ public class App : MonoBehaviour
     public Playlist_Sound playlist_sound;
     public List_Backgrounds list_background;
     public App_shop shop;
+    public Carrot_File file;
 
     [Header("Obj Prefab")]
     public GameObject prefab_item_music;
@@ -44,6 +45,7 @@ public class App : MonoBehaviour
     public Sprite sp_avata_music_default;
     public Sprite sp_add_play;
     public Sprite sp_icon_background;
+    public Sprite sp_icon_import;
 
     [Header("Main Item Panel")]
     public Panel_footer panel_footer;

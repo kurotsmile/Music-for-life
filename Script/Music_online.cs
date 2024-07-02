@@ -191,8 +191,8 @@ public class Music_online : MonoBehaviour
 
         Carrot_Box_Item sort_date_asc = box.create_item("sort_date");
         sort_date_asc.set_icon(app.sp_icon_sort_date);
-        sort_date_asc.set_title("Sort by name");
-        sort_date_asc.set_tip("Sort by name in descending order");
+        sort_date_asc.set_title("Sort by date");
+        sort_date_asc.set_tip("Sort by date in descending order");
         sort_date_asc.set_act(() =>
         {
             this.Act_change_sort("publishedAt", Query_Order_Direction.DESCENDING);

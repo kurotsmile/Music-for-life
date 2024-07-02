@@ -1,4 +1,5 @@
 ﻿using Carrot;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -55,6 +56,12 @@ public class Music_offiline : MonoBehaviour
         item_title.set_icon(app.sp_icon_storage);
         item_title.set_title(app.carrot.L("playlist", "Playlist"));
         item_title.set_tip(app.carrot.L("playlist_tip", "Playlists you have stored for listening when not connected to the network"));
+
+        Carrot_Box_Item item_item_song = app.Create_item("item_item_song");
+        item_item_song.set_icon(app.sp_icon_import);
+        item_item_song.set_title(app.carrot.L("add_song_sd", "Add songs from storage"));
+        item_item_song.set_tip(app.carrot.L("add_song_sd_tip", "Add songs from storage or from files on your device"));
+        item_item_song.set_act(() => Import_song_from_sd());
 
         Carrot_Box_Item item_add = app.Create_item("item_add");
         item_add.set_icon(app.carrot.icon_carrot_add);
@@ -377,5 +384,35 @@ public class Music_offiline : MonoBehaviour
             app.carrot.Show_msg(app.carrot.L("title","Music For Life"),"There are no songs in this list yet, add songs here to start playing",Msg_Icon.Error);
             app.carrot.play_vibrate();
         }
+    }
+
+    private void Import_song_from_sd() 
+    {
+        this.app.file.Set_filter(Carrot_File_Data.AudioData);
+        this.app.file.Open_file(Import_song_done);
+    }
+
+    private void Import_song_done(string[] s_path)
+    {
+        IDictionary data = this.Create_data_song(s_path[0]);
+        data["type"] = "music_offline";
+        this.Add(data);
+        this.app.carrot.Show_msg("Add Song","Import file success!\n" + s_path[0]);
+    }
+
+    private IDictionary Create_data_song(string s_url_mp3)
+    {
+        IDictionary data_song =(IDictionary) Json.Deserialize("{}");
+        data_song["id"] = "song" + app.carrot.generateID();
+        data_song["name"] = "Song "+app.carrot.generateID();
+        data_song["mp3"] = s_url_mp3;
+        data_song["artist"] = "None";
+        data_song["year"] = DateTime.Now.ToString("yyyy");
+        data_song["album"] = "None";
+        data_song["lang"] = app.carrot.lang.Get_key_lang();
+        data_song["avatar"] = "";
+        data_song["link_ytb"] = "";
+        data_song["genre"] = "";
+        return data_song;
     }
 }
