@@ -1,5 +1,4 @@
 ﻿using Carrot;
-using System.Collections;
 using UnityEngine;
 using UnityEngine.Purchasing;
 using UnityEngine.UI;
@@ -8,7 +7,6 @@ public class App : MonoBehaviour
     [Header("Obj Main")]
     public Carrot.Carrot carrot;
     public Carrot_DeviceOrientationChange deviceRotate;
-    private string link_deep_app;
     public Playlist playlist;
     public Music_online playlist_online;
     public Music_offiline playlist_offline;
@@ -18,6 +16,7 @@ public class App : MonoBehaviour
     public List_Backgrounds list_background;
     public App_shop shop;
     public Carrot_File file;
+    public Backup backup;
 
     [Header("Obj Prefab")]
     public GameObject prefab_item_music;
@@ -48,6 +47,7 @@ public class App : MonoBehaviour
     public Sprite sp_icon_import;
     public Sprite sp_icon_import_folder;
     public Sprite sp_icon_artist;
+    public Sprite sp_icon_album;
 
     [Header("Main Item Panel")]
     public Panel_footer panel_footer;
@@ -83,6 +83,7 @@ public class App : MonoBehaviour
     public Color32 color_row_2;
 
     private int menu_sel = 0;
+    private string link_deep_app;
 
     void Start()
     {

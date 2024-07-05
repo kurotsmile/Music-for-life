@@ -83,7 +83,7 @@ public class Music_offiline : MonoBehaviour
         item_backup.set_icon(app.sp_icon_sync);
         item_backup.set_title(app.carrot.L("backup", "Backup"));
         item_backup.set_tip(app.carrot.L("backup_tip", "Backup and sync playlists to the cloud"));
-        item_backup.set_act(() => Create_folder());
+        item_backup.set_act(() =>this.app.backup.Show());
     }
 
     private List<IDictionary> get_list_all_type(string index_father = "")
@@ -282,29 +282,10 @@ public class Music_offiline : MonoBehaviour
         item_rename.set_tip("Change the name of this item");
         item_rename.set_act(() => Rename(data));
 
-        if (data["artist"] != null)
-        {
-            string s_artist = data["artist"].ToString();
-            Carrot_Box_Item item_edit_atrict = box.create_item("item_rename");
-            item_edit_atrict.set_icon(app.sp_icon_artist);
-            item_edit_atrict.set_title("Artist");
-            if(s_artist!="")
-                item_edit_atrict.set_tip(s_artist);
-            else
-                item_edit_atrict.set_tip("Change the Artist of this item");
-            item_edit_atrict.set_act(() =>
-            {
-                this.box_inp = app.carrot.Show_input("Artist", "Change the Artist of this item", s_artist);
-                box_inp.set_act_done((s_val) =>
-                {
-                    this.data_cur["artist"] = s_val;
-                    int index = int.Parse(this.data_cur["index"].ToString());
-                    this.Update_data(index, this.data_cur);
-                    app.carrot.Show_msg("Update name item success!");
-                    this.Show();
-                });
-            });
-        }
+        if (this.data_cur["name"] != null) this.Field_meta_song("name",app.sp_icon_music_song);
+        if (this.data_cur["artist"] != null) this.Field_meta_song("artist",app.sp_icon_artist);
+        if (this.data_cur["album"] != null) this.Field_meta_song("album", app.sp_icon_album);
+        if (this.data_cur["year"] != null) this.Field_meta_song("year",app.sp_icon_sort_date);
         
         if (data["type"].ToString()=="music_offline"|| data["type"].ToString() == "radio_offline"|| data["type"].ToString() == "sound_offline")
         {
@@ -320,6 +301,36 @@ public class Music_offiline : MonoBehaviour
         item_del.set_title("Delete");
         item_del.set_tip("Remove this item from the list");
         item_del.set_act(() => this.Delete(index));
+    }
+
+    private Carrot_Box_Item Field_meta_song(string key_meta,Sprite sp_icon)
+    {
+        string s_artist = this.data_cur[key_meta].ToString();
+        Carrot_Box_Item item_artist = box.create_item("item_" + key_meta);
+        item_artist.set_icon(sp_icon);
+        item_artist.set_title(key_meta);
+        if (s_artist != "")
+            item_artist.set_tip(s_artist);
+        else
+            item_artist.set_tip("Change the " + key_meta + " of this item");
+        item_artist.set_act(() =>
+        {
+            this.box_inp = app.carrot.Show_input(key_meta, "Change the " + key_meta + " of this item", s_artist);
+            box_inp.set_act_done((s_val) =>
+            {
+                this.data_cur[key_meta] = s_val;
+                int index = int.Parse(this.data_cur["index"].ToString());
+                this.Update_data(index, this.data_cur);
+                app.carrot.Show_msg("Update name item success!");
+                this.Show();
+            });
+        });
+
+        Carrot_Box_Btn_Item btn_edit = item_artist.create_item();
+        btn_edit.set_icon(app.carrot.user.icon_user_edit);
+        btn_edit.set_color(app.carrot.color_highlight);
+        Destroy(btn_edit.GetComponent<Button>());
+        return item_artist;
     }
 
     private void Rename(IDictionary data)
