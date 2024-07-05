@@ -3,7 +3,6 @@ using Crosstales.Common.Util;
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.IO;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -283,6 +282,30 @@ public class Music_offiline : MonoBehaviour
         item_rename.set_tip("Change the name of this item");
         item_rename.set_act(() => Rename(data));
 
+        if (data["artist"] != null)
+        {
+            string s_artist = data["artist"].ToString();
+            Carrot_Box_Item item_edit_atrict = box.create_item("item_rename");
+            item_edit_atrict.set_icon(app.sp_icon_artist);
+            item_edit_atrict.set_title("Artist");
+            if(s_artist!="")
+                item_edit_atrict.set_tip(s_artist);
+            else
+                item_edit_atrict.set_tip("Change the Artist of this item");
+            item_edit_atrict.set_act(() =>
+            {
+                this.box_inp = app.carrot.Show_input("Artist", "Change the Artist of this item", s_artist);
+                box_inp.set_act_done((s_val) =>
+                {
+                    this.data_cur["artist"] = s_val;
+                    int index = int.Parse(this.data_cur["index"].ToString());
+                    this.Update_data(index, this.data_cur);
+                    app.carrot.Show_msg("Update name item success!");
+                    this.Show();
+                });
+            });
+        }
+        
         if (data["type"].ToString()=="music_offline"|| data["type"].ToString() == "radio_offline"|| data["type"].ToString() == "sound_offline")
         {
             Carrot_Box_Item item_move = box.create_item("item_move");
@@ -304,16 +327,14 @@ public class Music_offiline : MonoBehaviour
         app.carrot.play_sound_click();
         this.data_cur = data;
         this.box_inp= app.carrot.Show_input("Rename", "Change the name of this item", data["name"].ToString());
-        box_inp.set_act_done(Act_done_name);
-    }
-
-    private void Act_done_name(string s_name)
-    {
-        this.data_cur["name"] = s_name;
-        int index=int.Parse(this.data_cur["index"].ToString());
-        this.Update_data(index,this.data_cur);
-        app.carrot.Show_msg("Update name item success!");
-        this.Show();
+        box_inp.set_act_done((s_name) =>
+        {
+            this.data_cur["name"] = s_name;
+            int index = int.Parse(this.data_cur["index"].ToString());
+            this.Update_data(index, this.data_cur);
+            app.carrot.Show_msg("Update name item success!");
+            this.Show();
+        });
     }
 
     private void Show_move_playlist(IDictionary data)

@@ -4353,7 +4353,6 @@ GameObject:
   - component: {fileID: 5791697183924322237}
   - component: {fileID: 9020055183271627593}
   - component: {fileID: 5516067325703164346}
-  - component: {fileID: 8211152241117825985}
   m_Layer: 5
   m_Name: Panel_footer
   m_TagString: Untagged
@@ -4422,22 +4421,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &8211152241117825985
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1623742061233297084}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 592996814094e8d418d0b041f3bb0845, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  panel_menu_full: {fileID: 2772584293439027248}
-  area_menu_portrait: {fileID: 8083839161011202445}
-  area_menu_landscape: {fileID: 6391086693725292506}
-  area_menu_full: {fileID: 5082536453142751679}
 --- !u!1 &1626390995530525143
 GameObject:
   m_ObjectHideFlags: 0
@@ -7294,7 +7277,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 8211152241117825985}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: 
         m_MethodName: hide_menu_full
         m_Mode: 1
@@ -11002,6 +10985,7 @@ GameObject:
   - component: {fileID: 1598705353389749533}
   - component: {fileID: 2703560039320707962}
   - component: {fileID: 2134344391607570198}
+  - component: {fileID: 5950552832845680646}
   m_Layer: 0
   m_Name: App
   m_TagString: Untagged
@@ -11080,7 +11064,8 @@ MonoBehaviour:
   sp_icon_background: {fileID: 21300000, guid: e9bc786a80f86c84996aa55d7fa45fc3, type: 3}
   sp_icon_import: {fileID: 21300000, guid: 23e5ff8033a1223418fe8d2eabb713eb, type: 3}
   sp_icon_import_folder: {fileID: 21300000, guid: 83f7f432d40ebd34281f7177ee11a834, type: 3}
-  panel_footer: {fileID: 8211152241117825985}
+  sp_icon_artist: {fileID: 21300000, guid: b04e596b5b97c5c48af8a716b80409b5, type: 3}
+  panel_footer: {fileID: 5950552832845680646}
   canvas_render: {fileID: 2997965751780510492}
   bk: {fileID: 8593796487300678624}
   tr_panel_header: {fileID: 790392682232654266}
@@ -11414,6 +11399,38 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   app: {fileID: 3205462977892944801}
   texture2d_bk_default: {fileID: 2800000, guid: 02c039434931dd34fb8c60038d5b454b, type: 3}
+--- !u!114 &5950552832845680646
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4002023899788120543}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 592996814094e8d418d0b041f3bb0845, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  panel_menu_full: {fileID: 2772584293439027248}
+  area_menu_portrait: {fileID: 8083839161011202445}
+  area_menu_landscape: {fileID: 6391086693725292506}
+  area_menu_full: {fileID: 5082536453142751679}
+  tr_btn_menu:
+  - {fileID: 8292407437759309875}
+  - {fileID: 3837231155024762334}
+  - {fileID: 401747907233417173}
+  - {fileID: 2711747009583953573}
+  - {fileID: 8924458496671048031}
+  - {fileID: 728168551962858302}
+  - {fileID: 4914346006750894663}
+  - {fileID: 2931692940167714871}
+  - {fileID: 4616680105868481878}
+  - {fileID: 8697304537301909110}
+  - {fileID: 8981143976126741064}
+  - {fileID: 4424183545882730310}
+  - {fileID: 7615506270589498931}
+  - {fileID: 7131953200398923465}
+  - {fileID: 7873417985265684655}
 --- !u!1 &4004341160965639597
 GameObject:
   m_ObjectHideFlags: 0
@@ -13183,7 +13200,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 8211152241117825985}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: 
         m_MethodName: show_menu_full
         m_Mode: 1
@@ -15680,7 +15697,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 8211152241117825985}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: 
         m_MethodName: show_menu_full
         m_Mode: 1
@@ -16895,7 +16912,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 8211152241117825985}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: 
         m_MethodName: hide_menu_full
         m_Mode: 1
@@ -23556,8 +23573,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 9151221178016330403}
   m_HandleRect: {fileID: 779965612902909487}
   m_Direction: 0
-  m_Value: 0
-  m_Size: 0.57673115
+  m_Value: 0.00000003087935
+  m_Size: 0.34114382
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
