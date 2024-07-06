@@ -48,6 +48,9 @@ public class App : MonoBehaviour
     public Sprite sp_icon_import_folder;
     public Sprite sp_icon_artist;
     public Sprite sp_icon_album;
+    public Sprite sp_icon_import_data;
+    public Sprite sp_icon_export_data;
+    public Sprite sp_icon_year;
 
     [Header("Main Item Panel")]
     public Panel_footer panel_footer;

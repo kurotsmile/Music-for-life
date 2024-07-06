@@ -41,6 +41,11 @@ public class Music_offiline : MonoBehaviour
         PlayerPrefs.SetInt("mo_length", this.leng);
     }
 
+    public void Clear_All_data()
+    {
+        this.leng = 0;
+    }
+
     private void Update_data(int index,IDictionary data)
     {
         PlayerPrefs.SetString("mo_" + index, Json.Serialize(data));
@@ -86,7 +91,7 @@ public class Music_offiline : MonoBehaviour
         item_backup.set_act(() =>this.app.backup.Show());
     }
 
-    private List<IDictionary> get_list_all_type(string index_father = "")
+    public List<IDictionary> get_list_all_type(string index_father = "")
     {
         List<IDictionary> list = new();
         if (this.leng > 0)
@@ -276,16 +281,11 @@ public class Music_offiline : MonoBehaviour
         this.box.set_title(app.carrot.L("menu","Menu")+" - " + data["name"].ToString());
 
         var index = int.Parse(data["index"].ToString());
-        Carrot_Box_Item item_rename = box.create_item("item_rename");
-        item_rename.set_icon(app.carrot.icon_carrot_write);
-        item_rename.set_title("Rename");
-        item_rename.set_tip("Change the name of this item");
-        item_rename.set_act(() => Rename(data));
-
+        
         if (this.data_cur["name"] != null) this.Field_meta_song("name",app.sp_icon_music_song);
         if (this.data_cur["artist"] != null) this.Field_meta_song("artist",app.sp_icon_artist);
         if (this.data_cur["album"] != null) this.Field_meta_song("album", app.sp_icon_album);
-        if (this.data_cur["year"] != null) this.Field_meta_song("year",app.sp_icon_sort_date);
+        if (this.data_cur["year"] != null) this.Field_meta_song("year",app.sp_icon_year);
         
         if (data["type"].ToString()=="music_offline"|| data["type"].ToString() == "radio_offline"|| data["type"].ToString() == "sound_offline")
         {
@@ -322,6 +322,7 @@ public class Music_offiline : MonoBehaviour
                 int index = int.Parse(this.data_cur["index"].ToString());
                 this.Update_data(index, this.data_cur);
                 app.carrot.Show_msg("Update name item success!");
+                if (this.box_inp != null) this.box_inp.close();
                 this.Show();
             });
         });
@@ -331,21 +332,6 @@ public class Music_offiline : MonoBehaviour
         btn_edit.set_color(app.carrot.color_highlight);
         Destroy(btn_edit.GetComponent<Button>());
         return item_artist;
-    }
-
-    private void Rename(IDictionary data)
-    {
-        app.carrot.play_sound_click();
-        this.data_cur = data;
-        this.box_inp= app.carrot.Show_input("Rename", "Change the name of this item", data["name"].ToString());
-        box_inp.set_act_done((s_name) =>
-        {
-            this.data_cur["name"] = s_name;
-            int index = int.Parse(this.data_cur["index"].ToString());
-            this.Update_data(index, this.data_cur);
-            app.carrot.Show_msg("Update name item success!");
-            this.Show();
-        });
     }
 
     private void Show_move_playlist(IDictionary data)

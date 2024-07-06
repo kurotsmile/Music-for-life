@@ -11068,6 +11068,9 @@ MonoBehaviour:
   sp_icon_import_folder: {fileID: 21300000, guid: 83f7f432d40ebd34281f7177ee11a834, type: 3}
   sp_icon_artist: {fileID: 21300000, guid: b04e596b5b97c5c48af8a716b80409b5, type: 3}
   sp_icon_album: {fileID: 21300000, guid: 3b2127790a97272428b94f50239354fe, type: 3}
+  sp_icon_import_data: {fileID: 21300000, guid: 66f96020dbdd94746aeaba86c8abf043, type: 3}
+  sp_icon_export_data: {fileID: 21300000, guid: 42a03c14f1b46b64fbeee112ea4dc9d3, type: 3}
+  sp_icon_year: {fileID: 21300000, guid: 4bf10e56bd95071459975b2560ae79e2, type: 3}
   panel_footer: {fileID: 5950552832845680646}
   canvas_render: {fileID: 2997965751780510492}
   bk: {fileID: 8593796487300678624}
@@ -13265,7 +13268,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 195.11497, y: -60}
+  m_AnchoredPosition: {x: 195.11496, y: -60}
   m_SizeDelta: {x: 18.4, y: 120}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &418456344319700889
@@ -23589,8 +23592,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 9151221178016330403}
   m_HandleRect: {fileID: 779965612902909487}
   m_Direction: 0
-  m_Value: 0
-  m_Size: 0.57673115
+  m_Value: 0.000000054410073
+  m_Size: 0.6260793
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -27361,7 +27364,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -125.90527}
+  m_AnchoredPosition: {x: 0, y: -125.90526}
   m_SizeDelta: {x: 0, y: -251.81}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2310725432421098119
