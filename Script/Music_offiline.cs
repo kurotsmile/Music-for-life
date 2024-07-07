@@ -12,7 +12,6 @@ public class Music_offiline : MonoBehaviour
     public App app;
 
     [Header("Obj Offline")]
-    public Sprite ps_icon_offline;
     int leng=0;
 
     private Carrot_Window_Input box_inp = null;
