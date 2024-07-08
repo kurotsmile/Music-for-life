@@ -333,7 +333,7 @@ public class Music_offiline : MonoBehaviour
         return item_artist;
     }
 
-    private void Show_move_playlist(IDictionary data)
+    public void Show_move_playlist(IDictionary data)
     {
         if (box != null) box.close();
         this.box = this.app.carrot.Create_Box();

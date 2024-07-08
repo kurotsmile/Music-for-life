@@ -754,10 +754,8 @@ public class Music_Player : MonoBehaviour
 
     public void btn_add_song_to_playlist()
     {
-        if (app.carrot.user.get_id_user_login() != "")
-            app.playlist.Add(this.data_music_cur);
-        else
-            app.carrot.user.show_login(this.btn_add_song_to_playlist);
+        app.carrot.play_sound_click();
+        app.playlist_offline.Show_move_playlist(this.data_music_cur);
     }
 
     public void Set_list_music(IList iList_music)

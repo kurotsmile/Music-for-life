@@ -51,6 +51,7 @@ public class App : MonoBehaviour
     public Sprite sp_icon_import_data;
     public Sprite sp_icon_export_data;
     public Sprite sp_icon_year;
+    public Sprite sp_icon_singer;
 
     [Header("Main Item Panel")]
     public Panel_footer panel_footer;
@@ -171,7 +172,9 @@ public class App : MonoBehaviour
             this.Create_loading();
             this.carrot.delay_function(1f, this.playlist_offline.Show);
         }
-        if (this.menu_sel == 9) this.shop.Show();
+
+        if (this.menu_sel == 5) this.shop.Show();
+        if (this.menu_sel == 6) this.playlist.Show_List_Artist();
     }
 
     private void show_list_music()
