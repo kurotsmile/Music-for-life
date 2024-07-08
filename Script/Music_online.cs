@@ -56,9 +56,8 @@ public class Music_online : MonoBehaviour
             this.Load_list_by_data(this.s_data_temp);
     }
 
-    private void Get_data_from_server(string s_lang)
+    public StructuredQuery Q_basic_song()
     {
-        app.Create_loading();
         StructuredQuery q = new("song");
         q.Add_select("name");
         q.Add_select("genre");
@@ -69,6 +68,14 @@ public class Music_online : MonoBehaviour
         q.Add_select("mp3");
         q.Add_select("avatar");
         q.Add_select("link_ytb");
+        q.Set_limit(30);
+        return q;
+    }
+
+    private void Get_data_from_server(string s_lang)
+    {
+        app.Create_loading();
+        StructuredQuery q = this.Q_basic_song();
         q.Add_where("lang", Query_OP.EQUAL, s_lang);
         q.Add_order(this.order_at,this.order_type);
         q.Set_limit(30);
@@ -80,7 +87,7 @@ public class Music_online : MonoBehaviour
         },app.Act_server_fail);
     }
 
-    private void Load_list_by_data(string s_data)
+    public void Load_list_by_data(string s_data)
     {
         Fire_Collection fc = new(s_data);
         if (!fc.is_null)
