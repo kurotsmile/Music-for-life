@@ -1,4 +1,5 @@
 ﻿using Carrot;
+using System;
 using UnityEngine;
 using UnityEngine.Purchasing;
 using UnityEngine.UI;
@@ -17,6 +18,11 @@ public class App : MonoBehaviour
     public App_shop shop;
     public Carrot_File file;
     public Backup backup;
+
+    [Header("Asset Data")]
+    public String s_url_data_artist;
+    public String s_url_data_genre;
+    public String s_url_data_year;
 
     [Header("Obj Prefab")]
     public GameObject prefab_item_music;
@@ -52,6 +58,7 @@ public class App : MonoBehaviour
     public Sprite sp_icon_export_data;
     public Sprite sp_icon_year;
     public Sprite sp_icon_singer;
+    public Sprite sp_icon_genner;
 
     [Header("Main Item Panel")]
     public Panel_footer panel_footer;
@@ -175,6 +182,8 @@ public class App : MonoBehaviour
 
         if (this.menu_sel == 5) this.shop.Show();
         if (this.menu_sel == 6) this.playlist.Show_List_Artist();
+        if (this.menu_sel == 7) this.playlist.Show_List_Genre();
+        if (this.menu_sel == 8) this.playlist.Show_List_Year();
     }
 
     private void show_list_music()

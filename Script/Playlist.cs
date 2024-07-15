@@ -11,10 +11,9 @@ public class Playlist : MonoBehaviour
     [Header("Obj Main")]
     public App app;
 
-    [Header("Asset Data")]
-    public String s_url_data_artist;
-
     private string s_data_artist = "";
+    private string s_data_genre = "";
+    private string s_data_year = "";
 
     public void Show_List_Artist()
     {
@@ -26,7 +25,7 @@ public class Playlist : MonoBehaviour
         }
         else
         {
-            StartCoroutine(GetDataFromUrl(s_url_data_artist, (s_data) =>
+            StartCoroutine(GetDataFromUrl(this.app.s_url_data_artist, (s_data) =>
             {
                 this.s_data_artist = s_data;
                 this.Load_list_artist(s_data);
@@ -90,4 +89,28 @@ public class Playlist : MonoBehaviour
             this.app.playlist_online.Load_list_by_data(s_data);
         }, app.Act_server_fail);
     }
+
+    public void Show_List_Genre()
+    {
+        app.Create_loading();
+    }
+
+    public void Show_List_Year()
+    {
+        app.Create_loading();
+
+        if (s_data_year != "")
+        {
+            this.Load_list_artist(s_data_artist);
+        }
+        else
+        {
+            StartCoroutine(GetDataFromUrl(this.app.s_url_data_artist, (s_data) =>
+            {
+                this.s_data_artist = s_data;
+                this.Load_list_artist(s_data);
+            }));
+        }
+    }
+
 }
