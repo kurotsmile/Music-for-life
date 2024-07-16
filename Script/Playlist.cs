@@ -1,22 +1,27 @@
 ﻿using Carrot;
-using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Networking;
 using UnityEngine.UI;
 
+public enum Playlist_Type {artist,genre,year}
+
 public class Playlist : MonoBehaviour
 {
     [Header("Obj Main")]
     public App app;
 
+    private string s_url_data_artist = "";
     private string s_data_artist = "";
     private string s_data_genre = "";
     private string s_data_year = "";
 
+    private Playlist_Type type= Playlist_Type.artist;
+
     public void Show_List_Artist()
     {
+        this.type = Playlist_Type.artist;
         app.Create_loading();
 
         if (s_data_artist != "")
@@ -25,7 +30,8 @@ public class Playlist : MonoBehaviour
         }
         else
         {
-            StartCoroutine(GetDataFromUrl(this.app.s_url_data_artist, (s_data) =>
+            this.s_url_data_artist = this.get_random_url(app.list_url_data_artist);
+            StartCoroutine(GetDataFromUrl(this.s_url_data_artist, (s_data) =>
             {
                 this.s_data_artist = s_data;
                 this.Load_list_artist(s_data);
@@ -40,9 +46,26 @@ public class Playlist : MonoBehaviour
         app.clear_all_contain();
 
         Carrot.Carrot_Box_Item item_title = app.Create_item("title");
-        item_title.set_icon(app.sp_icon_artist);
-        item_title.set_title("Artist");
-        item_title.set_tip("List of singers with songs in the system");
+        if (this.type == Playlist_Type.artist)
+        {
+            item_title.set_icon(app.sp_icon_artist);
+            item_title.set_title("Artist");
+            item_title.set_tip("List of singers with songs in the system");
+        }
+
+        if (this.type == Playlist_Type.genre)
+        {
+            item_title.set_icon(app.sp_icon_genre);
+            item_title.set_title("Genre");
+            item_title.set_tip("List of genre with songs in the system");
+        }
+
+        if (this.type == Playlist_Type.year)
+        {
+            item_title.set_icon(app.sp_icon_year);
+            item_title.set_title("Year");
+            item_title.set_tip("List of year with songs in the system");
+        }
 
         for (int i = 0; i < list_artist.Count; i++)
         {
@@ -92,25 +115,46 @@ public class Playlist : MonoBehaviour
 
     public void Show_List_Genre()
     {
-        app.Create_loading();
-    }
-
-    public void Show_List_Year()
-    {
+        this.type = Playlist_Type.genre;
         app.Create_loading();
 
-        if (s_data_year != "")
+        if (this.s_data_genre != "")
         {
-            this.Load_list_artist(s_data_artist);
+            this.Load_list_artist(s_data_genre);
         }
         else
         {
-            StartCoroutine(GetDataFromUrl(this.app.s_url_data_artist, (s_data) =>
+            StartCoroutine(GetDataFromUrl(this.app.s_url_data_genre, (s_data) =>
             {
-                this.s_data_artist = s_data;
+                this.s_data_genre = s_data;
                 this.Load_list_artist(s_data);
             }));
         }
     }
 
+    public void Show_List_Year()
+    {
+        this.type = Playlist_Type.year;
+        app.Create_loading();
+
+        if (this.s_data_year != "")
+        {
+            this.Load_list_artist(s_data_year);
+        }
+        else
+        {
+            StartCoroutine(GetDataFromUrl(this.app.s_url_data_year, (s_data) =>
+            {
+                this.s_data_year = s_data;
+                this.Load_list_artist(s_data);
+            }));
+        }
+    }
+
+
+    private string get_random_url(string[] list_url)
+    {
+        int index_random = Random.Range(0, list_url.Length);
+        return list_url[index_random];
+    }
 }

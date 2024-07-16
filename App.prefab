@@ -11522,7 +11522,9 @@ MonoBehaviour:
   shop: {fileID: 7051723909265147860}
   file: {fileID: 0}
   backup: {fileID: 8315109457476373743}
-  s_url_data_artist: https://raw.githubusercontent.com/kurotsmile/Database-Store-Json/main/song_artist.json
+  list_url_data_artist:
+  - https://raw.githubusercontent.com/kurotsmile/Database-Store-Json/main/song_artist.json
+  - https://www.googleapis.com/drive/v3/files/1UcsqJa0wh3GwMKFyH3RXWID-FQPoKb-U?alt=media&key=AIzaSyDKcjH_bDJz3EcqPdV5i62IZNVQ6EkyOFg
   s_url_data_genre: https://raw.githubusercontent.com/kurotsmile/Database-Store-Json/main/song_genre.json
   s_url_data_year: https://raw.githubusercontent.com/kurotsmile/Database-Store-Json/main/song_year.json
   prefab_item_music: {fileID: 346399769378897854, guid: 5c76e0e7f1ec6f749989da9d070de244, type: 3}
@@ -11556,7 +11558,7 @@ MonoBehaviour:
   sp_icon_export_data: {fileID: 21300000, guid: 42a03c14f1b46b64fbeee112ea4dc9d3, type: 3}
   sp_icon_year: {fileID: 21300000, guid: 4bf10e56bd95071459975b2560ae79e2, type: 3}
   sp_icon_singer: {fileID: 21300000, guid: 72264fa4a0c0ce34badbde6451ed47fc, type: 3}
-  sp_icon_genner: {fileID: 21300000, guid: 74094c8b5950c9347a203eb3b70594db, type: 3}
+  sp_icon_genre: {fileID: 21300000, guid: 74094c8b5950c9347a203eb3b70594db, type: 3}
   panel_footer: {fileID: 5950552832845680646}
   canvas_render: {fileID: 2997965751780510492}
   bk: {fileID: 8593796487300678624}
@@ -11916,6 +11918,8 @@ MonoBehaviour:
   - {fileID: 2711747009583953573}
   - {fileID: 8924458496671048031}
   - {fileID: 7165744576882379693}
+  - {fileID: 7066273314489137615}
+  - {fileID: 8579640047402424879}
   - {fileID: 728168551962858302}
   - {fileID: 4914346006750894663}
   - {fileID: 2931692940167714871}
@@ -11926,8 +11930,6 @@ MonoBehaviour:
   - {fileID: 7615506270589498931}
   - {fileID: 7131953200398923465}
   - {fileID: 7873417985265684655}
-  - {fileID: 7066273314489137615}
-  - {fileID: 8579640047402424879}
 --- !u!114 &8315109457476373743
 MonoBehaviour:
   m_ObjectHideFlags: 0

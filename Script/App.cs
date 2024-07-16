@@ -20,7 +20,7 @@ public class App : MonoBehaviour
     public Backup backup;
 
     [Header("Asset Data")]
-    public String s_url_data_artist;
+    public String[] list_url_data_artist;
     public String s_url_data_genre;
     public String s_url_data_year;
 
@@ -58,7 +58,7 @@ public class App : MonoBehaviour
     public Sprite sp_icon_export_data;
     public Sprite sp_icon_year;
     public Sprite sp_icon_singer;
-    public Sprite sp_icon_genner;
+    public Sprite sp_icon_genre;
 
     [Header("Main Item Panel")]
     public Panel_footer panel_footer;
