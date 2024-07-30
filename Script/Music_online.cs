@@ -157,8 +157,8 @@ public class Music_online : MonoBehaviour
 
             Carrot_Box_Item item_sort = app.Create_item("item_sort");
             item_sort.set_icon(app.sp_icon_sort);
-            item_sort.set_title("Sort");
-            item_sort.set_tip("Change the way the list is sorted according to different data types");
+            item_sort.set_title(app.carrot.L("sort_list", "Sort List"));
+            item_sort.set_tip(app.carrot.L("sort_list_tip","Change the way the list is sorted according to different data types"));
             item_sort.set_act(() => Show_change_sort());
         }
     }
@@ -176,7 +176,7 @@ public class Music_online : MonoBehaviour
 
         this.box = app.carrot.Create_Box();
         this.box.set_icon(app.sp_icon_sort);
-        this.box.set_title("Sort");
+        this.box.set_title(app.carrot.L("sort_list","Sort List"));
 
         Carrot_Box_Item item_sort_name_asc = box.create_item("sort_name");
         item_sort_name_asc.set_icon(app.sp_icon_sort_name);

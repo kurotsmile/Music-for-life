@@ -21,8 +21,9 @@ public class App : MonoBehaviour
 
     [Header("Asset Data")]
     public String[] list_url_data_artist;
-    public String s_url_data_genre;
-    public String s_url_data_year;
+    public String[] list_url_data_genre;
+    public String[] list_url_data_album;
+    public String[] list_url_data_year;
 
     [Header("Obj Prefab")]
     public GameObject prefab_item_music;
@@ -57,8 +58,10 @@ public class App : MonoBehaviour
     public Sprite sp_icon_import_data;
     public Sprite sp_icon_export_data;
     public Sprite sp_icon_year;
+    public Sprite sp_icon_date;
     public Sprite sp_icon_singer;
     public Sprite sp_icon_genre;
+    public Sprite sp_icon_genre_item;
 
     [Header("Main Item Panel")]
     public Panel_footer panel_footer;
@@ -353,8 +356,9 @@ public class App : MonoBehaviour
 
     public void btn_setting()
     {
-        Carrot.Carrot_Box box_setting=this.carrot.Create_Setting();
+        Carrot_Box box_setting=this.carrot.Create_Setting();
         box_setting.update_color_table_row();
+        box_setting.set_act_before_closing(check_show_menu_main);
     }
 
     public void check_scene()
