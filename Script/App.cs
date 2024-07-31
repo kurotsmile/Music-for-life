@@ -12,6 +12,7 @@ public class App : MonoBehaviour
     public Music_online playlist_online;
     public Music_offiline playlist_offline;
     public Music_Player player_music;
+    public Playlist_Search playlist_Search;
     public Playlist_Radio playlist_radio;
     public Playlist_Sound playlist_sound;
     public List_Backgrounds list_background;
@@ -176,7 +177,7 @@ public class App : MonoBehaviour
         if (this.menu_sel == 0) this.show_list_music();
         if (this.menu_sel == 1) this.playlist_radio.Show();
         if (this.menu_sel == 2) this.playlist_sound.Show();
-
+        if (this.menu_sel == 3) this.playlist_Search.Show();
         if (this.menu_sel == 4)
         {
             this.Create_loading();
@@ -226,9 +227,9 @@ public class App : MonoBehaviour
 
     public void act_search()
     {
+        this.playlist_Search.Show();
     }
 
- 
     public void clear_all_contain()
     {
         foreach(Transform child in this.canvas_render.transform) Destroy(child.gameObject);

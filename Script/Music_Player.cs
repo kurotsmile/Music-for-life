@@ -267,8 +267,8 @@ public class Music_Player : MonoBehaviour
             this.panel_feel_full.SetActive(false);
             this.txt_feel_tip.gameObject.SetActive(false);
 
-            this.slider_timer_music.gameObject.SetActive(true);
-            this.slider_timer_music_full.gameObject.SetActive(true);
+            this.slider_timer_music.gameObject.SetActive(false);
+            this.slider_timer_music_full.gameObject.SetActive(false);
 
             this.Check_show_btn_save();
         }

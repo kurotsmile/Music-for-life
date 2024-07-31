@@ -148,6 +148,7 @@ public class Playlist : MonoBehaviour
         {
             IDictionary data_a = (IDictionary)list_artist[i];
             var s_name = data_a["name"].ToString();
+            if (data_a["lang"].ToString() != app.carrot.lang.Get_key_lang()) continue;
             Carrot_Box_Item item_m = app.Create_item("item_artist");
             if(this.type==Playlist_Type.artist) item_m.set_icon(app.sp_icon_singer);
             if(this.type==Playlist_Type.genre) item_m.set_icon(app.sp_icon_genre_item);
@@ -168,5 +169,25 @@ public class Playlist : MonoBehaviour
             else
                 item_m.GetComponent<Image>().color = app.color_row_2;
         }
+    }
+
+    public string get_s_data_artist()
+    {
+        return this.s_data_artist;
+    }
+
+    public string get_s_data_genre()
+    {
+        return this.s_data_genre;
+    }
+
+    public string get_s_data_year()
+    {
+        return this.s_data_year;
+    }
+
+    public string get_s_data_album()
+    {
+        return this.s_data_album;
     }
 }
