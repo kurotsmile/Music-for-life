@@ -186,7 +186,8 @@ public class App : MonoBehaviour
         if (this.menu_sel == 5) this.shop.Show();
         if (this.menu_sel == 6) this.playlist.Show_List_Artist();
         if (this.menu_sel == 7) this.playlist.Show_List_Genre();
-        if (this.menu_sel == 8) this.playlist.Show_List_Year();
+        if (this.menu_sel == 8) this.playlist.Show_List_Album();
+        if (this.menu_sel == 9) this.playlist.Show_List_Year();
     }
 
     private void show_list_music()

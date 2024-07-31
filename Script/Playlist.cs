@@ -1,8 +1,6 @@
 ﻿using Carrot;
 using System.Collections;
 using UnityEngine;
-using UnityEngine.Events;
-using UnityEngine.Networking;
 using UnityEngine.UI;
 
 public enum Playlist_Type {artist,genre,year,album}
@@ -26,26 +24,18 @@ public class Playlist : MonoBehaviour
 
         if (s_data_artist != "")
         {
-            this.Load_list_artist(s_data_artist);
+            this.Load_list_by_meta(s_data_artist);
         }
         else
         {
-            StartCoroutine(GetDataFromUrl(this.get_random_url(app.list_url_data_artist), (s_data) =>
+            this.app.carrot.show_loading();
+            this.app.carrot.Get_Data(this.app.carrot.random(app.list_url_data_artist),(s_data) =>
             {
+                this.app.carrot.hide_loading();
                 this.s_data_artist = s_data;
-                this.Load_list_artist(s_data);
-            }));
+                this.Load_list_by_meta(s_data);
+            }, this.Show_List_Artist);
         }
-    }
-
-    public void Show_list_song_by(string field_name,string val_equal)
-    {
-        StructuredQuery q = app.playlist_online.Q_basic_song();
-        q.Add_where(field_name, Query_OP.EQUAL, val_equal);
-        this.app.carrot.server.Get_doc(q.ToJson(), (s_data) =>
-        {
-            this.app.playlist_online.Load_list_by_data(s_data);
-        }, app.Act_server_fail);
     }
 
     public void Show_List_Genre()
@@ -55,15 +45,17 @@ public class Playlist : MonoBehaviour
 
         if (this.s_data_genre != "")
         {
-            this.Load_list_artist(s_data_genre);
+            this.Load_list_by_meta(s_data_genre);
         }
         else
         {
-            StartCoroutine(GetDataFromUrl(this.get_random_url(this.app.list_url_data_genre), (s_data) =>
+            this.app.carrot.show_loading();
+            this.app.carrot.Get_Data(this.app.carrot.random(this.app.list_url_data_genre),(s_data) =>
             {
+                this.app.carrot.hide_loading();
                 this.s_data_genre = s_data;
-                this.Load_list_artist(s_data);
-            }));
+                this.Load_list_by_meta(s_data);
+            },this.Show_List_Genre);
         }
     }
 
@@ -73,15 +65,17 @@ public class Playlist : MonoBehaviour
         app.Create_loading();
         if (this.s_data_year != "")
         {
-            this.Load_list_artist(s_data_year);
+            this.Load_list_by_meta(s_data_year);
         }
         else
         {
-            StartCoroutine(GetDataFromUrl(this.get_random_url(this.app.list_url_data_year), (s_data) =>
+            this.app.carrot.show_loading();
+            this.app.carrot.Get_Data(this.app.carrot.random(this.app.list_url_data_year), (s_data) =>
             {
+                this.app.carrot.hide_loading();
                 this.s_data_year = s_data;
-                this.Load_list_artist(s_data);
-            }));
+                this.Load_list_by_meta(s_data);
+            },this.Show_List_Year);
         }
     }
 
@@ -91,26 +85,34 @@ public class Playlist : MonoBehaviour
         app.Create_loading();
         if (this.s_data_album != "")
         {
-
+            this.Load_list_by_meta(this.s_data_album);
         }
         else
         {
-
+            this.app.carrot.Get_Data(this.app.carrot.random(this.app.list_url_data_album), (s_data) =>
+            {
+                this.s_data_album = s_data;
+                this.Load_list_by_meta(s_data);
+            },this.Show_List_Album);
         }
     }
 
 
-    private string get_random_url(string[] list_url)
+    public void Show_list_song_by(string field_name, string val_equal)
     {
-        int index_random = Random.Range(0, list_url.Length);
-        return list_url[index_random];
+        StructuredQuery q = app.playlist_online.Q_basic_song();
+        q.Add_where(field_name, Query_OP.EQUAL, val_equal);
+        this.app.carrot.server.Get_doc(q.ToJson(), (s_data) =>
+        {
+            this.app.playlist_online.Load_list_by_data(s_data);
+        }, app.Act_server_fail);
     }
 
-
-    private void Load_list_artist(string s_data)
+    private void Load_list_by_meta(string s_data)
     {
         IDictionary data_json = (IDictionary)Json.Deserialize(s_data);
         IList list_artist = (IList)data_json["all_item"];
+
         app.clear_all_contain();
 
         Carrot.Carrot_Box_Item item_title = app.Create_item("title");
@@ -128,6 +130,13 @@ public class Playlist : MonoBehaviour
             item_title.set_tip(this.app.carrot.L("genre_tip","List of genre with songs in the system"));
         }
 
+        if (this.type == Playlist_Type.album)
+        {
+            item_title.set_icon(app.sp_icon_album);
+            item_title.set_title(this.app.carrot.L("album", "Album"));
+            item_title.set_tip(this.app.carrot.L("album_tip", "List of songs in the album"));
+        }
+
         if (this.type == Playlist_Type.year)
         {
             item_title.set_icon(app.sp_icon_year);
@@ -143,6 +152,7 @@ public class Playlist : MonoBehaviour
             if(this.type==Playlist_Type.artist) item_m.set_icon(app.sp_icon_singer);
             if(this.type==Playlist_Type.genre) item_m.set_icon(app.sp_icon_genre_item);
             if(this.type == Playlist_Type.year) item_m.set_icon(app.sp_icon_date);
+            if(this.type == Playlist_Type.album) item_m.set_icon(app.sp_icon_playlist);
             item_m.set_title(data_a["name"].ToString());
             if(data_a["amount"]!=null) item_m.set_tip(data_a["amount"].ToString() + " Song");
             item_m.set_act(() =>
@@ -150,28 +160,13 @@ public class Playlist : MonoBehaviour
                 if(this.type==Playlist_Type.artist) this.Show_list_song_by("artist", s_name);
                 if (this.type == Playlist_Type.genre) this.Show_list_song_by("genre", s_name);
                 if (this.type == Playlist_Type.year) this.Show_list_song_by("year", s_name);
+                if (this.type == Playlist_Type.album) this.Show_list_song_by("album", s_name);
             });
 
             if (i % 2 == 0)
                 item_m.GetComponent<Image>().color = app.color_row_1;
             else
                 item_m.GetComponent<Image>().color = app.color_row_2;
-        }
-    }
-
-    IEnumerator GetDataFromUrl(string url, UnityAction<string> act_done)
-    {
-        UnityWebRequest request = UnityWebRequest.Get(url);
-        yield return request.SendWebRequest();
-
-        if (request.result == UnityWebRequest.Result.ConnectionError || request.result == UnityWebRequest.Result.ProtocolError)
-        {
-            Debug.LogError(request.error);
-        }
-        else
-        {
-            string json = request.downloadHandler.text;
-            act_done?.Invoke(json);
         }
     }
 }
