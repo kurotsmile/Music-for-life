@@ -9,7 +9,7 @@ public class Playlist_Search : MonoBehaviour
     public void Show()
     {
         this.app.carrot.play_sound_click();
-        this.box_input=this.app.carrot.show_search(Act_done, "Enter the name of the song, radio channel or audio you want to search for");
+        this.box_input=this.app.carrot.show_search(Act_done, app.carrot.L("search_tip", "You can search for song title, singer, genre or radio channel by search keyword."));
     }
 
     private void Act_done(string s_key)
@@ -24,21 +24,7 @@ public class Playlist_Search : MonoBehaviour
         item_title.set_title("Search Results");
         item_title.set_tip("54 Results Found");
 
-        string s_data_artist = this.app.playlist.get_s_data_artist();
-        if (s_data_artist != "")
-        {
-            IList list_artist = this.get_list(s_data_artist);
-            for(int i = 0; i < list_artist.Count; i++)
-            {
-                IDictionary atrist = list_artist[i] as IDictionary;
-                if (atrist["name"].ToString().IndexOf(s_key)>-1)
-                {
-                    Carrot.Carrot_Box_Item item_art=app.Create_item("atrist_"+i);
-                    item_art.set_title(atrist["name"].ToString());
-                    item_art.set_icon(app.sp_icon_artist);
-                }
-            }
-        }
+        this.app.playlist.Search(s_key);
     }
 
     IList get_list(string s_data)

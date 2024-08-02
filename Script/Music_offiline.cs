@@ -86,7 +86,7 @@ public class Music_offiline : MonoBehaviour
         Carrot_Box_Item item_backup = app.Create_item("item_backup");
         item_backup.set_icon(app.sp_icon_sync);
         item_backup.set_title(app.carrot.L("backup", "Backup"));
-        item_backup.set_tip(app.carrot.L("backup_tip", "Backup and sync playlists to the cloud"));
+        item_backup.set_tip(app.carrot.L("backup_tip", "Backup and sync playlists and songs"));
         item_backup.set_act(() =>this.app.backup.Show());
     }
 
@@ -290,15 +290,15 @@ public class Music_offiline : MonoBehaviour
         {
             Carrot_Box_Item item_move = box.create_item("item_move");
             item_move.set_icon(app.sp_icon_move);
-            item_move.set_title("Move");
-            item_move.set_tip("Move this item to another list");
+            item_move.set_title(app.carrot.L("move","Move"));
+            item_move.set_tip(app.carrot.L("move_tip","Move this item to another list"));
             item_move.set_act(() => Show_move_playlist(data));
         }
  
         Carrot_Box_Item item_del = box.create_item("item_del");
         item_del.set_icon(app.carrot.sp_icon_del_data);
-        item_del.set_title("Delete");
-        item_del.set_tip("Remove this item from the list");
+        item_del.set_title(app.carrot.L("delete","Delete"));
+        item_del.set_tip(app.carrot.L("delete_tip","Remove this item from the list"));
         item_del.set_act(() => this.Delete(index));
     }
 
@@ -338,7 +338,7 @@ public class Music_offiline : MonoBehaviour
         if (box != null) box.close();
         this.box = this.app.carrot.Create_Box();
         this.box.set_icon(app.sp_icon_move);
-        this.box.set_title("Move"+" - " + data["name"].ToString());
+        this.box.set_title(app.carrot.L("move","Move")+" - " + data["name"].ToString());
 
         List<IDictionary> list_item = this.Get_list_folder();
         for (int i = 0; i < list_item.Count; i++)
@@ -357,7 +357,7 @@ public class Music_offiline : MonoBehaviour
         data_to["father"] = data_from["index"].ToString();
         this.Update_data(int.Parse(data_to["index"].ToString()),data_to);
         app.carrot.play_sound_click();
-        app.carrot.Show_msg("Successfully moved to playlist","success");
+        app.carrot.Show_msg(app.carrot.L("move_success","Successfully moved to playlist"),"success");
         this.Show();
     }
 
@@ -372,14 +372,14 @@ public class Music_offiline : MonoBehaviour
 
         Carrot_Box_Item item_play = app.Create_item("item_play");
         item_play.set_icon(app.carrot.game.icon_play_music_game);
-        item_play.set_title("Play");
-        item_play.set_tip("Play all items in this list");
+        item_play.set_title(app.carrot.L("play_list","Play"));
+        item_play.set_tip(app.carrot.L("play_list_tip", "Play all items in this list"));
         item_play.set_act(() => play_all_item_in_playlist());
 
         Carrot_Box_Item item_back = app.Create_item("item_back");
         item_back.set_icon(app.sp_icon_back);
-        item_back.set_title("Back");
-        item_back.set_tip("Return to the original playlist");
+        item_back.set_title(app.carrot.L("back_list","Back"));
+        item_back.set_tip(app.carrot.L("back_list_tip","Return to the original playlist"));
         item_back.set_act(() => Show());
 
 
@@ -449,7 +449,7 @@ public class Music_offiline : MonoBehaviour
         }
 
         this.Show();
-        this.app.carrot.Show_msg("Add Song", "Import " + s_path.Length + " folder success!");
+        this.app.carrot.Show_msg(app.carrot.L("add_song_sd_folder", "Add Song"),app.carrot.L("import_song_success","Successfully imported songs into playlist")+"\n"+s_path.Length+" "+app.carrot.L("song","Song"));
     }
 
     private void Import_song_done(string[] s_path)
@@ -461,7 +461,7 @@ public class Music_offiline : MonoBehaviour
             this.Add(data);
         }
         this.Show();
-        this.app.carrot.Show_msg("Add Song","Import "+s_path.Length+" file success!");
+        this.app.carrot.Show_msg(app.carrot.L("add_song_sd","Add Song"), app.carrot.L("import_song_success", "Successfully imported songs into playlist") + "\n" + s_path.Length + " " + app.carrot.L("song", "Song"));
     }
 
     private IDictionary Create_data_song(string s_url_mp3)
