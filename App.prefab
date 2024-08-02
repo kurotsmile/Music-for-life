@@ -11871,7 +11871,7 @@ MonoBehaviour:
   - remove_ads
   - shop_all_mp3
   - shop_all_func
-  - restore
+  - in_app_restore
   p_name_en:
   - Remove ads
   - Buy the function to download mp3 files
@@ -11881,7 +11881,7 @@ MonoBehaviour:
   - remove_ads_tip
   - shop_all_mp3_tip
   - shop_all_func_tip
-  - restore_tip
+  - in_app_restore_tip
   p_tip_en:
   - Unlimited all in-app functions and remove ads
   - Unlock the function of getting mp3 download links without having to purchase

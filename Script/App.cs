@@ -536,4 +536,17 @@ public class App : MonoBehaviour
         carrot.play_vibrate();
         carrot.Show_msg("Error", "There was a problem processing to the server! Please try again another time!\n"+s_error, Msg_Icon.Error);
     }
+
+    public void Update_row_color()
+    {
+        int count_tr = 0;
+        foreach(Transform tr in this.canvas_render.transform)
+        {
+            count_tr++;
+            if (count_tr % 2 == 0)
+                tr.GetComponent<Image>().color = color_row_1;
+            else
+                tr.GetComponent<Image>().color = color_row_2;
+        }
+    }
 }

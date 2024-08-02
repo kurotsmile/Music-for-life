@@ -185,7 +185,6 @@ public class Playlist : MonoBehaviour
 
     public void Search(string s_key_seach)
     {
-        string s_key=s_key_seach.Trim().ToLower();
         if (this.s_data_artist != "")
         {
             this.Load_item_seach_by_metaData(this.s_data_artist, s_key_seach, "artist");
@@ -198,6 +197,46 @@ public class Playlist : MonoBehaviour
                 this.Load_item_seach_by_metaData(s_data, s_key_seach, "artist");
             });
         }
+
+        if (this.s_data_album != "")
+        {
+            this.Load_item_seach_by_metaData(this.s_data_album, s_key_seach, "album");
+        }
+        else
+        {
+            this.app.carrot.Get_Data(this.app.carrot.random(this.app.list_url_data_album), (s_data) =>
+            {
+                this.s_data_album = s_data;
+                this.Load_item_seach_by_metaData(s_data, s_key_seach, "album");
+            });
+        }
+
+        if (this.s_data_genre != "")
+        {
+            this.Load_item_seach_by_metaData(this.s_data_genre, s_key_seach, "genre");
+        }
+        else
+        {
+            this.app.carrot.Get_Data(this.app.carrot.random(this.app.list_url_data_genre), (s_data) =>
+            {
+                this.s_data_genre = s_data;
+                this.Load_item_seach_by_metaData(s_data, s_key_seach, "genre");
+            });
+        }
+
+        if (this.s_data_year != "")
+        {
+            this.Load_item_seach_by_metaData(this.s_data_year, s_key_seach, "year");
+        }
+        else
+        {
+            this.app.carrot.Get_Data(this.app.carrot.random(this.app.list_url_data_year), (s_data) =>
+            {
+                this.s_data_year = s_data;
+                this.Load_item_seach_by_metaData(s_data, s_key_seach, "year");
+            });
+        }
+        app.carrot.delay_function(2f,app.Update_row_color);
     }
 
     private void Load_item_seach_by_metaData(string s_data,string s_key,string s_type)

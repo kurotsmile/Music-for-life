@@ -27,8 +27,9 @@ public class App_shop : MonoBehaviour
 
         for (int i = 0; i < p_name.Length; i++)
         {
+            var index_buy = p_index_buy[i];
             Carrot_Box_Item item_shop=app.Create_item("item_shop_" + i);
-            item_shop.set_icon(app.carrot.icon_carrot_buy);
+            item_shop.set_icon(this.p_icon[i]);
             item_shop.set_title(app.carrot.L(this.p_name[i], this.p_name_en[i]));
             item_shop.set_tip(app.carrot.L(this.p_tip[i], this.p_tip_en[i]));
             if (i % 2 == 0)
@@ -38,7 +39,7 @@ public class App_shop : MonoBehaviour
 
             if (p_index_buy[i] != -1)
             {
-                if (PlayerPrefs.GetInt(this.p_key_check_buy[i], 0) != 0)
+                if (PlayerPrefs.GetInt(this.p_key_check_buy[i], 0) != 1)
                 {
                     Carrot_Box_Btn_Item btn_buy = item_shop.create_item();
                     btn_buy.set_icon(app.carrot.icon_carrot_buy);
@@ -47,6 +48,14 @@ public class App_shop : MonoBehaviour
                     Destroy(btn_buy.GetComponent<Button>());
                 }
             }
+
+            item_shop.set_act(() =>
+            {
+                if (index_buy == -1)
+                    app.carrot.restore_product();
+                else
+                    app.carrot.buy_product(index_buy);
+            });
         }
     }
 }
