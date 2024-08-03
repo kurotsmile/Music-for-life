@@ -36,7 +36,10 @@ public class Backup : MonoBehaviour
         {
             app.carrot.play_sound_click();
             app.file.Set_filter(Carrot_File_Data.JsonData);
-            app.file.Open_file(Act_import_data_done);
+            app.file.Open_file((paths) =>
+            {
+                Act_import_data_done(paths, true);
+            });
         });
 
         Carrot_Box_Item item_import_additional = this.box.create_item("item_import_additional");
@@ -47,7 +50,10 @@ public class Backup : MonoBehaviour
         {
             app.carrot.play_sound_click();
             app.file.Set_filter(Carrot_File_Data.JsonData);
-            app.file.Open_file(Act_import_data_done);
+            app.file.Open_file((paths) =>
+            {
+                Act_import_data_done(paths, false);
+            });
         });
     }
 
@@ -59,12 +65,12 @@ public class Backup : MonoBehaviour
         app.carrot.Show_msg("Export","Export json data success!\n" + s_path[0],Msg_Icon.Alert);
     }
 
-    private void Act_import_data_done(string[] s_path)
+    private void Act_import_data_done(string[] s_path,bool is_replacing)
     {
         app.carrot.play_sound_click();
         string s_data=FileHelper.ReadAllText(s_path[0]);
         IList list_item =(IList) Json.Deserialize(s_data);
-        this.app.playlist_offline.Clear_All_data();
+        if (is_replacing) this.app.playlist_offline.Clear_All_data();
         for (int i=0; i < list_item.Count; i++)
         {
             IDictionary data_song=(IDictionary) list_item[i];
