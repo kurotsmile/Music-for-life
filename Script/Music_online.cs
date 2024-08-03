@@ -152,7 +152,7 @@ public class Music_online : MonoBehaviour
                 });
 
                 this.list_data_play.Add(data_m);
-                app.Create_btn_add_play(box_item);
+                app.Create_btn_add_play(box_item, data_m);
             }
 
             Carrot_Box_Item item_sort = app.Create_item("item_sort");
@@ -178,37 +178,37 @@ public class Music_online : MonoBehaviour
         this.box.set_icon(app.sp_icon_sort);
         this.box.set_title(app.carrot.L("sort_list","Sort List"));
 
-        Carrot_Box_Item item_sort_name_asc = box.create_item("sort_name");
+        Carrot_Box_Item item_sort_name_asc = box.create_item("sort_name_a");
         item_sort_name_asc.set_icon(app.sp_icon_sort_name);
-        item_sort_name_asc.set_title("Sort by name");
-        item_sort_name_asc.set_tip("Sort by name in descending order");
+        item_sort_name_asc.set_title(app.carrot.L("sort_name","Sort by name"));
+        item_sort_name_asc.set_tip(app.carrot.L("sort_name_a","Sort by name in descending order"));
         item_sort_name_asc.set_act(() =>
         {
             this.Act_change_sort("name", Query_Order_Direction.DESCENDING);
         });
 
-        Carrot_Box_Item item_sort_name_desc = box.create_item("sort_name");
+        Carrot_Box_Item item_sort_name_desc = box.create_item("sort_name_z");
         item_sort_name_desc.set_icon(app.sp_icon_sort_name);
-        item_sort_name_desc.set_title("Sort by name");
-        item_sort_name_desc.set_tip("Sort by name in ascending order");
+        item_sort_name_desc.set_title(app.carrot.L("sort_name", "Sort by name"));
+        item_sort_name_desc.set_tip(app.carrot.L("sort_name_z", "Sort by name in ascending order"));
         item_sort_name_desc.set_act(() =>
         {
             this.Act_change_sort("name", Query_Order_Direction.ASCENDING);
         });
 
-        Carrot_Box_Item sort_date_asc = box.create_item("sort_date");
+        Carrot_Box_Item sort_date_asc = box.create_item("sort_date_a");
         sort_date_asc.set_icon(app.sp_icon_sort_date);
-        sort_date_asc.set_title("Sort by date");
-        sort_date_asc.set_tip("Sort by date in descending order");
+        sort_date_asc.set_title(app.carrot.L("sort_date","Sort by date"));
+        sort_date_asc.set_tip(app.carrot.L("sort_date_a", "Sort by date in descending order"));
         sort_date_asc.set_act(() =>
         {
             this.Act_change_sort("publishedAt", Query_Order_Direction.DESCENDING);
         });
 
-        Carrot_Box_Item sort_date_desc = box.create_item("sort_date_desc");
+        Carrot_Box_Item sort_date_desc = box.create_item("sort_date_z");
         sort_date_desc.set_icon(app.sp_icon_sort_date);
-        sort_date_desc.set_title("Sort by date");
-        sort_date_desc.set_tip("Sort by date in ascending order");
+        sort_date_desc.set_title(app.carrot.L("sort_date", "Sort by date"));
+        sort_date_desc.set_tip(app.carrot.L("sort_date_z", "Sort by date in ascending order"));
         sort_date_desc.set_act(() =>
         {
             this.Act_change_sort("publishedAt", Query_Order_Direction.ASCENDING);

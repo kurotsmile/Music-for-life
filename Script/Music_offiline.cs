@@ -202,7 +202,7 @@ public class Music_offiline : MonoBehaviour
                     if (data_m["avatar"] != null) app.carrot.get_img_and_save_playerPrefs(data_m["avatar"].ToString(), box_item.img_icon, s_id_avatar);
             }
             box_item.set_act(() => play_item_from_playlist(data_m));
-            app.Create_btn_add_play(box_item);
+            app.Create_btn_add_play(box_item,data_m);
         }
 
         if (data_m["type"].ToString() == "radio_offline")
@@ -220,7 +220,7 @@ public class Music_offiline : MonoBehaviour
                     if (data_m["avatar"] != null) app.carrot.get_img_and_save_playerPrefs(data_m["avatar"].ToString(), box_item.img_icon, s_id_avatar);
             }
             box_item.set_act(() => play_item_from_playlist(data_m));
-            app.Create_btn_add_play(box_item);
+            app.Create_btn_add_play(box_item, data_m);
         }
 
         if (data_m["type"].ToString() == "sound_offline")
@@ -228,7 +228,7 @@ public class Music_offiline : MonoBehaviour
             box_item.set_tip(app.carrot.L("m_sound", "Sound"));
             box_item.set_icon(this.app.sp_icon_audio);
             box_item.set_act(() => play_item_from_playlist(data_m));
-            app.Create_btn_add_play(box_item);
+            app.Create_btn_add_play(box_item, data_m);
         }
 
         this.Create_btn_menu(box_item).set_act(() => this.Show_menu_folder(data_m));

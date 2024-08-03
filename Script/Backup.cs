@@ -19,8 +19,8 @@ public class Backup : MonoBehaviour
 
         Carrot_Box_Item item_export_data = this.box.create_item("item_export_data");
         item_export_data.set_icon(app.sp_icon_export_data);
-        item_export_data.set_title("Export Data");
-        item_export_data.set_tip("Backup data as json data file");
+        item_export_data.set_title(app.carrot.L("export_data", "Export Data"));
+        item_export_data.set_tip(app.carrot.L("export_data_tip", "Backup data as json data file"));
         item_export_data.set_act(() =>
         {
             app.carrot.play_sound_click();
@@ -28,11 +28,22 @@ public class Backup : MonoBehaviour
             app.file.Save_file(Act_export_data_done);
         });
 
-        Carrot_Box_Item item_import_data = this.box.create_item("item_import_data");
-        item_import_data.set_icon(app.sp_icon_import_data);
-        item_import_data.set_title("Import Data");
-        item_import_data.set_tip("Recover data using json files");
-        item_import_data.set_act(() =>
+        Carrot_Box_Item item_import_substitution = this.box.create_item("item_import_substitution");
+        item_import_substitution.set_icon(app.sp_icon_import_data);
+        item_import_substitution.set_title(app.carrot.L("substitution_import", "Substitution import"));
+        item_import_substitution.set_tip(app.carrot.L("substitution_import_tip", "Recover data by replacing data using json files"));
+        item_import_substitution.set_act(() =>
+        {
+            app.carrot.play_sound_click();
+            app.file.Set_filter(Carrot_File_Data.JsonData);
+            app.file.Open_file(Act_import_data_done);
+        });
+
+        Carrot_Box_Item item_import_additional = this.box.create_item("item_import_additional");
+        item_import_additional.set_icon(app.sp_icon_import_data);
+        item_import_additional.set_title(app.carrot.L("additional_import","Additional import"));
+        item_import_additional.set_tip(app.carrot.L("additional_import_tip", "Recover data by adding data using json files"));
+        item_import_additional.set_act(() =>
         {
             app.carrot.play_sound_click();
             app.file.Set_filter(Carrot_File_Data.JsonData);

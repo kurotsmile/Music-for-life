@@ -1,5 +1,6 @@
 ﻿using Carrot;
 using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Purchasing;
 using UnityEngine.UI;
@@ -520,7 +521,7 @@ public class App : MonoBehaviour
         carrot.show_login();
     }
 
-    public void Create_btn_add_play(Carrot_Box_Item item)
+    public void Create_btn_add_play(Carrot_Box_Item item,IDictionary data_item)
     {
         if (player_music.get_status_play())
         {
@@ -528,6 +529,10 @@ public class App : MonoBehaviour
             btn_menu.set_icon(sp_add_play);
             btn_menu.set_icon_color(Color.white);
             btn_menu.set_color(carrot.color_highlight);
+            btn_menu.set_act(() =>
+            {
+                this.player_music.Add_item_to_list(data_item);
+            });
         }
     }
 

@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "Music for life"
-#define MyAppVersion "1.17"
+#define MyAppVersion "1.20"
 #define MyAppPublisher "Carrot Store"
 #define MyAppURL "https://carrotstore.web.app"
 #define MyAppExeName "Music for life.exe"
@@ -23,7 +23,7 @@ DisableProgramGroupPage=yes
 ;PrivilegesRequired=lowest
 OutputDir=D:\
 OutputBaseFilename=Music for life
-SetupIconFile=J:\Unity3d Project\Music for life\music.ico
+SetupIconFile=D:\Music For Life\music.ico
 Compression=lzma
 SolidCompression=yes
 WizardStyle=modern
