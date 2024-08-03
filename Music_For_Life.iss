@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "Music for life"
-#define MyAppVersion "1.20"
+#define MyAppVersion "2.20"
 #define MyAppPublisher "Carrot Store"
 #define MyAppURL "https://carrotstore.web.app"
 #define MyAppExeName "Music for life.exe"
