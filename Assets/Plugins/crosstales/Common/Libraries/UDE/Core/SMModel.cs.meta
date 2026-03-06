@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 7661d9eb0d0523d47aad109c377ad4e7
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 32034
+  packageName: Radio PRO
+  packageVersion: 2024.1.2
+  assetPath: Assets/Plugins/crosstales/Common/Libraries/UDE/Core/SMModel.cs
+  uploadId: 650787

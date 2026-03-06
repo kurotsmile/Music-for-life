@@ -1,0 +1,19 @@
+fileFormatVersion: 2
+guid: b44f2d12ee5b49a695191200bc2ff745
+timeCreated: 1493907846
+licenseType: Store
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 32034
+  packageName: Radio PRO
+  packageVersion: 2024.1.2
+  assetPath: Assets/Plugins/crosstales/Common/Scripts/Util/CTWebClient.cs
+  uploadId: 650787

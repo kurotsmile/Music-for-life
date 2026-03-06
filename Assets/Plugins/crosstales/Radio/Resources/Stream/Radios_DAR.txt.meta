@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 57491914f17ecdc4a90731faf33badb4
+TextScriptImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 32034
+  packageName: Radio PRO
+  packageVersion: 2024.1.2
+  assetPath: Assets/Plugins/crosstales/Radio/Resources/Stream/Radios_DAR.txt
+  uploadId: 650787

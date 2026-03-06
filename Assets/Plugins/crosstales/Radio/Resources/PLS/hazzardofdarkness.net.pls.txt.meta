@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 65d3cf862ddb4b42ad688b902e9b82b2
+timeCreated: 1468844510
+licenseType: Store
+TextScriptImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 32034
+  packageName: Radio PRO
+  packageVersion: 2024.1.2
+  assetPath: Assets/Plugins/crosstales/Radio/Resources/PLS/hazzardofdarkness.net.pls.txt
+  uploadId: 650787

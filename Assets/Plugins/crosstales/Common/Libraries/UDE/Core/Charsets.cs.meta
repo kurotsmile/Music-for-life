@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: e2f1e37a2f5214449abbd91e709bf5ba
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 32034
+  packageName: Radio PRO
+  packageVersion: 2024.1.2
+  assetPath: Assets/Plugins/crosstales/Common/Libraries/UDE/Core/Charsets.cs
+  uploadId: 650787

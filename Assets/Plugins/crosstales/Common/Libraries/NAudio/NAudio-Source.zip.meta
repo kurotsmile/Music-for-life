@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 124469bd45c2470abed49524643bbf7e
+timeCreated: 1434642704
+licenseType: Store
+DefaultImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 32034
+  packageName: Radio PRO
+  packageVersion: 2024.1.2
+  assetPath: Assets/Plugins/crosstales/Common/Libraries/NAudio/NAudio-Source.zip
+  uploadId: 650787

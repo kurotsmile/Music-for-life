@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: e3db516a0c264949a0c5e279b68be07d
+timeCreated: 1469484429
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 32034
+  packageName: Radio PRO
+  packageVersion: 2024.1.2
+  assetPath: Assets/Plugins/crosstales/Radio/Resources/Prefabs/SimplePlayer.prefab
+  uploadId: 650787

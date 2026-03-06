@@ -1,0 +1,3 @@
+#EXTM3U
+#EXTINF:0,hazzard
+http://hazzardstream.de:7777/?sid=1

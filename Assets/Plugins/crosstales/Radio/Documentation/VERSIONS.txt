@@ -1,0 +1,610 @@
+# Radio PRO - Release notes
+
+## 2024.1.2 - 15.03.2024
+* Support for Unity Cloud Build improved
+* Updated to Common 2024.1.1
+
+## 2024.1.1 - 25.02.2024
+* Players: fix for play-mode with active inspector
+
+## 2024.1.0 - 09.02.2024
+* All radio stations updated
+* Updated to Common 2024.1.0
+
+## 2023.2.2 - 20.11.2023
+* SimplePlayer: "Follow Direction" added
+* UI-behaviour of demo scenes further improved
+* Support for Unity Cloud Build
+* Updated to Common 2023.3.1
+
+## 2023.2.1 - 20.07.2023
+* UI of the demo scenes is working better in world space (AR/VR)
+* Updated to Common 2023.2.3
+
+## 2023.2.0 - 29.06.2023
+* Complete code cleanup
+* All radio stations updated
+* Threading improved
+* Enums improved
+* Updated to Common 2023.2.2
+
+## 2023.1.0 - 26.01.2023
+* Support for Unity 2023
+* Updated to Common 2023.1.0
+
+## 2022.2.2 - 02.12.2022
+* M3U-parser improved to read non-standard data
+* Project cleanup
+* Updated to Common 2022.2.2
+
+## 2022.2.1 - 11.04.2022
+* Editor integration improved
+* Buffering improved
+* "Check for Update..." added to the menu
+* Updated to Common 2022.2.1
+
+## 2022.2.0 - 15.08.2022
+* Update for "TestAllStations"
+* Stations updated (better support for non-Windows platforms)
+* Minimal supported version is now Unity 2019.4 or newer
+* Updated to Common 2022.2.0
+
+## 2022.1.2 - 07.06.2022
+* RadioPlayer: always updates the streaming url
+* Saving of stations as text-file improved
+* Update for "TestAllStations"
+* Stations updated (much more are now https)
+
+## 2022.1.1 - 30.05.2022
+* "SkipPreBuffering" added (faster playback time)
+* TestAllStations improved
+* Stations updated
+* Automatic installation of packages improved
+* Editor-folders moved to Scripts
+* GetHashCode-method improved
+* PlayMaker-actions improved
+* Updated to Common 2022.1.2
+
+## 2022.1.0 - 28.03.2022
+* NLayer improved
+* "RequestHeaders" moved to RadioStation 
+* Editor integration improved
+* PlayMaker integration improved
+* Fixes for namespaces
+* "00-Simple_Example" demo scene added
+* Updated to Common 2022.1.1
+
+## 2021.2.5 - 05.01.2022
+* More than 2'000 new radio stations added
+* Providers improved (e.g. allow only HTTPS stations)
+* RadioPlayer: "RequestHeaders" added (e.g. for authentication) 
+
+## 2021.2.4 - 19.11.2021
+* Check if RadioPlayer/SimplePlayer are active before executing methods
+* Complete radio list updated
+* Updated to Common 2021.3.5
+
+## 2021.2.3 - 28.09.2021
+* Updated to Common 2021.3.3
+
+## 2021.2.2 - 31.08.2021
+* LoadIcon improved
+* Code cleanup
+* Updated to Common 2021.3.1
+
+## 2021.2.1 - 04.06.2021
+* Editor improvements
+* Updated to Common 2021.2.2
+
+## 2021.2.0 - 15.04.2021
+* RadioPlayer and SimplePlayer:
+  * BufferingStartEvent added
+  * BufferingEndEvent added
+  * AudioStartEvent added
+  * AudioEndEvent added
+* Updated to Common 2021.2.1
+
+## 2021.1.1 - 25.02.2021
+* RadioPlayer: HandleFocus disabled per default
+* Filter: Excluded codecs are now working correctly
+* Android: Running in background improved and documentation updated
+* iOS: Running in background improved and documentation updated
+* CTNLayer.dll replaced by the source code
+* CTNVorbis.dll replaced by the source code
+* CTUDE.dll replaced by the source code
+* Updated to Common 2021.1.1
+
+## 2021.1.0 - 05.01.2021
+* Detection of the correct charset for stream information
+* Stations updated
+* UDE added
+* Demo scenes improved
+* URLs updated
+* Updated to Common 2021.1.0
+
+## 2020.4.11 - 17.12.2020
+* Improved for Unity 2020.2
+* Documentation updated
+* Updated to Common 2020.4.8
+
+## 2020.4.10 - 16.12.2020
+* RadioPlayer: better handling of focus on mobile
+* Demo scenes and prefabs improved
+
+## 2020.4.9 - 13.12.2020
+* Planned final release for 2020
+* New Youtube video added: https://youtu.be/1nrjwch71MU
+* Updated to Common 2020.4.7
+
+## 2020.4.8 - 10.12.2020
+* Updated to Common 2020.4.6
+
+## 2020.4.7 - 02.12.2020
+* GUIMain: "Never sleep" for mobiles added
+* RadioPlayer: singleton improved
+* Updated to Common 2020.4.5
+
+## 2020.4.6 - 27.11.2020
+* Buffer.Blockcopy replaced with Array.Copy
+* Small code and performance improvements
+
+## 2020.4.5 - 30.10.2020
+* iOS: download of HTTP-streams activated (see configuration)
+* OnRadio-prefabs inside Editor improved
+* Editor integration for Unity 2019+ improved
+
+## 2020.4.4 - 16.10.2020
+* RadioPlayer: global access via "Instance" added
+* Multi-threading improved
+* Updated to Common 2020.4.4
+
+## 2020.4.3 - 11.09.2020
+* Emergency fix for Constants.cs
+* List of all radio stations updated
+
+## 2020.4.2 - 10.09.2020
+* Demo scenes improved
+* Code improved
+* Updated to Common 2020.4.3
+
+## 2020.4.1 - 01.09.2020
+* Code clean-up
+* Updated to Common 2020.4.2
+
+## 2020.4.0 - 27.08.2020
+* Support added for:
+  * Apollo Visualizer Kit
+  * Rhythm Visualizator
+  * Volumetric Audio
+* Big code overhaul
+* Import of the demo scenes streamlined
+* Minimal version is now Unity 2018.4 and newer
+* Updated to Common 2020.4.1
+
+## 2020.3.0 - 03.07.2020
+* Unity events added to "RadioPlayer" and "SimplePlayer":
+  * OnPlaybackStarted
+  * OnPlaybackEnded
+  * OnRecordChanged
+  * OnError
+* Unity events added to "Providers", "Sets" and "SimplePlayer":
+  * OnStationsChanged
+  * OnProviderReadyEvent
+* Unity event "OnStationChanged" added to "SimplePlayer"
+* Unity event "OnFilterChanged" added to "Set" and "SimplePlayer"
+* Unity event "OnQueryCompleted" added to "OnRadio"-services
+* Updated to Common 2020.3.0
+
+## 2020.2.3 - 19.06.2020
+* Demo scenes are now in "Demos.unitypackage" (please install "Assets/Plugins/crosstales/Common/UI.unitypackage" first)
+* Demos improved
+* Updated to Common 2020.2.1
+
+## 2020.2.2 - 11.06.2020
+* RadioStation: "City", "Country" and "Language" added
+* ISet: "StationsByCities", "StationsByCountries" and "StationsByLanguages" 
+* new "Filter"-options: "Cities", "Countries" and "Languages"
+* Demo scenes further improved
+
+## 2020.2.1 - 02.06.2020
+* Integration for OnRadio added
+* 300 new radio stations added
+* "LoadIcon"-class improved
+* "IconUrl" added to "RecordInfo" and "RadioStation"
+* RadioFilter: "Limit" added 
+* All demo scenes improved
+* Updated to Common 2020.2.0
+
+## 2020.2.0 - 17.05.2020
+* "RecordInfo" has a new variables called "Icon" and "Rating"
+* "LoadIconForStation" renamed to "LoadIcon"
+* Compile defines can now be disabled
+* Editor integration improved
+* PlayMaker actions improved
+* Integration for Unity 2020 improved
+
+## 2020.1.4 - 15.04.2020
+* RadioStation: No longer adding the same record to "PlayedRecords"
+* Updated to Common 2020.1.3
+
+## 2020.1.3 - 26.03.2020
+* Improvements for macOS and Linux editors
+
+## 2020.1.2 - 05.03.2020
+* Stations updated
+* ReminderCheck removed
+* Updated to Common 2020.1.2
+
+## 2020.1.1 - 30.01.2020
+* Support for Unity 2020
+* Updated to Common 2020.1.1
+
+## 2020.1.0 - 09.01.2020
+* asmdef added
+* Editor integration improved
+* Updated to Common 2020.1.0
+
+## 2019.3.2 - 18.12.2019
+* Small code improvements 
+
+## 2019.3.1 - 06.12.2019
+* SimplePlayer and RadioPlayer:
+  * "isMuted", "Mute", "UnMute" and "MuteOrUnMute" added
+  * "Volume"-property added
+  * "Pitch"-property added
+  * "StereoPan"-property added
+* Editor integration improved
+* Updated to Common 2019.5.4
+
+## 2019.3.0 - 15.10.2019
+* Biggest code overhaul since the release 
+* Updated to Common 2019.5.1
+
+## 2019.2.2 - 26.09.2019
+* ReminderCheck changed
+* UpdateCheck is now set to "false" per default (enable it in the configuration)
+* Code cleanup
+
+## 2019.2.1 - 06.09.2019
+* RadioPlayerExperimental added. It has a separate thread for the decoding which should improve the overall performance.
+* RadioProviderUser: ShowFile and EditFile improved
+* Minor code improvements
+* Updated to Common 2019.4.1
+
+## 2019.2.0 - 31.07.2019
+* Minimal version is now Unity 2017.4 and newer
+* Added compatibility with assembly definitions
+* Demos: fully qualified access to classes
+* Code slightly optimized for mobile
+* Updated to Common 2019.4.0
+
+## 2019.1.5 - 28.05.2019
+* Resilience against invalid bitrates
+* Stations updated
+* Demo "02-ComplexUI" improved
+* Manuals updated
+* Updated to Common 2019.3.2
+
+## 2019.1.4 - 10.04.2019
+* Windows: IL2CPP support
+* Editor improvements
+* Updated to Common 2019.2.5
+
+## 2019.1.3 - 12.03.2019
+* Demo improved
+* Code cleanup
+* Updated to Common 2019.2.3
+
+## 2019.1.2 - 18.02.2019
+* Runtime improved (13.5h without restart)
+* Warning for IL2CPP under Windows standalone
+* Updated to Common 2019.2.1
+
+## 2019.1.1 - 28.01.2019
+* "Unity Standard Assets" removed
+* Minor code improvements
+
+## 2019.1.0 - 14.01.2019
+* Various fixes
+* Updated to Common 2019.1.0
+
+## 2018.4.0 - 01.11.2018
+* RadioPlayer: "Delay" added
+* Updated to Common 2018.4.0
+
+## 2018.3.1 - 18.10.2018
+* WSA and WebGL builds can now created with Radio inside, but it won't play any stations
+* IPlayer: PlayAndStop added
+* Updated to Common 2018.3.1
+
+## 2018.3.0 - 08.10.2018
+* Save the playlists as XSPF
+* Entries: AllowOnlyHTTPS added (main usage for iOS)
+* WWW replaced with UnityWebRequest
+* SetApiLevel improved for Unity 2018
+* Radio stations updated
+* PlayMaker-package updated
+* Minimum Unity version is now 5.6
+* UpdateCheck: runs in a separate thread
+* Common 2018.3.0 added
+* Tested with Unity 2018.3
+
+## 2018.2.0 - 28.08.2018
+* RadioPlayer: meta int and bitrate fixed
+* Common 2018.2.0 added
+* Discord channel added
+* Standard version removed
+
+## 2.9.8 - 06.06.2018
+* Channels and SampleRate moved to "RadioStation"
+* MP3 layer 3 specs enforced
+* Editor integration improved
+* Official support for Unity 2018.1 & 2018.2
+
+## 2.9.7a - 18.04.2018
+* Memory-leak from AudioClips fixed
+
+## 2.9.7 - 26.03.2018
+* Interface "IRadioProvider" for radio providers added
+* Interface "IPlayer" for players added
+* Class "LoadIconForStation" added
+* Common 1.2.6 added
+
+## 2.9.6 - 21.02.2018
+* Control player with keyboard
+* Demo scenes improved
+* Station: UpdateDataAtPlay and ServerInfo
+* More details are read from the meta data of the streaming server
+* Official support for Unity 2018
+* Common 1.2.5 added
+
+## 2.9.5 - 10.01.2018
+* Lyrics added
+* Demo scenes improved
+* Support for Unity 2018.1
+
+## 2.9.4 - 08.01.2018
+* RadioPlayer: max. play time fixed
+* PLS and M3U exporter added
+* Common 1.2.1 added
+
+## 2.9.3 - 22.12.2017
+* RadioPlayer: automatically stop when record changes
+* SimplePlayer: Endless mode added
+* Asset moved to "Plugins"
+* NYCheck added
+* Code cleanup
+
+## 2.9.2 - 04.12.2017
+* RadioPlayer:
+    * HandleFocus added
+    * fixed to work again with non-http streams
+* RadioManager:
+    * GetStations added
+    * GetPlayers added
+    * Filtering improved
+* NLayer: moved code to DLL
+* NVorbis: moved code to DLL
+* Support for pre Unity 5.3 dropped
+
+## 2.9.1 - 24.11.2017
+* CrossFader added
+* PlatformCheck added
+* Configuration: reset and save fixed
+* SetupResources improved
+
+## 2.9.0 - 16.11.2017
+* BasePlayer class created
+* Loudspeaker: works now with RadioPlayer and SimplePlayer
+* StreamSaver: works now with RadioPlayer and SimplePlayer
+* Compile define symbol "CT_RADIO" added
+* id file added
+* RadioManager improved: 
+   * new event "OnFilterChanged" added
+   * caching for players and stations added
+* More than 40 new stations added
+
+## 2.8.5 - 19.10.2017
+* StreamSaver added => Use it at your own risk! 
+* OnNextRecordChange changed: the event has now a new parameter for the delay
+* Providers are now accessible in the menus
+* Order of the demo scenes changed 01 <-> 02
+* New demo scene "03-PlayOwnStation" added
+* Unused demo files removed
+* Editor scripts better organized
+* Updated for Unity 2017.3
+
+## 2.8.4 - 19.09.2017
+* SimplePlayer: Play-function improved
+* Icon in providers and station fixed
+* RecordInfo: Created timestamp added
+* Editor improved
+
+## 2.8.3 - 01.09.2017
+* RadioPlayer: isPlaying added
+* ConfigLoader added
+* Show configuration on first launch
+* Updated for Unity 2017.2
+
+## 2.8.2 - 28.08.2017
+* RadioPlayer: limitiation of parallel played stations changed from 2 (= .NET default) to infinite
+* PlayMaker-actions improved
+* New videos added
+* Code improvements
+
+## 2.8.1 - 16.08.2017
+* Official support for Unity 2017
+* GAApi added
+* Small Editor fixes
+
+## 2.8.0 - 12.07.2017
+* Demo scenes improved
+* Loudspeaker and demo scene added
+* Documentation for mobiles (run in background) added
+* DLL removed (only source code)
+* Small fixes
+
+## 2.7.2 - 20.06.2017
+* SetupResources.cs fixed
+* RadioPlayer.cs fixed
+
+## 2.7.1a - 07.06.2017
+* SetupResources.cs improved
+
+## 2.7.1 - 01.06.2017
+* Delegates changed for iOS
+* GUIDs regenerated
+* Internet check improved
+* Update check improved
+* Reminder added
+* Configuration window and menu "Tools" improved:
+   * Videos added (incl. promo and tutorials)
+   * README added
+   * VERSIONS added
+   * Social-media buttons added
+
+## 2.7.0 - 15.05.2017
+* Information about the current and next track (title, artist) in "RecordInfo"-class implemented!
+* Open Spotify-search with the current title!
+* New class "Context" added:
+   * TotalDataSize
+   * TotalDataRequests
+   * TotalPlayTime
+* New events added:
+   * StationChange
+   * OnRecordChange
+   * OnRecordPlayTimeUpdate
+   * OnNextRecordChange
+   * OnNextRecordDelayUpdate
+* History of all played tracks per station!
+* Event-parameters have changed
+* Default chunk size changed from 8KB to 32KB
+* Default buffer size changed from 64KB to 48KB
+* Stream size changed from 320KB to 512KB
+* Max Stream size changed from 64MB to 256MB
+* Exclude codecs (fixes NLayer problems)
+* Editor: scroll views added
+* Demo scenes fixed (missing SimplePlayer)
+* Internet availability check added
+* Fix for WSA (UWP) builds
+* More than 80 new stations added
+* Global filter for RadioManager and SimplePlayer
+* Tested with Unity 2017
+* Code-cleanup
+
+## 2.6.1 - 03.04.2017
+* Context-menu for hierarchy added
+* Editor-components improved
+* API-template improved
+* Demo scenes updated
+
+## 2.6.0 - 12.03.2017
+* Support for HTTPS added
+* Code improvements
+
+## 2.5.4
+* DLL fixed for IL2CPP
+
+## 2.5.3 - 11.01.2017
+* Namespaces removed
+* Radio stations updated
+* Updated for Unity 5.5
+* Unity 5.6-ready
+* Sources as unitypackage
+
+## 2.5.2 - 03.11.2016
+* Default as DLL (sources are inside the 'sources.zip')
+* Settings are managed via CTPlayerPrefs
+* Code clean-up
+
+## 2.5.1 - 20.09.2016
+* PlayMaker actions improved (test-drive added)
+* Prevent the SimplePlayer from too fast next- and previous-calls
+* Unity 5.5-ready
+
+## 2.5.0 - 12.09.2016
+* Survive scene switches - play music while loading a scene!
+* Namespace updates
+* General code improvements and clean-up
+* Mobile and SurviveSceneSwitch scenes added
+
+## 2.4.1 - 30.07.2016
+* Provider for user added. It's now easy possible for your users to manage their own stations!
+* Save for user files implemented
+* Locate and edit user files with the default application
+* Provider for Shoutcast radio stations!
+* Editor and code improvements
+* Performance improvements under Windows and NAudio
+* Update for Unity 5.4.0
+
+## 2.4.0 - 15.07.2016
+* PLS and M3U-parser added!
+* over 30 new stations: adding up to a grand total of 134!
+* Custom editors incl. Test-Drive implemented
+* Configuration window and "Unity Preferences" added
+* Update-checker added
+* All callbacks renamed to OnXY
+* Demo for 'Audio Visualizer' added (see folder '3rd party')
+* Demo for 'Complete Sound Suite' added (see folder '3rd party')
+* Demo for 'Visualizer Studio' added (see folder '3rd party')
+* PlayMaker actions improved
+* Code improvements
+* Documentation improved
+* Minimal Unity version is now 5.1.1
+
+## 2.3.2 - 13.06.2016
+* Better demo scenes
+* Notes updated
+
+## 2.3.1 - 10.06.2016
+* Filter for radio stations added
+* Demo scenes improved
+* Check for Internet connection added
+* OGG-memory footprint reduced
+* ToString-calls from threads removed
+* New radio-stations added
+* Code clean-up
+
+## 2.3.0 - 02.06.2016
+* New audio codec: OGG (support for all platforms)!
+* Real 3D positional audio implemented
+* File provider supports now OSX and Linux
+* Much better memory solution implemented
+
+## 2.2.0 - 18.05.2016
+* Memory footprint reduced to nearly zero
+* SomaFM stations added
+* PlayMaker actions added
+
+## 2.1.0 - 13.04.2016
+* Multi-threading improved
+* Demo scenes improved
+* Providers for web and file added
+* Proxy manager added
+* Internet availability check implemented
+
+## 2.0.0 - 06.04.2016
+* Code clean-up
+* Multi-threading added
+* Callbacks added
+* API documentation added
+* Demo scenes improved
+
+## 1.3.0 - 22.10.2015
+* PRO edition created
+
+## 1.2.0 - 20.09.2015
+* Improved Editor integration
+* Out-of-memory prevention
+* Bitrate check added
+
+## 1.1.1 - 07.08.2015
+* Minor changes
+
+## 1.1.0 - 18.07.2015
+* Minor code improvements
+* Stations updated
+* Changes from Unity implemented
+
+## 1.0.0 - 13.05.2015
+* Production release

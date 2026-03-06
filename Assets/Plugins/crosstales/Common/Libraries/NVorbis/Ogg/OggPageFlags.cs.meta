@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: c4bfb10aaecaddb4a99a11c9f463a782
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 32034
+  packageName: Radio PRO
+  packageVersion: 2024.1.2
+  assetPath: Assets/Plugins/crosstales/Common/Libraries/NVorbis/Ogg/OggPageFlags.cs
+  uploadId: 650787

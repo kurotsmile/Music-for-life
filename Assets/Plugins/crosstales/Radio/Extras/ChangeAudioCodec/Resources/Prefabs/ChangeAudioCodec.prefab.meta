@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 0fee75022c0b8374eb9f470b283f5c08
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 100100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 32034
+  packageName: Radio PRO
+  packageVersion: 2024.1.2
+  assetPath: Assets/Plugins/crosstales/Radio/Extras/ChangeAudioCodec/Resources/Prefabs/ChangeAudioCodec.prefab
+  uploadId: 650787

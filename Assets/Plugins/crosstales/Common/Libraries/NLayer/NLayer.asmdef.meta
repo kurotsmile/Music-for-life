@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 6e95a955db69e1c4094b572693cf568e
+AssemblyDefinitionImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 32034
+  packageName: Radio PRO
+  packageVersion: 2024.1.2
+  assetPath: Assets/Plugins/crosstales/Common/Libraries/NLayer/NLayer.asmdef
+  uploadId: 650787

@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 281fa449933238248a7628888dc504d4
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: -400
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 32034
+  packageName: Radio PRO
+  packageVersion: 2024.1.2
+  assetPath: Assets/Plugins/crosstales/Common/Extras/PlatformController/Scripts/PlatformController.cs
+  uploadId: 650787

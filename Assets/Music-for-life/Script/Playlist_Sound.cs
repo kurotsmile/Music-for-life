@@ -1,0 +1,97 @@
+using Carrot;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
+
+public class Playlist_Sound : MonoBehaviour
+{
+    [Header("Obj Main")]
+    public App app;
+
+    private string s_data_temp = "";
+    private IList list_data_play;
+
+    public void Show()
+    {
+        app.Create_loading();
+        if(s_data_temp=="")
+            this.Get_data_list_sound();
+        else
+            this.Load_list_by_data(s_data_temp);
+    }
+
+    private void Get_data_list_sound()
+    {
+        app.Create_loading();
+        app.carrot.hub.ReadTable("bk_music", act =>
+        {
+           Debug.Log(act);
+           this.Load_list_by_data(act);
+        }, err =>
+        {
+            Debug.LogError(err);
+        });
+    }
+
+    private void Load_list_by_data(string s_data)
+    {
+        app.clear_all_contain();
+        Carrot_Box_Item item_title = app.Create_item("title");
+        item_title.set_icon(app.sp_icon_sound);
+        item_title.set_title(app.carrot.L("m_sound", "Sound"));
+        item_title.set_tip(app.carrot.L("m_sound_tip", "Playlists without words, you can save offline to listen when there is no network connection"));
+        this.list_data_play = Carrot.Json.Deserialize(s_data) as IList;
+        if (this.list_data_play.Count>0)
+        {
+            
+            for(int i = 0; i < this.list_data_play.Count; i++)
+            {
+                IDictionary data_sound = this.list_data_play[i] as IDictionary;
+                data_sound["type"] = "sound_online";
+                data_sound["index_play"] = i;
+                Carrot_Box_Item item_sound = app.Create_item("item_sound_" + i);
+                item_sound.set_icon(app.sp_icon_audio);
+                item_sound.set_title(data_sound["name"].ToString());
+                item_sound.set_tip(data_sound["author"].ToString());
+
+                if (i % 2 == 0)
+                    item_sound.GetComponent<Image>().color = app.color_row_1;
+                else
+                    item_sound.GetComponent<Image>().color = app.color_row_2;
+
+                item_sound.set_act(() => this.Play(data_sound));
+
+                Carrot_Box_Btn_Item btn_add_playlist = item_sound.create_item();
+                btn_add_playlist.set_icon(app.sp_icon_storage_save);
+                btn_add_playlist.set_icon_color(Color.white);
+                btn_add_playlist.set_color(app.carrot.color_highlight);
+                btn_add_playlist.set_act(() =>
+                {
+                    this.Storage_item(data_sound, btn_add_playlist.gameObject);
+                });
+                app.Create_btn_add_play(item_sound,data_sound);
+                app.Create_btn_add_play(item_sound,data_sound);
+            }
+        }
+        else
+        {
+            app.Create_list_none();
+        }
+    }
+
+    private void Storage_item(IDictionary data, GameObject obj_btn_storage)
+    {
+        app.carrot.play_sound_click();
+        Destroy(obj_btn_storage);
+        data["type"] = "sound_offline";
+        app.playlist_offline.Add(data);
+        app.carrot.Show_msg(app.carrot.L("playlist", "Playlist"), app.carrot.L("save_song_success", "Successfully stored, you can listen to the song again in the playlist"));
+    }
+
+    private void Play(IDictionary data)
+    {
+        this.app.player_music.Play_by_data(data);
+        if (this.list_data_play.Count > 0) this.app.player_music.Set_list_music(this.list_data_play);
+    }
+}

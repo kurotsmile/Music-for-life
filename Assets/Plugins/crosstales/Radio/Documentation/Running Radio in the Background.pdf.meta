@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 1218f58b7f57f404cbbfd9da559bef28
+timeCreated: 1497953385
+licenseType: Store
+DefaultImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 32034
+  packageName: Radio PRO
+  packageVersion: 2024.1.2
+  assetPath: Assets/Plugins/crosstales/Radio/Documentation/Running Radio in the Background.pdf
+  uploadId: 650787

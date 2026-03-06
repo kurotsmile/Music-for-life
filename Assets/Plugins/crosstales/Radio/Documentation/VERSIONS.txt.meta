@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 66cda455dca948aabca43d75a9aa9053
+timeCreated: 1491143689
+licenseType: Store
+TextScriptImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 32034
+  packageName: Radio PRO
+  packageVersion: 2024.1.2
+  assetPath: Assets/Plugins/crosstales/Radio/Documentation/VERSIONS.txt
+  uploadId: 650787

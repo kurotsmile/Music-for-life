@@ -1,0 +1,19 @@
+fileFormatVersion: 2
+guid: f49c84d1f0524bd49c4e367324235573
+timeCreated: 1467825027
+licenseType: Store
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 32034
+  packageName: Radio PRO
+  packageVersion: 2024.1.2
+  assetPath: Assets/Plugins/crosstales/Radio/Scripts/Editor/Extension/RadioManagerEditor.cs
+  uploadId: 650787

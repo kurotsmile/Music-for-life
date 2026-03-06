@@ -1,0 +1,19 @@
+fileFormatVersion: 2
+guid: 5b27f4e5f7f54f409b640eb603026e78
+timeCreated: 1468489230
+licenseType: Store
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 32034
+  packageName: Radio PRO
+  packageVersion: 2024.1.2
+  assetPath: Assets/Plugins/crosstales/Radio/Scripts/Model/Enum/AudioFormat.cs
+  uploadId: 650787

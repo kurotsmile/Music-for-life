@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: e86e126955f8484aa59da98c808815a9
+timeCreated: 1459934606
+licenseType: Store
+DefaultImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 32034
+  packageName: Radio PRO
+  packageVersion: 2024.1.2
+  assetPath: Assets/Plugins/crosstales/Radio/Documentation/Radio-api.pdf
+  uploadId: 650787

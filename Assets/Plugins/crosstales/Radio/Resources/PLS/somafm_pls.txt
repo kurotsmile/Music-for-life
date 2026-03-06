@@ -1,0 +1,39 @@
+# Radio PRO 2021.1.0
+# © 2015-2021 by crosstales LLC (https://www.crosstales.com)
+#
+# Radio stations from somaFM.com as PLS-links
+# Last updated: 03.01.2021
+# Name;Url;DataFormat;AudioFormat;Station (optional);Genres (optional);Bitrate (in kbit/s, optional);Rating (0-5, optional);Description (optional);ExcludeCodec (optional);ChunkSize (in KB, optional);BufferSize (in KB, optional)
+Groove Salad;http://somafm.com/groovesalad.pls;pls;MP3;http://somafm.com;ambient;128;4;A nicely chilled plate of ambient/downtempo beats and grooves.
+Space Station Soma;http://somafm.com/spacestation.pls;pls;MP3;http://somafm.com;electronic;128;4;Tune in, turn on, space out. Spaced-out ambient and mid-tempo electronica.
+Deep Space One;http://somafm.com/deepspaceone.pls;pls;MP3;http://somafm.com;ambient;128;4;Deep ambient electronic, experimental and space music. For inner and outer space exploration.
+Drone Zone;http://somafm.com/dronezone.pls;pls;MP3;http://somafm.com;electronic;128;4;Served best chilled, safe with most medications. Atmospheric textures with minimal beats.
+Secret Agent;http://somafm.com/secretagent.pls;pls;MP3;http://somafm.com;lounge;128;4;The soundtrack for your stylish, mysterious, dangerous life. For Spies and PIs too!
+Lush;http://somafm.com/lush.pls;pls;MP3;http://somafm.com;electronic;128;4;Sensuous and mellow vocals, mostly female, with an electronic influence.
+DEF CON Radio;http://somafm.com/defcon.pls;pls;MP3;http://somafm.com;electronic;128;4;Music for Hacking. The DEF CON Year-Round Channel.
+Fluid;http://somafm.com/fluid.pls;pls;MP3;http://somafm.com;hiphop;128;4;Drown in the electronic sound of instrumental hiphop, future soul and liquid trap.
+Illinois Street Lounge;http://somafm.com/illstreet.pls;pls;MP3;http://somafm.com;lounge;128;3;Classic bachelor pad, playful exotica and vintage music of tomorrow.
+Seven Inch Soul;http://somafm.com/7soul.pls;pls;MP3;http://somafm.com;soul;128;3;Vintage soul tracks from the original 45 RPM vinyl.
+Left Coast 70s;http://somafm.com/seventies320.pls;pls;MP3;http://somafm.com;70s;320;4;Mellow album rock from the Seventies. Yacht friendly.
+Underground 80s;http://somafm.com/u80s256.pls;pls;MP3;http://somafm.com;80s;256;4;Early 80s UK Synthpop and a bit of New Wave.
+Digitalis;http://somafm.com/digitalis.pls;pls;MP3;http://somafm.com;rock;128;5;Digitally affected analog rock to calm the agitated heart.
+Boot Liquor;http://somafm.com/bootliquor320.pls;pls;MP3;http://somafm.com;country;320;3;Americana Roots music for Cowhands, Cowpokes and Cowtippers.
+Folk Forward;http://somafm.com/folkfwd.pls;pls;MP3;http://somafm.com;folk;128;3;Indie Folk, Alt-folk and the occasional folk classics.
+ThistleRadio;http://somafm.com/thistle.pls;pls;MP3;http://somafm.com;celtic;128;4;Exploring music from Celtic roots and branches.
+PopTron;http://somafm.com/poptron.pls;pls;MP3;http://somafm.com;pop;128;4;Electropop and indie dance rock with sparkle and pop.
+Indie Pop Rocks!;http://somafm.com/indiepop.pls;pls;MP3;http://somafm.com;indie;128;4;New and classic favorite indie pop tracks.
+BAGeL Radio;http://somafm.com/bagel.pls;pls;MP3;http://somafm.com;alternative;128;4;What alternative rock radio should sound like.
+Metal Detector;http://somafm.com/metal.pls;pls;MP3;http://somafm.com;metal;128;3;From black to doom, prog to sludge, thrash to post, stoner to crossover, punk to industrial.
+The Trip;http://somafm.com/thetrip.pls;pls;MP3;http://somafm.com;progressive;128;4;Progressive house / trance. Tip top tunes.
+Beat Blender;http://somafm.com/beatblender.pls;pls;MP3;http://somafm.com;house;128;3;A late night blend of deep-house and downtempo chill.
+Suburbs of Goa;http://somafm.com/suburbsofgoa.pls;pls;MP3;http://somafm.com;indian;128;3;Desi-influenced Asian world beats and beyond.
+Sonic Universe;http://somafm.com/sonicuniverse192.pls;pls;MP3;http://somafm.com;jazz;192;3;Transcending the world of jazz with eclectic, avant-garde takes on tradition. 
+#The Silent Channel;http://somafm.com/silent.pls;pls;MP3;http://somafm.com;ambient;128;3;Chilled ambient electronic music for calm inner atmospheres from Silent Records.
+cliqhop idm;http://somafm.com/cliqhop.pls;pls;MP3;http://somafm.com;dance;128;4;Blips'n'beeps backed mostly w/beats. Intelligent Dance Music.
+Dub Step Beyond;http://somafm.com/dubstep256.pls;pls;MP3;http://somafm.com;dubstep;256;4;Dubstep, Dub and Deep Bass. May damage speakers at high volume.
+Black Rock FM;http://somafm.com/brfm.pls;pls;MP3;http://somafm.com;rock;128;3;From the Playa to the world, back for the 2015 Burning Man festival.
+Covers;http://somafm.com/covers.pls;pls;MP3;http://somafm.com;covers;128;4;Just covers. Songs you know by artists you don't. We've got you covered.
+#Earwaves;http://somafm.com/earwaves.pls;pls;MP3;http://somafm.com;electronic;128;3;Spanning the history of electronic and experimental music from the early pioneers to the latest innovators.
+Mission Control;http://somafm.com/missioncontrol.pls;pls;MP3;http://somafm.com;experimental;128;3;Celebrating NASA and Space Explorers everywhere.
+Doomed;http://somafm.com/doomed.pls;pls;MP3;http://somafm.com;industrial;128;4;Dark industrial/ambient music for tortured souls.
+SF 10-33;http://somafm.com/sf1033.pls;pls;MP3;http://somafm.com;urban;128;3;Live fire/police scanner audio from San Francisco processed and mixed with ambient and experimental music. A surreal audio zeitgeist of the city.

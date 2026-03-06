@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: ce21316b097d9eb46b9649443c27c623
+TextScriptImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 32034
+  packageName: Radio PRO
+  packageVersion: 2024.1.2
+  assetPath: Assets/Plugins/crosstales/Common/Libraries/NLayer/README.txt
+  uploadId: 650787

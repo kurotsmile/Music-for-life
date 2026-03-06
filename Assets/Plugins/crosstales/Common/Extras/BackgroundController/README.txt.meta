@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 46b17d5992a9e9b4e8cd0dc55bc1b236
+timeCreated: 1514906403
+licenseType: Store
+TextScriptImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 32034
+  packageName: Radio PRO
+  packageVersion: 2024.1.2
+  assetPath: Assets/Plugins/crosstales/Common/Extras/BackgroundController/README.txt
+  uploadId: 650787

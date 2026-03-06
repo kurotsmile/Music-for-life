@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 95506eedb849578498c3f9f7888b24fc
+DefaultImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 32034
+  packageName: Radio PRO
+  packageVersion: 2024.1.2
+  assetPath: Assets/Plugins/crosstales/Common/Extras/MobileRunInBackground/iOS_RunInBackground.unitypackage
+  uploadId: 650787

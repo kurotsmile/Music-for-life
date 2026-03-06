@@ -1,0 +1,19 @@
+fileFormatVersion: 2
+guid: f3d1e2726742422992af6e11af53f8f7
+timeCreated: 1459874442
+licenseType: Store
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 32034
+  packageName: Radio PRO
+  packageVersion: 2024.1.2
+  assetPath: Assets/Plugins/crosstales/Common/Extras/Audio/Scripts/SpectrumVisualizer.cs
+  uploadId: 650787

@@ -1,0 +1,8 @@
+# Radio PRO 2021.1.0
+# © 2015-2021 by crosstales LLC (https://www.crosstales.com)
+#
+# Radio stations from various providers as M3U-links
+# Last updated: 03.01.2021
+# Name;Url;DataFormat;AudioFormat;Station (optional);Genres (optional);Bitrate (in kbit/s, optional);Rating (0-5, optional);Description (optional);ExcludeCodec (optional);ChunkSize (in KB, optional);BufferSize (in KB, optional)
+ByteFM;http://www.byte.fm/stream/bytefm.m3u;m3u;MP3;https://www.byte.fm/;pop;128;4
+Rockantenne;http://www.rockantenne.de/webradio/rockantenne.m3u;m3u;MP3;http://www.rockantenne.de/;rock;128;4

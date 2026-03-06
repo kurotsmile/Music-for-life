@@ -1,0 +1,19 @@
+fileFormatVersion: 2
+guid: 073e339abd1f2ed46abcbe8c2e93ff11
+timeCreated: 1514901640
+licenseType: Store
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 32034
+  packageName: Radio PRO
+  packageVersion: 2024.1.2
+  assetPath: Assets/Plugins/crosstales/Common/Scripts/Editor/Task/BaseSetupResources.cs
+  uploadId: 650787

@@ -1,0 +1,19 @@
+fileFormatVersion: 2
+guid: b64bb25ae5d5428d998c5de790e45829
+timeCreated: 1467503779
+licenseType: Store
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 32034
+  packageName: Radio PRO
+  packageVersion: 2024.1.2
+  assetPath: Assets/Plugins/crosstales/Radio/Scripts/SimplePlayer.cs
+  uploadId: 650787

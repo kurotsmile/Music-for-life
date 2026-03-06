@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 35d34636f485476eadc00065662f6c6e
+timeCreated: 1473686403
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 32034
+  packageName: Radio PRO
+  packageVersion: 2024.1.2
+  assetPath: Assets/Plugins/crosstales/Common/Extras/SurviveSceneSwitch/Resources/Prefabs/SurviveSceneSwitch.prefab
+  uploadId: 650787

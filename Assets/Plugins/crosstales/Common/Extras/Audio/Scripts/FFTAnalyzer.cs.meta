@@ -1,0 +1,19 @@
+fileFormatVersion: 2
+guid: 3b0ec8f4f6a8480d8652e8f1673e7fa0
+timeCreated: 1428326630
+licenseType: Store
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 32034
+  packageName: Radio PRO
+  packageVersion: 2024.1.2
+  assetPath: Assets/Plugins/crosstales/Common/Extras/Audio/Scripts/FFTAnalyzer.cs
+  uploadId: 650787

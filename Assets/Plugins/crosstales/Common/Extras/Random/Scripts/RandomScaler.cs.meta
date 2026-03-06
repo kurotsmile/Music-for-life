@@ -1,0 +1,19 @@
+fileFormatVersion: 2
+guid: 9899c043d4f94a3f9557cf7b0229e297
+timeCreated: 1434635614
+licenseType: Store
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 32034
+  packageName: Radio PRO
+  packageVersion: 2024.1.2
+  assetPath: Assets/Plugins/crosstales/Common/Extras/Random/Scripts/RandomScaler.cs
+  uploadId: 650787

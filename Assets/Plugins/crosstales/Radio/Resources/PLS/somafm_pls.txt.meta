@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 310e9d4d9c1b41548ffac4e947d4e0b4
+timeCreated: 1467816600
+licenseType: Store
+TextScriptImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 32034
+  packageName: Radio PRO
+  packageVersion: 2024.1.2
+  assetPath: Assets/Plugins/crosstales/Radio/Resources/PLS/somafm_pls.txt
+  uploadId: 650787

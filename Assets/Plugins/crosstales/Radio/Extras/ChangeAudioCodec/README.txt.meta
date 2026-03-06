@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: dfa7466562fbcdb4ca8761b6378d45d0
+TextScriptImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 32034
+  packageName: Radio PRO
+  packageVersion: 2024.1.2
+  assetPath: Assets/Plugins/crosstales/Radio/Extras/ChangeAudioCodec/README.txt
+  uploadId: 650787

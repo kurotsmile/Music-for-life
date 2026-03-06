@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 3234899d72fd3af468d8bae8203aff16
+TextScriptImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 32034
+  packageName: Radio PRO
+  packageVersion: 2024.1.2
+  assetPath: Assets/Plugins/crosstales/Common/Libraries/NVorbis/README.txt
+  uploadId: 650787

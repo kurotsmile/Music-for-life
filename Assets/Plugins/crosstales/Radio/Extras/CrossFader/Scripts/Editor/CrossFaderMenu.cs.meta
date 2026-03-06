@@ -1,0 +1,19 @@
+fileFormatVersion: 2
+guid: bfc20ec96941c784689dfa446c5e4acd
+timeCreated: 1461244961
+licenseType: Store
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 32034
+  packageName: Radio PRO
+  packageVersion: 2024.1.2
+  assetPath: Assets/Plugins/crosstales/Radio/Extras/CrossFader/Scripts/Editor/CrossFaderMenu.cs
+  uploadId: 650787

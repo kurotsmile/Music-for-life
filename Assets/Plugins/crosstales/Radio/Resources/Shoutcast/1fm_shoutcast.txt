@@ -1,0 +1,60 @@
+# Radio PRO 2021.1.0
+# © 2015-2021 by crosstales LLC (https://www.crosstales.com)
+#
+# Radio stations from 1.fm with Shoutcast-IDs
+# Last updated: 03.01.2021
+# Name;ShoutcastId;DataFormat;AudioFormat;Station (optional);Genres (optional);Bitrate (in kbit/s, optional);Rating (0-5, optional);Description (optional);ExcludeCodec (optional);ChunkSize (in KB, optional);BufferSize (in KB, optional)
+Absolute 70's pop radio;386337;Shoutcast;MP3;http://1.fm;70s;128;3
+Absolute 90's radio;1560376;Shoutcast;MP3;http://1.fm;90s;256;4
+Absolute country hits radio;790679;Shoutcast;MP3;http://1.fm;country;128;2
+Absolute pop latino;820711;Shoutcast;MP3;http://1.fm;latin;128;2
+Absolute top 40 radio;813679;Shoutcast;MP3;http://1.fm;top40;128;3
+Absolute trance (euro) radio;832628;Shoutcast;MP3;http://1.fm;trance;128;4
+Acappella radio;886719;Shoutcast;MP3;http://1.fm;vocal;128;2
+Adore jazz radio;888729;Shoutcast;MP3;http://1.fm;jazz;128;3
+Adult urban hits choice radio;746836;Shoutcast;MP3;http://1.fm;urban;128;4
+Afterbeat electronica radio;882648;Shoutcast;MP3;http://1.fm;lounge;128;4
+All euro 80's radio;855263;Shoutcast;MP3;http://1.fm;80s;256;5
+America's best ballads radio;928468;Shoutcast;MP3;http://1.fm;ballads;256;3
+Amsterdam trance radio;805631;Shoutcast;MP3;http://1.fm;trance;128;5
+Back to the 50's & 60's radio;858378;Shoutcast;MP3;http://1.fm;oldies, 50s, 60s;128;3
+#Back to the 80's (u.s) radio;http://185.33.22.22:6900;Shoutcast;MP3;http://1.fm;80s;128;4
+Bay smooth jazz radio;838309;Shoutcast;MP3;http://1.fm;jazz;128;4
+Blues radio;1561614;Shoutcast;MP3;http://1.fm;blues;256;2
+Bom psytrance;351029;Shoutcast;MP3;http://1.fm;trance;128;3
+Bossa nova hits;949010;Shoutcast;MP3;http://1.fm;bossa nova;256;2
+Brazilian birds;746446;Shoutcast;MP3;http://1.fm;ambient;128;3
+Cafe radio;851295;Shoutcast;MP3;http://1.fm;ambient;128;3
+Chillout lounge radio;886789;Shoutcast;MP3;http://1.fm;chill;128;4
+Circuit pride radio;726742;Shoutcast;MP3;http://1.fm;dance;128;3
+Classic country;781356;Shoutcast;MP3;http://1.fm;country;128;2
+Classic rock replay radio;876709;Shoutcast;MP3;http://1.fm;rock;128;4
+Club one radio;462348;Shoutcast;MP3;http://1.fm;dance;128;4
+Costa del mar;801797;Shoutcast;MP3;http://1.fm;chill;128;5
+Country one radio;869407;Shoutcast;MP3;http://1.fm;country;128;2
+Dance one radio;722151;Shoutcast;MP3;http://1.fm;dance;256;4
+Destination: spa radio;429772;Shoutcast;MP3;http://1.fm;ambient;128;3
+Disco ball 70's-80's radio;847189;Shoutcast;MP3;http://1.fm;hits;128;4
+Dubstep forward radio;722999;Shoutcast;MP3;http://1.fm;dubstep;128;3
+Exitos del ayer radio;717124;Shoutcast;MP3;http://1.fm;latin;128;2
+#Fashion tv radio;http://185.33.21.112:11117;Shoutcast;MP3;http://1.fm;dance;128;3
+Funky express radio;612538;Shoutcast;MP3;http://1.fm;funk;128;3
+Gaia;960467;Shoutcast;MP3;http://1.fm;chill;256;4
+High voltage radio;911422;Shoutcast;MP3;http://1.fm;hard rock;256;3
+Italia on air radio;754002;Shoutcast;MP3;http://1.fm;italian;128;3
+Jamz radio;873383;Shoutcast;MP3;http://1.fm;hiphop;128;4
+Kids fm;823060;Shoutcast;MP3;http://1.fm;kids;128;3
+Love classics radio;898255;Shoutcast;MP3;http://1.fm;ballads;256;3
+Magic 80 radio;1028649;Shoutcast;MP3;http://1.fm;80s;128;4
+Movie soundtracks hits radio;853651;Shoutcast;MP3;http://1.fm;ost;128;5
+MPB hits;797759;Shoutcast;MP3;http://1.fm;brazilian;128;3
+Otto's baroque music radio;787673;Shoutcast;MP3;http://1.fm;classical;128;3
+Otto's classical music radio;935428;Shoutcast;MP3;http://1.fm;classical;256;4
+Otto's opera house radio;130516;Shoutcast;MP3;http://1.fm;opera;96;2
+Reggaetrade radio;1090180;Shoutcast;MP3;http://1.fm;reggae;128;4
+Rock classics radio;966021;Shoutcast;MP3;http://1.fm;rock;256;4
+Samba hits brazil;748149;Shoutcast;MP3;http://1.fm;brazilian;128;3
+Sax4ever;781451;Shoutcast;MP3;http://1.fm;smooth jazz;128;3
+Sertaneja hits;795448;Shoutcast;MP3;http://1.fm;latin;128;3
+Slow jamz;1074038;Shoutcast;MP3;http://1.fm;motown;128;4
+Top fiesta radio;776329;Shoutcast;MP3;http://1.fm;latin;128;3

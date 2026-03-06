@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 18567e47a6fbba24ba4b5b88308e2146
+AssemblyDefinitionImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 32034
+  packageName: Radio PRO
+  packageVersion: 2024.1.2
+  assetPath: Assets/Plugins/crosstales/Common/Libraries/UDE/UDE.asmdef
+  uploadId: 650787

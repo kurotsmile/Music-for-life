@@ -1,0 +1,5 @@
+[playlist]
+File1=http://hazzardstream.de:7777/?sid=1
+Length1=-1
+NumberOfEntries=1
+Version=2

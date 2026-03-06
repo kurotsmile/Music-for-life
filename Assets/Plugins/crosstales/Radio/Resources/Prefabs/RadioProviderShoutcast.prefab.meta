@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: c779eed7feb75ab47bdea624afd77f82
+timeCreated: 1507550644
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 32034
+  packageName: Radio PRO
+  packageVersion: 2024.1.2
+  assetPath: Assets/Plugins/crosstales/Radio/Resources/Prefabs/RadioProviderShoutcast.prefab
+  uploadId: 650787

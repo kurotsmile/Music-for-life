@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 09336b522ee1d614591fdc46516e57da
+DefaultImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 32034
+  packageName: Radio PRO
+  packageVersion: 2024.1.2
+  assetPath: Assets/Plugins/crosstales/Common/Libraries/NVorbis/license.zip
+  uploadId: 650787
