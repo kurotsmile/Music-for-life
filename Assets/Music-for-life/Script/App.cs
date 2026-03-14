@@ -99,12 +99,15 @@ public class App : MonoBehaviour
     void Start()
     {
         Screen.sleepTimeout = (int)SleepTimeout.NeverSleep;
+        this.SyncAdsPurchaseFlags();
+        this.ResolveAdsReference();
 
         this.link_deep_app = Application.absoluteURL;
         Application.deepLinkActivated += onDeepLinkActivated;
         this.carrot.Load_Carrot(this.check_exit_app);
         this.carrot.shop.onCarrotPaySuccess += this.onBuySuccessPayCarrot;
         this.carrot.shop.onCarrotRestoreSuccess += this.onRestoreSuccessPayCarrot;
+        this.ConfigureAds();
 
         if (this.carrot.os_app == OS.Window)
             this.file.type = Carrot_File_Type.StandaloneFileBrowser;
@@ -130,6 +133,26 @@ public class App : MonoBehaviour
             this.pending_start_online = false;
             this.start_app_online();
         }
+    }
+
+    private void OnDestroy()
+    {
+        Application.deepLinkActivated -= onDeepLinkActivated;
+        if (this.carrot != null && this.carrot.shop != null)
+        {
+            this.carrot.shop.onCarrotPaySuccess -= this.onBuySuccessPayCarrot;
+            this.carrot.shop.onCarrotRestoreSuccess -= this.onRestoreSuccessPayCarrot;
+        }
+
+        if (this.carrot == null || this.ads == null) return;
+
+        this.carrot.act_buy_ads_success -= this.ads.RemoveAds;
+        if (this.carrot.game != null)
+        {
+            this.carrot.game.act_click_watch_ads_in_music_bk -= this.ads.ShowRewardedVideo;
+        }
+
+        this.ads.SetRewardedSuccessCallback(null);
     }
 
     public void start_app_online()
@@ -310,6 +333,11 @@ public class App : MonoBehaviour
 
     private void onBuySuccessPayCarrot(string id_product)
     {
+        if (id_product == this.carrot.shop.get_id_by_index(0))
+        {
+            this.act_inapp_removeads();
+            this.carrot.Show_msg(this.carrot.L("shop", "Shop"), this.carrot.L("ads_remove_success", "Ad removal successful!"), Carrot.Msg_Icon.Success);
+        }
 
         if (id_product == this.carrot.shop.get_id_by_index(1)) this.player_music.act_download_mp3_file();
 
@@ -331,9 +359,15 @@ public class App : MonoBehaviour
         for(int i = 0; i < arr_id.Length; i++)
         {
             string id_p = arr_id[i];
+            if (id_p == this.carrot.shop.get_id_by_index(0)) this.act_inapp_removeads();
             if (id_p == this.carrot.shop.get_id_by_index(2)) this.act_inapp_allmp3();
             if (id_p == this.carrot.shop.get_id_by_index(3)) this.act_inapp_allfunc();
         }
+    }
+
+    private void act_inapp_removeads()
+    {
+        this.MarkAdsPurchased();
     }
 
     private void act_inapp_allmp3()
@@ -344,8 +378,8 @@ public class App : MonoBehaviour
     private void act_inapp_allfunc()
     {
         PlayerPrefs.SetInt("is_all_mp3", 1);
-        PlayerPrefs.SetInt("is_buy_ads", 1);
         PlayerPrefs.SetInt("is_all_func", 1);
+        this.MarkAdsPurchased();
     }
 
     public void buy_product(int index)
@@ -587,5 +621,48 @@ public class App : MonoBehaviour
             else
                 tr.GetComponent<Image>().color = color_row_2;
         }
+    }
+
+    private void ResolveAdsReference()
+    {
+        if (this.ads == null) this.ads = FindObjectOfType<IronSourceAds>();
+    }
+
+    private void ConfigureAds()
+    {
+        if (this.ads == null)
+        {
+            Debug.LogWarning("App could not find IronSourceAds in scene.");
+            return;
+        }
+
+        this.carrot.act_buy_ads_success -= this.ads.RemoveAds;
+        this.carrot.act_buy_ads_success += this.ads.RemoveAds;
+
+        if (this.carrot.game != null)
+        {
+            this.carrot.game.act_click_watch_ads_in_music_bk -= this.ads.ShowRewardedVideo;
+            this.carrot.game.act_click_watch_ads_in_music_bk += this.ads.ShowRewardedVideo;
+            this.ads.SetRewardedSuccessCallback(this.carrot.game.OnRewardedSuccess);
+        }
+
+        this.ads.On_Load();
+    }
+
+    private void SyncAdsPurchaseFlags()
+    {
+        if (PlayerPrefs.GetInt("is_ads", 0) == 0 && PlayerPrefs.GetInt("is_buy_ads", 0) == 0) return;
+
+        PlayerPrefs.SetInt("is_ads", 1);
+        PlayerPrefs.SetInt("is_buy_ads", 1);
+        PlayerPrefs.Save();
+    }
+
+    private void MarkAdsPurchased()
+    {
+        PlayerPrefs.SetInt("is_ads", 1);
+        PlayerPrefs.SetInt("is_buy_ads", 1);
+        PlayerPrefs.Save();
+        this.ads?.RemoveAds();
     }
 }

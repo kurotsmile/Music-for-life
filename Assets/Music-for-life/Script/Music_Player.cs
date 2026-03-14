@@ -362,7 +362,7 @@ public class Music_Player : MonoBehaviour
 
         this.data_music_save = null;
         this.is_status_play = false;
-        this.app.ads.show_ads_Interstitial();
+        this.app.ads?.show_ads_Interstitial();
         this.panel_player_mini.SetActive(true);
         this.GetComponent<AudioSource>().Stop();
         this.GetComponent<AudioSource>().clip = null;

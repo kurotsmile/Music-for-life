@@ -26,10 +26,8 @@
     <circle cx="256" cy="229" r="44" fill="#ff9f7c" opacity="0.72" />
   </g>
   <text x="488" y="160" fill="#fff7f2" font-size="58" font-family="Avenir Next Condensed, Arial, sans-serif" font-weight="700">HEARTBEAT MUSIC</text>
-  <text x="500" y="220" fill="#ffe9e0" font-size="28" font-family="Avenir Next, Arial, sans-serif">
-    <tspan x="500" dy="0">Music, radio, offline playlists,</tspan>
-    <tspan x="500" dy="36">lyrics, and visualizer.</tspan>
-  </text>
+  <text x="500" y="220" fill="#ffe9e0" font-size="28" font-family="Avenir Next, Arial, sans-serif">Music, radio, offline playlists,</text>
+  <text x="500" y="256" fill="#ffe9e0" font-size="28" font-family="Avenir Next, Arial, sans-serif">lyrics, and visualizer.</text>
   <g font-family="Avenir Next, Arial, sans-serif" font-size="24" fill="#fffaf6">
     <rect x="500" y="322" width="112" height="42" rx="21" fill="rgba(255,245,238,0.22)" stroke="rgba(255,236,225,0.45)" stroke-width="2" />
     <text x="525" y="350">MUSIC</text>
