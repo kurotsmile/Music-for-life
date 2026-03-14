@@ -66,6 +66,7 @@ public class Music_offiline : MonoBehaviour
         item_item_song.set_icon(app.sp_icon_import);
         item_item_song.set_title(app.carrot.L("add_song_sd", "Add songs from storage"));
         item_item_song.set_tip(app.carrot.L("add_song_sd_tip", "Add songs from storage or from files on your device"));
+        item_item_song.set_lang_data("add_song_sd", "add_song_sd_tip");
         item_item_song.set_act(() => Import_song_from_sd());
 
         Carrot_Box_Item item_item_folder = app.Create_item("item_item_folder");

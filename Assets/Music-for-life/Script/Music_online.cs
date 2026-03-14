@@ -293,6 +293,7 @@ public class Music_online : MonoBehaviour
             item_title.set_icon(app.sp_icon_music);
             item_title.set_title(app.carrot.L("m_music", "Music"));
             item_title.set_tip(app.carrot.L("m_music_tip", "Online playlists are listed by respective countries"));
+            item_title.set_lang_data("m_music", "m_music_tip");
 
             Carrot_Box_Btn_Item btn_sort = item_title.create_item();
             btn_sort.set_icon(app.sp_icon_sort);

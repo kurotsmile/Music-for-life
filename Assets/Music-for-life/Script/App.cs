@@ -293,13 +293,6 @@ public class App : MonoBehaviour
         this.scrollrec_menu_footer.horizontalNormalizedPosition = 1f;
     }
 
-    public void reset_app()
-    {
-        this.carrot.Delete_all_data();
-        this.clear_all_contain();
-        this.Check_set_lang();
-    }
-
     public void share_app()
     {
         this.carrot.show_share();
