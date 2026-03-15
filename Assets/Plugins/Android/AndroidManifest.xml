@@ -1,13 +1,19 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools">
   <application>
-    <activity android:name="com.carrotstore.heartbeatmusicunity3d.player.UnityPlayerActivity" android:exported="true" android:theme="@style/UnityThemeSelector">
+    <activity android:name="com.unity3d.player.UnityPlayerActivity" android:exported="true" android:theme="@style/UnityThemeSelector">
       <intent-filter>
         <action android:name="android.intent.action.MAIN" />
         <category android:name="android.intent.category.LAUNCHER" />
       </intent-filter>
       <meta-data android:name="unityplayer.UnityActivity" android:value="true" />
+      <intent-filter>
+        <action android:name="android.intent.action.VIEW" />
+        <category android:name="android.intent.category.DEFAULT" />
+        <category android:name="android.intent.category.BROWSABLE" />
+        <data android:scheme="music" android:host="show" />
+      </intent-filter>
     </activity>
-    <meta-data android:name="com.carrotstore.heartbeatmusicgoogle.android.gms.ads.APPLICATION_ID" android:value="ca-app-pub-5388516931803092~9346612767" />
+    <meta-data android:name="com.google.android.gms.ads.APPLICATION_ID" android:value="ca-app-pub-5388516931803092~9346612767" />
   </application>
 </manifest>

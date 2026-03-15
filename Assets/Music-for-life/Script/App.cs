@@ -64,6 +64,8 @@ public class App : MonoBehaviour
     [Header("Obj Other")]
     public GameObject canvas_render;
     public Skybox bk;
+    public float portraitBackgroundFov = 88.6f;
+    public float landscapeBackgroundMaxHorizontalFov = 88f;
 
     [Header("Obj Scene Roation")]
     public Transform tr_panel_header;
@@ -548,7 +550,26 @@ public class App : MonoBehaviour
             this.panel_footer.show_menu_for_landscape();
         }
 
+        this.UpdateBackgroundLayout(is_portrait);
         this.tr_panel_body.SetSiblingIndex(0);
+    }
+
+    private void UpdateBackgroundLayout(bool isPortrait)
+    {
+        if (this.bk == null) return;
+
+        Camera backgroundCamera = this.bk.GetComponent<Camera>();
+        if (backgroundCamera == null) return;
+
+        if (isPortrait)
+        {
+            backgroundCamera.fieldOfView = this.portraitBackgroundFov;
+            return;
+        }
+
+        float aspect = (float)Screen.width / Mathf.Max(1f, Screen.height);
+        float maxHorizontalFov = Mathf.Clamp(this.landscapeBackgroundMaxHorizontalFov, 1f, 179f);
+        backgroundCamera.fieldOfView = Camera.HorizontalToVerticalFieldOfView(maxHorizontalFov, aspect);
     }
 
     public Carrot_Box_Item Create_item(string s_name)
